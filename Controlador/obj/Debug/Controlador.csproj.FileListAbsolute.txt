@@ -1,0 +1,11 @@
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\bin\Debug\Controlador.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\bin\Debug\Controlador.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\bin\Debug\Modelo.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\bin\Debug\Servicios.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\bin\Debug\Modelo.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\bin\Debug\Servicios.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\obj\Debug\Controlador.csproj.AssemblyReference.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\obj\Debug\Controlador.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\obj\Debug\Controlador.csproj.CopyComplete
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\obj\Debug\Controlador.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Controlador\obj\Debug\Controlador.pdb

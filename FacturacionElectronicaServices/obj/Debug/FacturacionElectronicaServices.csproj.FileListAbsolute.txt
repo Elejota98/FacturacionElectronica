@@ -1,0 +1,14 @@
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\obj\Debug\FacturacionElectronicaServices.csproj.AssemblyReference.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\obj\Debug\FacturacionElectronicaServices.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\FacturacionElectronicaServices.exe.config
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\FacturacionElectronicaServices.exe
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\FacturacionElectronicaServices.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Controlador.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Modelo.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Servicios.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Controlador.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Modelo.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Servicios.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\obj\Debug\FacturacionElectronicaServices.csproj.CopyComplete
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\obj\Debug\FacturacionElectronicaServices.exe
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\obj\Debug\FacturacionElectronicaServices.pdb

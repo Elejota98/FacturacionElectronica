@@ -1,0 +1,9 @@
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\Servicios.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\Servicios.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\Modelo.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\Modelo.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.AssemblyReference.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.CopyComplete
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.pdb
