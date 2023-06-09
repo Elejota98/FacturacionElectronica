@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PROYECTOS\\PARQUEARSE\\FORMULARIO FACTURA ELECTRONICA\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {}
+    "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {}
   },
   "projects": {
-    "D:\\PROYECTOS\\PARQUEARSE\\FORMULARIO FACTURA ELECTRONICA\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {
+    "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROYECTOS\\PARQUEARSE\\FORMULARIO FACTURA ELECTRONICA\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
+        "projectUniqueName": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
         "projectName": "FacturacionElectronica",
-        "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FORMULARIO FACTURA ELECTRONICA\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
+        "projectPath": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
         "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-        "outputPath": "D:\\PROYECTOS\\PARQUEARSE\\FORMULARIO FACTURA ELECTRONICA\\FacturacionElectronica\\FacturacionElectronica\\obj\\",
+        "outputPath": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -68,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

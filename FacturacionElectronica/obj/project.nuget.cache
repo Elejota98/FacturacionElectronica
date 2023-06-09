@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lebBIOqIrYLEE6FYwXV304aBnylfdanJkMoFMInxQhi71pw08OW0nvCoYHtmyiL92ogFKXW7IbrIyZUCzI46Sw==",
+  "dgSpecHash": "xTfDd9NojqhMhGzosn9AtDwhLbbJqkXq8F80D6BFaN8cti0KtNTmtNJKvCzAXLVl14WqlOLVapVK2k6X3WKRuA==",
   "success": true,
-  "projectFilePath": "D:\\PROYECTOS\\PARQUEARSE\\FORMULARIO FACTURA ELECTRONICA\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
+  "projectFilePath": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrador\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\Administrador\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
