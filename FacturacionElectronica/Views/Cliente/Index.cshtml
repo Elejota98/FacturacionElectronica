@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Cliente>
+
+@{
+    ViewData["Title"] = "Registros Clientes";
+}
+
+<h1>Registro Clientes</h1>
+<table class="table-container">
+    <thead>
+        <tr>
+            <td>Identificación</td>
+            <td>Razon Social</td>
+            <td>Dirección</td>
+            <td>Telefono</td>
+            <td>Email</td>
+            <td>Ciudad</td>
+            <td>Fecha</td>
+            <td>Estado</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.Identificacion</td>
+                <td>@cliente.RazonSocial</td>
+                <td>@cliente.Direccion</td>
+                <td>@cliente.Telefono</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.IdCiudad</td>
+                <td>@cliente.Fecha</td>
+                <td>@cliente.Estado</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form method="post" asp-action="GenerarScripts">
+    <button type="submit">Generar Archivo Plano</button>
+</form>

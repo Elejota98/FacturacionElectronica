@@ -1,0 +1,21 @@
+﻿@model CotizacionEncabezadoCreacionViewModel
+@{
+    ViewData["Title"] = "Solicitud Facturación Electronica";
+}
+
+<h1>Solicitud Facturación Electronica - Parquearse SAS</h1>
+<div asp-validation-summary="ModelOnly"></div>
+<form asp-action="Crear">
+    <div class="mb-3">
+        <label asp-for="IdEstacionamiento" class="form-label"></label>
+        <select asp-for="IdEstacionamiento" asp-items="Model.Estacionamientos" class="form-select"></select>
+        <span asp-validation-for="IdEstacionamiento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdentificacionCliente" class="form-label">Número de documento</label>
+        <input type="text" id="IdentificacionCliente" name="IdentificacionCliente" autocomplete="off" class="form-control" asp-for="IdentificacionCliente" />
+        <span asp-validation-for="IdentificacionCliente" class="text-danger"></span>
+    </div>
+
+</form>

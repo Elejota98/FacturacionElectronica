@@ -1,0 +1,105 @@
+﻿@model ClienteCreacionViewModel
+
+@{
+    ViewData["Title"] = "Registro de clientes";
+}
+<h1>
+Clientes nuevos
+</h1>
+<div asp-validation-summary="ModelOnly"></div>
+<form asp-action="Crear">
+    <div class="mb-3">
+        <label asp-for="TipoPersona" class="form-label">Tipo de persona</label>
+        <select class="form-select" aria-label="Default select example" name="TipoPersona">
+            <option selected name="TipoDocumento">Seleccione...</option>
+            <option value="Natural" id="Natural">Natural</option>
+            <option value="Juridica" id="Juridica">Jurídica</option>
+        </select>
+        </div>
+
+    <div class="mb-3">
+        <label asp-for="TipoDocumento" class="form-label">Tipo de documento</label>
+        <select class="form-select" aria-label="Default select example" name="TipoDocumento">
+            <option selected name="TipoDocumento">Seleccione...</option>
+            <option value="CC">Cedula de ciudadanía</option>
+            <option value="CE">Cedula de extranjería</option>
+            <option value="NIT">Número de Identificación Tributaria</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Identificacion" class="form-label"></label>
+        <input type="text" id="Identificacion" asp-for="Identificacion" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Identificacion" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NombreApellidos" class="form-label"></label>
+        <input type="text" id="NombreApellidos" asp-for="NombreApellidos" autocomplete="off" class="form-control" />
+        <span asp-validation-for="NombreApellidos" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="RazonSocial" class="form-label"></label>
+        <input type="text" id="RazonSocial" asp-for="RazonSocial" autocomplete="off" class="form-control" />
+        <span asp-validation-for="RazonSocial" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdDepartamento" class="form-label"></label>
+        <select asp-for="IdDepartamento" asp-items="Model.Departamentos" class="form-select"></select>
+        <span asp-validation-for="IdDepartamento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdCiudad" class="form-label"></label>
+        <select asp-for="IdCiudad" asp-items="Model.Ciudades" class="form-select"></select>
+        <span asp-validation-for="IdCiudad" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Direccion" class="form-label"></label>
+        <input type="text" id="Direccion" asp-for="Direccion" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Telefono" class="form-label"></label>
+        <input type="text" id="Telefono" asp-for="Telefono" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input type="text" id="Email" asp-for="Email" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+
+
+@section Scripts {
+
+    <script>
+        const urlCiudades = '@Url.Action("ListarCiudades")';
+
+        $(function () {
+            $("#IdDepartamento").change(async function () {
+                const valorSeleccionado = $(this).val();
+
+                const respuesta = await fetch(urlCiudades, {
+                    method: 'POST',
+                    body: valorSeleccionado,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const json = await respuesta.json();
+                const opciones =
+                    json.map(ciudades => `<option value=${ciudades.value}>${ciudades.text}</option>`);
+                $("#IdCiudad").html(opciones);
+
+            })
+        })
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+
+    }
