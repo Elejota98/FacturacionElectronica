@@ -16,5 +16,6 @@ namespace Modelo
         public int IdEstacionamiento { get; set; }
         public byte[] Imagen { get; set; }
         public bool Estado { get; set; }
+        public string Fecha { get; set; }
     }
 }

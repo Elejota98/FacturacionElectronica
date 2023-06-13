@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FirebirdSql.Data.FirebirdClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -11,10 +12,14 @@ namespace Servicios
     public class RepositorioConexion
     {
         private static RepositorioConexion con = null;
-        public SqlConnection CrearConexionLocal()
+            
+        public FbConnection CrearConexionlocal()
         {
-            SqlConnection cadena = new SqlConnection(ConfigurationManager.AppSettings["ConexionLocal"]);
-            return cadena;
+            FbConnectionStringBuilder builder = new FbConnectionStringBuilder();
+            builder.Database = ConfigurationManager.AppSettings["ConexionLocal"];
+            FbConnection conexion = new FbConnection(builder.ToString());
+            return conexion;
+
         }
 
         public SqlConnection CrearConexionNube()

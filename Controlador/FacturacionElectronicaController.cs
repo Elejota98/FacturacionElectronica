@@ -28,5 +28,11 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ListarPagos();
         }
+
+        public static string ActualizaEstadoPagos()
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ActualizaEstadoPagos();
+        }
     }
 }

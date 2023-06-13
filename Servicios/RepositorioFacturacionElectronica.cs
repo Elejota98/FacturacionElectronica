@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelo;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -94,5 +95,34 @@ namespace Servicios
                 if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
             }
         }
+
+        public string ActualizaEstadoPagos()
+        {
+            string rta = "";
+            SqlConnection sqlcon = new SqlConnection();
+            try
+            {
+                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("UPDATE T_Pagos SET Estado=1 WHERE Estado=0");
+                SqlCommand comando = new SqlCommand(cadena, sqlcon);
+                sqlcon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+                
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
+            return rta;
+        }
+
+
     }
 }

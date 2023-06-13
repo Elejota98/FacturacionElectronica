@@ -7,3 +7,8 @@ C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\S
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.CopyComplete
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.dll
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Threading.Tasks.Extensions.xml

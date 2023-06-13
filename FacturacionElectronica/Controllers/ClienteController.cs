@@ -60,7 +60,7 @@ namespace FacturacionElectronica.Controllers
                 return RedirectToAction("Crear", "Pagos");
             }
             await repositorioCliente.Crear(cliente);
-            await GenerarScripts();
+            //await GenerarScripts();
             return RedirectToAction("Crear", "Pagos");
         }
 
