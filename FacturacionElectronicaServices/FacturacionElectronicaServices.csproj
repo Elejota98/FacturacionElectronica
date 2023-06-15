@@ -76,6 +76,10 @@
       <Project>{0879e23b-c729-4358-93e2-cc8e16677ef5}</Project>
       <Name>Modelo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{12b39667-ff8b-49d4-b079-33ed171a17e9}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

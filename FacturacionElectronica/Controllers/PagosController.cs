@@ -125,48 +125,48 @@ namespace FacturacionElectronica.Controllers
             {
                 RedirectToAction("NoEncontrado", "Home");
             }
-            await GenerarScriptsPagos();
+            //await GenerarScriptsPagos();
             return RedirectToAction("Registros");
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> GenerarScriptsPagos()
-        {
-            var registrosPagos = await repositorioPagos.ListarDatosPagos();
-            var scripts = new StringBuilder();
-            foreach (var registros in registrosPagos)
-            {
-                scripts.AppendLine($"INSERT INTO COTIZACIONES (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
-                                    $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                                    $"VALUES({registros.Empresa},{registros.Identificacion},1,{registros.Fecha},1,1,1,'NULL','NULL',1,'NULL',0,{registros.Prefijo},{registros.NumeroFactura},'NULL','NULL')");
-            }
-            var parametros = await repositorioParametros.ListarRuta();
-            string rutaArchivo = "";
-            for (int i = 0; i < parametros.Count; i++)
-            {
-                if (parametros[i].Codigo == "RutaArchivoCliente")
-                {
-                    rutaArchivo = parametros[i].Valor;
-                }
-            }
+        //[HttpPost]
+        //public async Task<IActionResult> GenerarScriptsPagos()
+        //{
+        //    var registrosPagos = await repositorioPagos.ListarDatosPagos();
+        //    var scripts = new StringBuilder();
+        //    foreach (var registros in registrosPagos)
+        //    {
+        //        scripts.AppendLine($"INSERT INTO COTIZACIONES (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
+        //                            $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
+        //                            $"VALUES({registros.Empresa},{registros.Identificacion},1,{registros.Fecha},1,1,1,'NULL','NULL',1,'NULL',0,{registros.Prefijo},{registros.NumeroFactura},'NULL','NULL')");
+        //    }
+        //    var parametros = await repositorioParametros.ListarRuta();
+        //    string rutaArchivo = "";
+        //    for (int i = 0; i < parametros.Count; i++)
+        //    {
+        //        if (parametros[i].Codigo == "RutaArchivoCliente")
+        //        {
+        //            rutaArchivo = parametros[i].Valor;
+        //        }
+        //    }
 
-            if (!Directory.Exists(rutaArchivo))
-            {
-                Directory.CreateDirectory(rutaArchivo);
-            }
+        //    if (!Directory.Exists(rutaArchivo))
+        //    {
+        //        Directory.CreateDirectory(rutaArchivo);
+        //    }
 
-            string rutaArchivoN = Path.Combine(rutaArchivo, "InterfazCliente.txt");
-            using (StreamWriter writer = new StreamWriter(rutaArchivoN, true))
-            {
-                await writer.WriteAsync(scripts.ToString());
-            }
+        //    string rutaArchivoN = Path.Combine(rutaArchivo, "InterfazCliente.txt");
+        //    using (StreamWriter writer = new StreamWriter(rutaArchivoN, true))
+        //    {
+        //        await writer.WriteAsync(scripts.ToString());
+        //    }
 
-            await repositorioPagos.ActualizarEstadoPago();
+        //    await repositorioPagos.ActualizarEstadoPago();
 
-            return View();
+        //    return View();
 
-        }
+        //}
 
 
     }

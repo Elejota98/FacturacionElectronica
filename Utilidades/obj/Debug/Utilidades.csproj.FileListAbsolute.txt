@@ -1,0 +1,6 @@
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Utilidades\bin\Debug\Utilidades.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Utilidades\bin\Debug\Utilidades.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Utilidades\obj\Debug\Utilidades.csproj.AssemblyReference.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Utilidades\obj\Debug\Utilidades.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Utilidades\obj\Debug\Utilidades.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\Utilidades\obj\Debug\Utilidades.pdb

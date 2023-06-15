@@ -18,3 +18,5 @@ C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronic
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\obj\Debug\FacturacionElectronicaServices.csproj.SuggestedBindingRedirects.cache
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Utilidades.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaServices\bin\Debug\Utilidades.pdb

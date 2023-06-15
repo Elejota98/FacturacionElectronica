@@ -72,45 +72,45 @@ namespace FacturacionElectronica.Controllers
 
         //GENERAR ARCHIVO PLANO
 
-        [HttpPost]
-        public async Task<IActionResult> GenerarScripts()
-        {
-            var registros = await repositorioCliente.ObtenerClientes();
-            var scripts = new StringBuilder();
+        //[HttpPost]
+        //public async Task<IActionResult> GenerarScripts()
+        //{
+        //    var registros = await repositorioCliente.ObtenerClientes();
+        //    var scripts = new StringBuilder();
 
-            foreach (var registrosClientes in registros)
-            {
-                scripts.AppendLine($"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
-                    $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
-                    $"VALUES ('1', '{registrosClientes.Identificacion}', 0, '{registrosClientes.RazonSocial}', '{registrosClientes.Direccion}', " +
-                    $"'{registrosClientes.Telefono}', '{registrosClientes.Email}', '{registrosClientes.IdCiudad}', '1', 0, '{registrosClientes.Fecha}')");
-            }
+        //    foreach (var registrosClientes in registros)
+        //    {
+        //        scripts.AppendLine($"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
+        //            $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
+        //            $"VALUES ('1', '{registrosClientes.Identificacion}', 0, '{registrosClientes.RazonSocial}', '{registrosClientes.Direccion}', " +
+        //            $"'{registrosClientes.Telefono}', '{registrosClientes.Email}', '{registrosClientes.IdCiudad}', '1', 0, '{registrosClientes.Fecha}')");
+        //    }
 
-            var parametros = await repositorioParametros.ListarRuta();
-            string rutaArchivo = "";
-            for (int i = 0; i < parametros.Count; i++)
-            {
-                if (parametros[i].Codigo == "RutaArchivoCliente")
-                {
-                    rutaArchivo = parametros[i].Valor;
-                }
-            }
+        //    var parametros = await repositorioParametros.ListarRuta();
+        //    string rutaArchivo = "";
+        //    for (int i = 0; i < parametros.Count; i++)
+        //    {
+        //        if (parametros[i].Codigo == "RutaArchivoCliente")
+        //        {
+        //            rutaArchivo = parametros[i].Valor;
+        //        }
+        //    }
 
-            if (!Directory.Exists(rutaArchivo))
-            {
-                Directory.CreateDirectory(rutaArchivo);
-            }
+        //    if (!Directory.Exists(rutaArchivo))
+        //    {
+        //        Directory.CreateDirectory(rutaArchivo);
+        //    }
 
-            string rutaArchivoN = Path.Combine(rutaArchivo, "InterfazCliente.txt");
-            using (StreamWriter writer = new StreamWriter(rutaArchivoN, true))
-            {
-                await writer.WriteAsync(scripts.ToString());
-            }
+        //    string rutaArchivoN = Path.Combine(rutaArchivo, "InterfazCliente.txt");
+        //    using (StreamWriter writer = new StreamWriter(rutaArchivoN, true))
+        //    {
+        //        await writer.WriteAsync(scripts.ToString());
+        //    }
 
-            await repositorioCliente.ActualizarEstado();
+        //    await repositorioCliente.ActualizarEstado();
 
-            return View();
-        }
+        //    return View();
+        //}
 
         //Consultar Ciudades por departamneto
 

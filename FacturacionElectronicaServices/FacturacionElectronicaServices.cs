@@ -27,7 +27,7 @@ namespace FacturacionElectronicaServices
         {
             get
             {
-                string sSerial = ConfigurationManager.AppSettings["UrlFireBird"];
+                string sSerial = ConfigurationManager.AppSettings["ConexionLocal"];
                 if (string.IsNullOrEmpty(sSerial))
                 {
                     return "User ID=SYSDBA;Password=masterkey;Database=C://magister/datos/magisterz.mgt;DataSource=localhost;Charset=NONE;";
@@ -176,10 +176,10 @@ namespace FacturacionElectronicaServices
                         $"'{cliente.Telefono}', '{cliente.Email}', '{cliente.IdCiudad}', '1', 0, '{cliente.Fecha}')";
 
                     // INSERTAR A LA BD INTERFAZ
-                    //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                    //fbCon.Open();
-                    //FbCommand comando = new FbCommand(textoCliente, fbCon);
-                    //comando.ExecuteNonQuery();
+                    FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                    fbCon.Open();
+                    FbCommand comando = new FbCommand(textoCliente, fbCon);
+                    comando.ExecuteNonQuery();
 
                     // Obtener la fecha actual para el nombre de archivo
                     DateTime fechaActual = DateTime.Now;
@@ -197,7 +197,7 @@ namespace FacturacionElectronicaServices
                     {
                         sw.WriteLine(textoCliente);
                     }
-                    //fbCon.Close();
+                    fbCon.Close();
 
                 }
                 string rta = "";
@@ -241,10 +241,10 @@ namespace FacturacionElectronicaServices
                         $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
                         $"VALUES('1',{pagos.NumeroDocumento},1,{pagos.Fecha},1,1,1,'NULL','NULL',1,'NULL',0,{pagos.Prefijo},{pagos.NumeroFactura},'NULL','NULL')";
 
-                    //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                    //fbCon.Open();
-                    //FbCommand comando = new FbCommand(textPagos, fbCon);
-                    //comando.ExecuteNonQuery();
+                    FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                    fbCon.Open();
+                    FbCommand comando = new FbCommand(textPagos, fbCon);
+                    comando.ExecuteNonQuery();
 
                     // Obtener la fecha actual para el nombre de archivo
                     DateTime fechaActual = DateTime.Now;
@@ -261,7 +261,7 @@ namespace FacturacionElectronicaServices
                     {
                         sw.WriteLine(textPagos);
                     }
-                    //fbCon.Close();
+                    fbCon.Close();
 
                     ok = true;
                 }

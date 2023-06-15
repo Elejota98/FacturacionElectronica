@@ -32,7 +32,7 @@ namespace FacturacionElectronica.Models
         [Required(ErrorMessage ="El campo es requerido")]
         [Display(Name ="Departamento")]
         public string IdDepartamento { get; set; }
-        [Required(ErrorMessage = "El campo es requerido")]
+        [Range(0, maximum: int.MaxValue, ErrorMessage = "Debe seleccionar una ciudad")]
         [Display(Name = "Ciudad")]
         public int IdCiudad { get; set; }
         public string Ciudad { get; set; }
