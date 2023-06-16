@@ -13,12 +13,10 @@ namespace Servicios
     {
         private static RepositorioConexion con = null;
             
-        public FbConnection CrearConexionlocal()
+        public FbConnection CrearConexionLocal()
         {
-            FbConnectionStringBuilder builder = new FbConnectionStringBuilder();
-            builder.Database = ConfigurationManager.AppSettings["ConexionLocal"];
-            FbConnection conexion = new FbConnection(builder.ToString());
-            return conexion;
+            FbConnection cadena = new FbConnection(ConfigurationManager.AppSettings["ConexionLocal"]);
+            return cadena;
 
         }
 

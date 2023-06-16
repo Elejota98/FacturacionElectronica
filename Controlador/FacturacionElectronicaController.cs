@@ -34,5 +34,42 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ActualizaEstadoPagos();
         }
+
+        //INTERFAZ
+
+
+        #region Cliente
+        public static string InsertarClienteInterfaz(string texto)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.InsertarClienteInterfaz(texto);
+        }
+        public static DataTable ValidarExisteCliente( string documento)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ValidarExisteCliente(documento);
+        }
+
+        #endregion
+
+        #region Pagos 
+
+        public static string InsetarPagos(string texto)
+        {
+            string rta = "";
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            if(texto is null)
+            {
+                return rta = "No se encontro datos a insertar";
+            }
+            else
+            {
+                return Datos.InsertarPagos(texto);
+            }
+        }
+
+        #endregion
+
+
     }
 }

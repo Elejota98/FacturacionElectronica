@@ -101,6 +101,7 @@ namespace FacturacionElectronica.Controllers
         [HttpPost]
         public async Task<IActionResult> Crear(PagosCreacionViewModel pagos, IFormFile imagen)
         {
+            Pagos oPagos = new Pagos();
             //ObtenerEstacionamientosPorId
             var idEstacionamiento = await repositorioPagos.ListarEstacionamientos();
             if (idEstacionamiento is null)
@@ -120,11 +121,27 @@ namespace FacturacionElectronica.Controllers
                 pagos.Estacionamientos = await ListarEstacionamientos();
                 return View(pagos);
             }
-            await repositorioPagos.Insertar(pagos);
-            if (pagos.Id < 0)
+
+            var idModulo = await repositorioPagos.ListarIdModuloPorPrefijo(pagos.Prefijo,pagos.IdEstacionamiento);
+            if (idModulo is null)
             {
                 RedirectToAction("NoEncontrado", "Home");
             }
+
+            var listadoPagos = await repositorioPagos.ListarTotalesSeparados(pagos.NumeroFactura, idModulo.IdModulo, pagos.IdEstacionamiento);
+            foreach (var pagoslist in listadoPagos)
+            {
+                pagos.NumeroFactura = pagoslist.NumeroFactura;
+                pagos.Total= pagoslist.Total;
+
+                await repositorioPagos.Insertar(pagos);
+                if (pagos.Id < 0)
+                {
+                    RedirectToAction("NoEncontrado", "Home");
+                }
+
+            }
+
             //await GenerarScriptsPagos();
             return RedirectToAction("Registros");
         }

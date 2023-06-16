@@ -13,6 +13,7 @@ namespace FacturacionElectronica.Servicios
         Task<IEnumerable<Estacionamientos>> ListarEstacionamientos();
         Task<Facturacion> ListarIdModuloPorPrefijo(string prefijo, int idEstacionamiento);
         Task<Pagos> ListarTotal(int numeroFactura, string idModulo, int idEstacionamiento);
+        Task<List<Pagos>> ListarTotalesSeparados(int numeroFactura, string idModulo, int idEstacionamiento);
         Task<IEnumerable<Facturacion>> ObtenerPrefijoPorIdEstacionamiento(long idEstacionamiento);
     }
     public class RepositorioPagos : IRepositorioPagos
@@ -52,7 +53,18 @@ namespace FacturacionElectronica.Servicios
         {
             using var connection = new SqlConnection(connectionStringNube);
             return await connection.QueryFirstOrDefaultAsync<Pagos>(@"Select SUM(Total) as Total from T_Pagos
-                                                                                                       WHERE NumeroFactura=@NumeroFactura and IdModulo=@IdModulo and IdEstacionamiento=@IdEstacionamiento", new { numeroFactura, idModulo, idEstacionamiento });
+                                                                     WHERE NumeroFactura=@NumeroFactura and IdModulo=@IdModulo and IdEstacionamiento=@IdEstacionamiento", new { numeroFactura, idModulo, idEstacionamiento });
+        }
+
+        //Listar total para insertar a la bd 
+
+        public async Task<List<Pagos>> ListarTotalesSeparados(int numeroFactura, string idModulo, int idEstacionamiento)
+        {
+            using var connection = new SqlConnection(connectionStringNube);
+            var resultado = await connection.QueryAsync<Pagos>(@"Select NumeroFactura,Total from T_Pagos
+                                                                     WHERE NumeroFactura=@NumeroFactura and IdModulo=@IdModulo and IdEstacionamiento=@IdEstacionamiento", new { numeroFactura, idModulo, idEstacionamiento });
+
+            return resultado.ToList();
         }
 
         //Validar si el cliente ya existe 

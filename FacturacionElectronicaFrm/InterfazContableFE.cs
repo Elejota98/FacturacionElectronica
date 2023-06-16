@@ -86,13 +86,21 @@ namespace FacturacionElectronicaFrm
                         MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
 
                         // INSERTAR A LA BD INTERFAZ
-                        FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                        fbCon.Open();
-                        FbCommand comando = new FbCommand(textoCliente, fbCon);
-                        comando.ExecuteNonQuery();
+                        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                        //fbCon.Open();
+                        //FbCommand comando = new FbCommand(textoCliente, fbCon);
+                        //comando.ExecuteNonQuery();
 
-                        MensajeAListBox("Se guardó un cliente OK");
-                        fbCon.Close();
+                        //MensajeAListBox("Se guardó un cliente OK");
+                        //fbCon.Close();
+
+                        if (VerificarClienteExiste(cliente.Identificacion.ToString()))
+                        {
+                            // INSERTA PAGOS EN LA TABLA COTIZACIONES Y COTIZACIONES ENCABEZADO
+
+                        }
+
+                        InsertarClienteInterfaz(textoCliente);
 
                         // Obtener la fecha actual para el nombre de archivo
                         DateTime fechaActual = DateTime.Now;
@@ -199,6 +207,43 @@ namespace FacturacionElectronicaFrm
 
                 MensajeAListBox("Error! " + ex.ToString());
             }
+
+        }
+
+
+        //INTERFAZ
+
+        public void InsertarClienteInterfaz(string texto)
+        {
+            bool ok = false;
+            string rta = "";
+            rta = FacturacionElectronicaController.InsertarClienteInterfaz(texto);
+            if (rta.Equals("OK"))
+            {
+                ok= true;
+            }
+            else
+            {
+                MensajeAListBox(rta.ToString());
+                ok= false;
+            }
+
+        }
+
+        public bool VerificarClienteExiste(string documento)
+        {
+            bool ok = false;
+            DataTable tabla = new DataTable();
+            tabla = FacturacionElectronicaController.ValidarExisteCliente(documento);
+            if (tabla.Rows.Count > 0)
+            {
+                ok = true;
+            }
+            else
+            {
+                ok = false;
+            }
+            return ok;
 
         }
         #endregion

@@ -1,4 +1,5 @@
-﻿using Modelo;
+﻿using FirebirdSql.Data.FirebirdClient;
+using Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,10 +31,10 @@ namespace Servicios
                 return tabla;
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             finally
             {
@@ -55,10 +56,10 @@ namespace Servicios
                 rta = "OK";
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             finally
             {
@@ -85,10 +86,10 @@ namespace Servicios
                 return tabla;
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             finally
             {
@@ -108,13 +109,13 @@ namespace Servicios
                 sqlcon.Open();
                 comando.ExecuteNonQuery();
                 rta = "OK";
-                
+
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             finally
             {
@@ -122,6 +123,94 @@ namespace Servicios
             }
             return rta;
         }
+
+        //INTERFAZ
+
+        #region Cliente
+        public DataTable ValidarExisteCliente(string documento)
+        {
+            DataTable tabla = new DataTable();
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("SELECT * FROM CLIENTES WHERE CLI_IDENTIFICACION='" + documento + "'");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                FbDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return tabla;
+        }
+
+
+        public string InsertarClienteInterfaz(string texto)
+        {
+            string rta = "";
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                FbCommand comando = new FbCommand(texto, fbCon);
+                fbCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex)
+            {
+
+                rta = ex.ToString();
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return rta;
+        }
+        #endregion
+
+        #region Pagos
+
+        public string InsertarPagos(string texto)
+        {
+            string rta = "";
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = (texto);
+                FbCommand comando = new FbCommand(texto, fbCon);
+                fbCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex )
+            {
+
+                rta = ex.ToString();
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return rta;
+        }
+
+        #endregion
+
+
 
 
     }
