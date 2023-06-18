@@ -16,9 +16,11 @@ namespace FacturacionElectronica.Models
         public int NumeroFactura { get; set; }
         public string Prefijo { get; set; }
         public int Total { get; set; }
+
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [Display(Name = "Sede - Parqueadero")]
         public int IdEstacionamiento { get; set; }
+        public int IdTipoPago { get; set; }
         public byte[] Imagen { get; set; }
 
         public bool Estado = false;
