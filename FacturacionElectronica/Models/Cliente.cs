@@ -29,10 +29,12 @@ namespace FacturacionElectronica.Models
         [Required(ErrorMessage = "El campo es requerido")]
         [EmailAddress(ErrorMessage ="El dato ingresado no es válido")]
         public string Email { get; set; }
+        [Range(0, maximum: int.MaxValue, ErrorMessage = "Debe seleccionar un departamento")]
         [Required(ErrorMessage ="El campo es requerido")]
         [Display(Name ="Departamento")]
         public string IdDepartamento { get; set; }
         [Range(0, maximum: int.MaxValue, ErrorMessage = "Debe seleccionar una ciudad")]
+        [Required(ErrorMessage = "El campo es requerido")]
         [Display(Name = "Ciudad")]
         public int IdCiudad { get; set; }
         public string Ciudad { get; set; }

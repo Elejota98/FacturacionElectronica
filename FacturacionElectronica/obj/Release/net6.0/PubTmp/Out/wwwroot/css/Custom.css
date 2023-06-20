@@ -1,0 +1,24 @@
+﻿.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+@media screen and (max-width: 600px) {
+    th, td {
+        display: block;
+    }
+
+    th {
+        text-align: center;
+    }
+}
