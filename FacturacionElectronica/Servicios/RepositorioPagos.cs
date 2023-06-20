@@ -9,9 +9,9 @@ namespace FacturacionElectronica.Servicios
         Task ActualizarEstadoPago();
         Task<bool> Existe(string identificacion);
         Task Insertar(PagosCreacionViewModel pagosCreacionViewModel);
-        Task<IEnumerable<Cotizaciones>> ListarDatosPagos();
         Task<IEnumerable<Estacionamientos>> ListarEstacionamientos();
         Task<Facturacion> ListarIdModuloPorPrefijo(string prefijo, int idEstacionamiento);
+        Task<TipoPagos> ListarTipoPago(string tipoPago);
         Task<Pagos> ListarTotal(int numeroFactura, string idModulo, int idEstacionamiento);
         Task<List<Pagos>> ListarTotalesSeparados(int numeroFactura, string idModulo, int idEstacionamiento);
         Task<IEnumerable<Facturacion>> ObtenerPrefijoPorIdEstacionamiento(long idEstacionamiento);
@@ -61,7 +61,7 @@ namespace FacturacionElectronica.Servicios
         public async Task<List<Pagos>> ListarTotalesSeparados(int numeroFactura, string idModulo, int idEstacionamiento)
         {
             using var connection = new SqlConnection(connectionStringNube);
-            var resultado = await connection.QueryAsync<Pagos>(@"Select NumeroFactura,Total from T_Pagos
+            var resultado = await connection.QueryAsync<Pagos>(@"Select NumeroFactura,Total, IdTipoPago from T_Pagos
                                                                      WHERE NumeroFactura=@NumeroFactura and IdModulo=@IdModulo and IdEstacionamiento=@IdEstacionamiento", new { numeroFactura, idModulo, idEstacionamiento });
 
             return resultado.ToList();
@@ -69,10 +69,10 @@ namespace FacturacionElectronica.Servicios
 
         //Validar si el cliente ya existe 
 
-        public async Task<bool> Existe(string identificacion)
+        public async Task<bool> Existe(string numeroDocumento)
         {
             using var connection = new SqlConnection(connectionString);
-            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE Identificacion=@Identificacion", new { identificacion }); //El primer registro o un valor por defecto si no existe
+            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE NumeroDocumento=@NumeroDocumento", new { numeroDocumento }); //El primer registro o un valor por defecto si no existe
            
             return existe == 1;
 
@@ -90,18 +90,10 @@ namespace FacturacionElectronica.Servicios
                 prefijo=pagosCreacionViewModel.Prefijo,
                 total=pagosCreacionViewModel.Total,
                 idEstacionamiento=pagosCreacionViewModel.IdEstacionamiento,
+                idTipoPago = pagosCreacionViewModel.IdTipoPago,
                 imagen=pagosCreacionViewModel.Imagen
 
             }, commandType: System.Data.CommandType.StoredProcedure);
-        }
-
-        //Listar datos pagos 
-
-        public async Task<IEnumerable<Cotizaciones>> ListarDatosPagos()
-        {
-            using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Cotizaciones>(@"SELECT C.Empresa, c.Fecha,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, c.Vendedor FROM T_Clientes C INNER JOIN 
-                                                        T_Pagos P on c.Identificacion=p.NumeroDocumento  WHERE p.Estado=0");
         }
 
         //ACTUALIZAR ESTADO 
@@ -110,6 +102,14 @@ namespace FacturacionElectronica.Servicios
         {
             using var connection = new SqlConnection(connectionString);
             await connection.ExecuteAsync(@"UPDATE T_Pagos SET Estado=1 WHERE Estado=0");
+        }
+
+        //LISTAT TIPO PAGO 
+
+        public async Task<TipoPagos> ListarTipoPago(string tipoPago)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QueryFirstOrDefaultAsync<TipoPagos>(@"select IdTipopago from T_TipoPago WHERE TipoPago=@TipoPago", new { tipoPago });
         }
     }   
 }

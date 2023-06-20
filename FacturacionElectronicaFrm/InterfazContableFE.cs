@@ -86,13 +86,13 @@ namespace FacturacionElectronicaFrm
                         MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
 
                         // INSERTAR A LA BD INTERFAZ
-                        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                        //fbCon.Open();
-                        //FbCommand comando = new FbCommand(textoCliente, fbCon);
-                        //comando.ExecuteNonQuery();
+                        FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                        fbCon.Open();
+                        FbCommand comando = new FbCommand(textoCliente, fbCon);
+                        comando.ExecuteNonQuery();
 
-                        //MensajeAListBox("Se guardó un cliente OK");
-                        //fbCon.Close();
+                        MensajeAListBox("Se guardó un cliente OK");
+                        fbCon.Close();
 
                         if (VerificarClienteExiste(cliente.Identificacion.ToString()))
                         {

@@ -85,16 +85,16 @@ namespace FacturacionElectronica.Controllers
         }
 
         //Validar si el cliente existe en la base de datos
-        [HttpGet]
-        public async Task<IActionResult> VerificarExisteCliente(Pagos pagos)
+        [HttpPost]
+        public async Task<IActionResult> VerificarExisteCliente([FromQuery] string numeroDocumento)
         {
-            var yaExisteCliente = await repositorioPagos.Existe(pagos.NumeroDocumento);
+            var yaExisteCliente = await repositorioPagos.Existe(numeroDocumento);
             if (!yaExisteCliente)
             {
                 //return Json($"El documento {pagos.NumeroDocumento}, no se encuentra registrado, por favor registrelo en el botón registar cliente");
                 return RedirectToAction("Crear", "Cliente");
             }
-            return Json(true);
+            return Json(numeroDocumento);
         }
 
         //Crear el registro pagos 
@@ -125,14 +125,30 @@ namespace FacturacionElectronica.Controllers
             var idModulo = await repositorioPagos.ListarIdModuloPorPrefijo(pagos.Prefijo,pagos.IdEstacionamiento);
             if (idModulo is null)
             {
-                RedirectToAction("NoEncontrado", "Home");
+                 return RedirectToAction("NoEncontrado", "Home");
             }
+
+            var idTipoPago = await repositorioPagos.ListarTipoPago(pagos.TipoPago);
+            if (idTipoPago is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            
 
             var listadoPagos = await repositorioPagos.ListarTotalesSeparados(pagos.NumeroFactura, idModulo.IdModulo, pagos.IdEstacionamiento);
             foreach (var pagoslist in listadoPagos)
             {
                 pagos.NumeroFactura = pagoslist.NumeroFactura;
                 pagos.Total= pagoslist.Total;
+                if (pagoslist.IdTipoPago == 6)
+                {
+                    pagos.IdTipoPago = 5;
+                }
+                else
+                {
+                    pagos.IdTipoPago=pagoslist.IdTipoPago;
+                }
+                
 
                 await repositorioPagos.Insertar(pagos);
                 if (pagos.Id < 0)

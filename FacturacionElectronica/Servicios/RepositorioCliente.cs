@@ -9,7 +9,7 @@ namespace FacturacionElectronica.Servicios
     {
         Task ActualizarEstado();
         Task Crear(Cliente cliente);
-        Task<bool> Existe(int identificacion);
+        Task<bool> Existe(string numeroDocumento);
         Task<IEnumerable<Ciudades>> ListarCiudadesPorDepartamento(int id);
         Task<Ciudades> ListarCiudadesPorId(int IdCiudad);
         Task<IEnumerable<Departamentos>> ListarDepartamentos();
@@ -54,7 +54,7 @@ namespace FacturacionElectronica.Servicios
         public async Task<IEnumerable<Cliente>> ObtenerClientes()
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Cliente>(@"SELECT Identificacion,RazonSocial,Direccion,Telefono,Email, c.Nombre, Fecha,Estado FROM T_Clientes inner join T_Ciudades c on IdCiudad=c.Id where estado=0");
+            return await connection.QueryAsync<Cliente>(@"SELECT NumeroDocumento,RazonSocial,Direccion,Telefono,Email, c.Nombre, Fecha,Estado FROM T_Clientes inner join T_Ciudades c on IdCiudad=c.Id where estado=0");
         }
 
         //Listar los departamentos 
@@ -89,11 +89,11 @@ namespace FacturacionElectronica.Servicios
              await connection.ExecuteAsync(@"UPDATE T_Clientes SET Estado=1 WHERE Estado=0");
         }
 
-        public async Task<bool> Existe(int identificacion)
+        public async Task<bool> Existe(string numeroDocumento)
         {
             using var connection = new SqlConnection(connectionString);
             var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes
-                                                                        WHERE Identificacion=@Identificacion", new { identificacion }); //El primer registro o un valor por defecto si no existe
+                                                                        WHERE NumeroDocumento=@NumeroDocumento", new { numeroDocumento }); //El primer registro o un valor por defecto si no existe
             return existe == 1;
 
         }

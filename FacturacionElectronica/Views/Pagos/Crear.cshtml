@@ -10,7 +10,7 @@
 <form asp-action="Crear" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="NumeroDocumento" class="form-label"></label>
-        <input type="text" id="NumeroDocumento" asp-for="NumeroDocumento" autocomplete="off" class="form-control" />
+        <input type="text" id="NumeroDocumento" asp-for="NumeroDocumento" autocomplete="off" class="form-control" onblur="onBlurValidarCliente()" />
         <span asp-validation-for="NumeroDocumento" class="text-danger"></span>
     </div>
 
@@ -34,6 +34,16 @@
         <input type="text" id="Total" asp-for="Total" autocomplete="off" readonly class="form-control" />
         <span asp-validation-for="Total" class="text-danger"></span>
     </div>
+    <div class="mb-3">
+        <label asp-for="IdTipoPago" class="form-label">Tipo de pago</label>
+        <select class="form-select" aria-label="Default select example" name="TipoPago">
+            <option selected name="TipoDocumento">Seleccione...</option>
+            <option value="Mensualidad Carro">Mensualidad de carro</option>
+            <option value="Mensualidad Carro">Mensualidad de moto</option>
+            <option value="Convenios Carro">Horas carro</option>
+            <option value="Convenios Moto">Horas Moto</option>
+        </select>
+    </div>
 
     <div class="mb-3">
         <label for="formFile" class="form-label">Seleccione la imagen de la factura</label>
@@ -44,33 +54,33 @@
     <a class="btn btn-secondary" asp-action="Index" >Cancelar</a>
 </form>
 
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
     <script>
-                const urlPrefijos = '@Url.Action("ListarPrefijos")';
-                const urlTotal = '@Url.Action("ListarTotalPorParametros")';
+        const urlPrefijos = '@Url.Action("ListarPrefijos")';
+        const urlTotal = '@Url.Action("ListarTotalPorParametros")';
+        const urlValidarCliente = '@Url.Action("VerificarExisteCliente")';
 
-                $(function () {
-                    $("#IdEstacionamiento").change(async function () {
-                        const valorSeleccionado = $(this).val();
+        $(function () {
+            $("#IdEstacionamiento").change(async function () {
+                const valorSeleccionado = $(this).val();
 
-                        const respuesta = await fetch(urlPrefijos, {
-                            method: 'POST',
-                            body: valorSeleccionado,
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        });
-
-                        const json = await respuesta.json();
-                        const opciones = json.map(facturacion => `<option value=${facturacion.value}>${facturacion.text}</option>`);
-                        $("#Prefijo").html(opciones);
-                    });
+                const respuesta = await fetch(urlPrefijos, {
+                    method: 'POST',
+                    body: JSON.stringify(valorSeleccionado),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 });
+
+                const json = await respuesta.json();
+                const opciones = json.map(facturacion => `<option value="${facturacion.value}">${facturacion.text}</option>`);
+                $("#Prefijo").html(opciones);
+            });
+        });
 
         async function onBlurTxtTotal() {
             const numeroFactura = $("#NumeroFactura").val();
@@ -93,6 +103,30 @@
 
             const total = await respuesta.json();
             $("#Total").val(total);
+        }
+
+        async function onBlurValidarCliente() {
+            const numeroDocumento = $("#NumeroDocumento").val();
+            const parametros = {
+                numeroDocumento: numeroDocumento
+            };
+
+            const url = `${urlValidarCliente}?NumeroDocumento=${numeroDocumento}`;
+
+            const respuesta = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (respuesta.redirected) {
+                // Redireccionar a la página indicada en la respuesta
+                window.location.href = respuesta.url;
+            } else {
+                const total = await respuesta.json();
+                $("#NumeroDocumento").val(total);
+            }
         }
     </script>
 }

@@ -17,18 +17,24 @@ Clientes nuevos
         </select>
         </div>
 
-    <div class="mb-3">
-        <label asp-for="TipoDocumento" class="form-label">Tipo de documento</label>
-        <select class="form-select" aria-label="Default select example" name="TipoDocumento">
-            <option selected name="TipoDocumento">Seleccione...</option>
-            <option value="CC">Cedula de ciudadanía</option>
-            <option value="CE">Cedula de extranjería</option>
-            <option value="NIT">Número de Identificación Tributaria</option>
-        </select>
-    </div>
+        <div class="mb-3">
+            <label asp-for="TipoDocumento" class="form-label">Tipo de documento</label>
+            <select class="form-select" aria-label="Default select example" name="TipoDocumento">
+                <option selected name="TipoDocumento">Seleccione...</option>
+                <option value="CC">Cedula de ciudadanía</option>
+                <option value="CE">Cedula de extranjería</option>
+                <option value="NIT">Número de Identificación Tributaria</option>
+            </select>
+        </div>
+@*    <div class="mb-3">
+        <label asp-for="Identificacion" class="form-label"></label>
+        <input type="text" id="Identificacion" asp-for="Identificacion" name="Identificacion" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Identificacion" class="text-danger"></span>
+    </div>*@
+
     <div class="mb-3">
         <label asp-for="Identificacion" class="form-label"></label>
-        <input type="text" id="Identificacion" asp-for="Identificacion" autocomplete="off" class="form-control" />
+        <input type="text" id="Identificacion" name="Identificacion" asp-for="Identificacion" autocomplete="off" class="form-control" />
         <span asp-validation-for="Identificacion" class="text-danger"></span>
     </div>
     <div class="mb-3">

@@ -4,10 +4,9 @@ using System.Security.Principal;
 
 namespace FacturacionElectronica.Models
 {
-    public class Pagos
+    public class Pagos : TipoPagos
     {
         public int Id { get; set; }
-        [Remote(action: "VerificarExisteCliente", controller: "Pagos")]
         [Required(ErrorMessage ="El número de documento es obligatorio")]
         [Display(Name ="Iadntificación")]
         public string NumeroDocumento { get; set; }

@@ -6,7 +6,6 @@ namespace FacturacionElectronica.Models
     {
         public IEnumerable<SelectListItem> Estacionamientos { get; set; }
         public IEnumerable<SelectListItem> Prefijos { get; set; }
-        public int Total { get; set; }
 
 
     }

@@ -6,7 +6,7 @@ namespace FacturacionElectronica.Models
     {
         [Required(ErrorMessage ="El campo es requerido")]
         [Display(Name ="Identificación")]
-        public int Identificacion { get; set; }
+        public string Identificacion { get; set; }
         [Required(ErrorMessage = "El campo es requerido")]
         [Display(Name = "Tipo de persona")]
 
