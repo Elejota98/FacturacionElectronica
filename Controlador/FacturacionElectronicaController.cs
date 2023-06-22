@@ -67,7 +67,26 @@ namespace Controlador
                 return Datos.InsertarPagos(texto);
             }
         }
+        public static DataTable ConsultarDatosContablesEmpresas()
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ConsultarDatosContablesEmpresas();
 
+        }
+
+        public static DataTable ListarDatosEmpresasPorEstacionamiento(int idEstacionamiento)
+        {
+
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarDatosEmpresasPorEstacionamiento(idEstacionamiento);
+
+        }
+
+        public static string InsertarCotizacionesEncabezado(string codigo)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.InsertarCotizacionesEncabezado(codigo);
+        }
         #endregion
 
 

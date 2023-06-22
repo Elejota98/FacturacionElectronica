@@ -69,7 +69,7 @@ namespace FacturacionElectronicaFrm
                 {
                     foreach (DataRow registrosClientes in tabla.Rows)
                     {
-                        cliente.Identificacion = Convert.ToInt32(registrosClientes["Identificacion"]);
+                        cliente.NumeroDocumento = (registrosClientes["NumeroDocumento"].ToString());
                         cliente.RazonSocial = registrosClientes["RazonSocial"].ToString();
                         cliente.Direccion = registrosClientes["Direccion"].ToString();
                         cliente.Telefono = registrosClientes["Telefono"].ToString();
@@ -81,22 +81,25 @@ namespace FacturacionElectronicaFrm
                         // Generar el texto del cliente
                         textoCliente = $"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
                            $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
-                           $"VALUES ('1', '{cliente.Identificacion}', 0, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
+                           $"VALUES ('1', '{cliente.NumeroDocumento}', 0, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
                            $"'{cliente.Telefono}', '{cliente.Email}', '{cliente.IdCiudad}', '1', 0, '{cliente.Fecha}')";
                         MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
 
+                        #region Old
                         // INSERTAR A LA BD INTERFAZ
-                        FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                        fbCon.Open();
-                        FbCommand comando = new FbCommand(textoCliente, fbCon);
-                        comando.ExecuteNonQuery();
+                        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                        //fbCon.Open();
+                        //FbCommand comando = new FbCommand(textoCliente, fbCon);
+                        //comando.ExecuteNonQuery();
 
-                        MensajeAListBox("Se guardó un cliente OK");
-                        fbCon.Close();
+                        //MensajeAListBox("Se guardó un cliente OK");
+                        //fbCon.Close();
+                        #endregion
 
-                        if (VerificarClienteExiste(cliente.Identificacion.ToString()))
+                        if (VerificarClienteExiste(cliente.NumeroDocumento.ToString()))
                         {
                             // INSERTA PAGOS EN LA TABLA COTIZACIONES Y COTIZACIONES ENCABEZADO
+
 
                         }
 
@@ -134,6 +137,9 @@ namespace FacturacionElectronicaFrm
                 }
                 else
                 {
+                    string COE_EMPRESA = "";
+                    string COE_DOCUMENTO = "";
+
                         Pagos pagos = new Pagos();
                         DataTable tablaPagos;
                         tablaPagos = FacturacionElectronicaController.ListarPagos();
@@ -141,25 +147,56 @@ namespace FacturacionElectronicaFrm
                         {
                             foreach (DataRow registrosClientes in tablaPagos.Rows)
                             {
+                            pagos.IdEstacionamiento = Convert.ToInt32(tablaPagos.Rows[0]["IdEstacionamiento"]);
+
+                            //Listar datos EmpresaParquearse
+                            DataTable tablaEmpresas = FacturacionElectronicaController.ListarDatosEmpresasPorEstacionamiento(pagos.IdEstacionamiento);
+                            if (tablaEmpresas.Rows.Count > 0)
+                            {
+                                 //COE_EMPRESA = tablaEmpresas.Rows[0]["Idc_Empresa"].ToString();
+                                 COE_DOCUMENTO = tablaEmpresas.Rows[0]["DocumentoEmpresa"].ToString();
+                            }
+
                                 string empresa = tablaPagos.Rows[0]["Empresa"].ToString();
                                 DateTime fecha = Convert.ToDateTime(tablaPagos.Rows[0]["Fecha"]);
-                                pagos.NumeroDocumento = Convert.ToInt32(tablaPagos.Rows[0]["Identificacion"]);
+                                pagos.NumeroDocumento = (tablaPagos.Rows[0]["NumeroDocumento"].ToString());
                                 string codigoSucursal = tablaPagos.Rows[0]["CodigoSucursal"].ToString();
                                 pagos.Prefijo = tablaPagos.Rows[0]["Prefijo"].ToString();
                                 pagos.NumeroFactura = Convert.ToInt32(tablaPagos.Rows[0]["NumeroFactura"]);
                                 int vendedor = Convert.ToInt32(tablaPagos.Rows[0]["Vendedor"]);
 
-                                textoPagos = $"INSERT INTO COTIZACIONES (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
+                                textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
                                     $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                                    $"VALUES('1',{pagos.NumeroDocumento},1,{pagos.Fecha},1,1,1,'NULL','NULL',1,'NULL',0,{pagos.Prefijo},{pagos.NumeroFactura},'NULL','NULL')";
+                                    $"VALUES({empresa},{COE_DOCUMENTO},1,{pagos.Fecha},1,1,1,'NULL','NULL',1,'NULL',0,{pagos.Prefijo},{pagos.NumeroFactura},'NULL','NULL')";
 
-                            MensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");
+                                MensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");
 
-                            FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                                fbCon.Open();
-                                FbCommand comando = new FbCommand(textoPagos, fbCon);
-                                comando.ExecuteNonQuery();
-                             MensajeAListBox("Se guardó un pago OK");
+                            #region Old
+                            //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                            //fbCon.Open();
+                            //FbCommand comando = new FbCommand(textoPagos, fbCon);
+                            //comando.ExecuteNonQuery();
+                            //MensajeAListBox("Se guardó un pago OK");
+                            #endregion
+
+                            try
+                            {
+                                string rtaCE = FacturacionElectronicaController.InsertarCotizacionesEncabezado(textoPagos);
+                                if (rtaCE.Equals("OK"))
+                                {
+                                    MensajeAListBox("Cotizaciones Encabezado guardado correcto OK");
+                                }
+                                else
+                                {
+                                    MensajeAListBox("No se guardo en la tabla cotizaciones encabezado");
+                                }
+                            }
+                            catch (Exception ex )
+                            {
+
+                                MensajeAListBox(ex.ToString());
+                            }
+
 
                                 // Obtener la fecha actual para el nombre de archivo
                                 DateTime fechaActual = DateTime.Now;
@@ -177,8 +214,7 @@ namespace FacturacionElectronicaFrm
                                     sw.WriteLine(textoPagos);
 
                                 MensajeAListBox("Se generó el documento .txt OK");
-                                fbCon.Close();
-                            }
+                                }
                                
                             }
 
@@ -238,9 +274,11 @@ namespace FacturacionElectronicaFrm
             if (tabla.Rows.Count > 0)
             {
                 ok = true;
+                MensajeAListBox("Cliente se encuentra en la base de datos OK");
             }
             else
             {
+                MensajeAListBox("Cliente no se encuentra en la base de datos");
                 ok = false;
             }
             return ok;

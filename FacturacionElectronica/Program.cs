@@ -8,6 +8,7 @@ builder.Services.AddTransient<IRepositorioCliente, RepositorioCliente>();
 builder.Services.AddTransient<IRepositorioParametros, RepositorioParametros>();
 builder.Services.AddTransient<IRepositorioCotizaciones, RepositorioCotizaciones>();
 builder.Services.AddTransient<IRepositorioPagos, RepositorioPagos>();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

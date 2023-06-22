@@ -9,7 +9,7 @@ namespace Modelo
     public class Pagos
     {
         public int Id { get; set; }
-        public int NumeroDocumento { get; set; }
+        public string NumeroDocumento { get; set; }
         public int NumeroFactura { get; set; }
         public string Prefijo { get; set; }
         public int Total { get; set; }

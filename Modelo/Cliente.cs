@@ -8,7 +8,7 @@ namespace Modelo
 {
     public class Cliente
     {
-        public int Identificacion { get; set; }
+        public string NumeroDocumento { get; set; }
         public string TipoPersona { get; set; }
         public string TipoDocumento { get; set; }
         public string NombreApellidos { get; set; }

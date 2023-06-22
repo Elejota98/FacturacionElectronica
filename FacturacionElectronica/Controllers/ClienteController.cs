@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualBasic;
 using System.Text;
 using System.IO;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using AutoMapper;
 
 namespace FacturacionElectronica.Controllers
 {
@@ -12,6 +14,7 @@ namespace FacturacionElectronica.Controllers
     {
         private readonly IRepositorioCliente repositorioCliente;
         private readonly IRepositorioParametros repositorioParametros;
+        private readonly IMapper mapper;
 
         public ClienteController(IRepositorioCliente repositorioCliente, IRepositorioParametros repositorioParametros)
         {
