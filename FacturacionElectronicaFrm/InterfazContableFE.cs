@@ -97,14 +97,14 @@ namespace FacturacionElectronicaFrm
                         textoCliente = $"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
                            $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
                            $"VALUES ('1', '{cliente.NumeroDocumento}', 0, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
-                           $"'{cliente.Telefono}', '{cliente.Email}', '{ciudad}', {cliente.Vendedor}, 0.00,'{fechaSeparada}')";
+                           $"'{cliente.Telefono}', '{cliente.Email}', '{ciudad}', {cliente.Vendedor}, NULL,NULL)";
                         MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
 
 
                         #region Old
                         // INSERTAR A LA BD INTERFAZ
                         //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                        //string eliminar = "UPDATE COTIZACIONES SET COT_DOCUMENTO='OF01' WHERE COT_DOCUMENTO='FV09'";
+                        //string eliminar = "DELETE FROM COTIZACIONES";
                         //fbCon.Open();
                         //FbCommand comando = new FbCommand(eliminar, fbCon);
                         //comando.ExecuteNonQuery();
@@ -180,7 +180,7 @@ namespace FacturacionElectronicaFrm
 
                                         textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
                                 $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                                $"VALUES({empresa},'{COE_DOCUMENTO}',0,NULL,{pagos.NumeroDocumento},0,1,NULL,NULL,1,'{fechaFormateada}',0,'{pagos.Prefijo}',{pagos.NumeroFactura},NULL,'{cliente.Vendedor}')";
+                                $"VALUES({empresa},'OF01',0,{fechaFormateada},{pagos.NumeroDocumento},0,1,NULL,NULL,1,NULL,0,'{pagos.Prefijo}',{pagos.NumeroFactura},NULL,'{cliente.Vendedor}')";
 
                                         //M/*ensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");*/
 
@@ -196,7 +196,7 @@ namespace FacturacionElectronicaFrm
                                         {
                                             textoCotizaciones = $"INSERT INTO COTIZACIONES (COT_EMPRESA, COT_DOCUMENTO,COT_NUMERO, COT_ITEM, COT_TIPO_ITEM, COT_DESCRIPCION_ITEM, COT_REFERENCIA, COT_BODEGA," +
                                                                  $"  COT_CANTIDAD, COT_VALOR_UNITARIO, COT_VR_DTO, COT_FECHA_UPDATE, COT_CENTRO_COSTO, COT_PROYECTO)" +
-                                                                 $" VALUES({empresa},'{COE_DOCUMENTO}',{COE_EMPRESA},{itemCounter},1,'{descripcion}',NULL,NULL,1,{totalVenta},0,NULL,{pagos.IdEstacionamiento},NULL);";
+                                                                 $" VALUES({empresa},'OF01',{COE_EMPRESA},{itemCounter},2,'{descripcion}',NULL,NULL,1,{totalVenta},0,NULL,{pagos.IdEstacionamiento},NULL);";
                                              rtCTO = FacturacionElectronicaController.InsetarPagos(textoCotizaciones);
                                             if (rtCTO.Equals("OK"))
                                             {
@@ -290,8 +290,8 @@ namespace FacturacionElectronicaFrm
                             string descripcion = Convert.ToString(registrosPagos["TipoPago"]);
 
                             textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
-                                $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                                $"VALUES({empresa},'{COE_DOCUMENTO}',{itemCounter},NULL,{pagos.NumeroDocumento},0,1,NULL,NULL,1,'{fechaFormateada}',0,'{pagos.Prefijo}',{pagos.NumeroFactura},NULL,'{cliente.Vendedor}')";
+                                 $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
+                                 $"VALUES({empresa},'OF01',{itemCounter},0,{pagos.NumeroDocumento},0,1,NULL,NULL,1,NULL,0,'{pagos.Prefijo}',{pagos.NumeroFactura},NULL,'{cliente.Vendedor}')";
 
                             //M/*ensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");*/
 
@@ -307,7 +307,7 @@ namespace FacturacionElectronicaFrm
                             {
                                 textoCotizaciones = $"INSERT INTO COTIZACIONES (COT_EMPRESA, COT_DOCUMENTO, COT_NUMERO, COT_ITEM, COT_TIPO_ITEM, COT_DESCRIPCION_ITEM, COT_REFERENCIA, COT_BODEGA," +
                                                      $"  COT_CANTIDAD, COT_VALOR_UNITARIO, COT_VR_DTO, COT_FECHA_UPDATE, COT_CENTRO_COSTO, COT_PROYECTO)" +
-                                                     $" VALUES({empresa},'{COE_DOCUMENTO}',{COE_EMPRESA},{itemCounter},1,'{descripcion}',NULL,NULL,1,{totalVenta},0,NULL,{pagos.IdEstacionamiento},NULL);";
+                                                     $" VALUES({empresa},'OF01',{COE_EMPRESA},{itemCounter},2,'{descripcion}',NULL,NULL,1,{totalVenta},0,NULL,{pagos.IdEstacionamiento},NULL);";
                                 string rtCTO = FacturacionElectronicaController.InsetarPagos(textoCotizaciones);
                                 if (rtCTO.Equals("OK"))
                                 {
