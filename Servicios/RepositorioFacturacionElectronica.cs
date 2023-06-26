@@ -79,7 +79,7 @@ namespace Servicios
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
                 string cadena = ("SELECT  P.Id, C.Empresa, c.Fecha,c.NumeroDocumento,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total," +
-                                " p.IdEstacionamiento, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN  T_Pagos P on c.NumeroDocumento = p.NumeroDocumento" +
+                                " p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN  T_Pagos P on c.NumeroDocumento = p.NumeroDocumento" +
                                 " INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
@@ -106,7 +106,7 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("UPDATE T_Pagos SET Estado=1 WHERE Estado=0 and Id="+id+"");
+                string cadena = ("UPDATE T_Pagos SET Estado=1 WHERE Estado=0 and Id=" + id + "");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
                 comando.ExecuteNonQuery();
@@ -198,7 +198,7 @@ namespace Servicios
                 rta = "OK";
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 rta = ex.ToString();
@@ -223,10 +223,10 @@ namespace Servicios
                 comando.ExecuteNonQuery();
                 rta = "OK";
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             finally
             {
@@ -250,6 +250,32 @@ namespace Servicios
                 fbCon.Open();
                 FbDataReader resultado = comando.ExecuteReader();
                 tabla.Load(resultado);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+        }
+
+        public DataTable ListarUltimaCotizacion()
+        {
+            DataTable tabla = new DataTable();
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("SELECT * FROM COTIZACIONES WHERE COT_ITEM = (SELECT MAX(COT_ITEM) FROM COTIZACIONES)");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                FbDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
                 return tabla;
 
             }
@@ -280,10 +306,10 @@ namespace Servicios
                 return tabla;
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             finally
             {
@@ -306,7 +332,36 @@ namespace Servicios
                 return tabla;
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+        }
+
+        #endregion
+
+        //LISTADO DE TABLAS 
+
+        public DataTable ListarCotizacionesEncabezado()
+        {
+            DataTable tabla = new DataTable();
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("SELECT * FROM COTIZACION_ENCABEZADO");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                FbDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+            }
+            catch (Exception ex)
             {
 
                 throw ex;
@@ -318,8 +373,58 @@ namespace Servicios
         }
 
 
+        public DataTable ListarCotizaciones()
+        {
+            DataTable tabla = new DataTable();
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("SELECT * FROM COTIZACIONES");
+                FbCommand comando = new FbCommand(cadena,fbCon);
+                fbCon.Open();
+                FbDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
 
-        #endregion
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+        }
+
+        public DataTable ListarClientesInterfaz()
+        {
+            DataTable tabla = new DataTable();
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("SELECT * FROM CLIENTES");
+                FbCommand comando = new FbCommand(cadena,fbCon);
+                fbCon.Open();
+                FbDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+        }
 
 
 

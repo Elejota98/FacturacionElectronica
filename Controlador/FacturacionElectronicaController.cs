@@ -36,6 +36,8 @@ namespace Controlador
             return Datos.ActualizaEstadoPagos(id);
         }
 
+        
+
         //INTERFAZ
 
 
@@ -96,7 +98,34 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.InsertarCotizacionesEncabezado(codigo);
         }
+
+        public static DataTable ListarUltimaCotizacion()
+        {
+            RepositorioFacturacionElectronica Datos = new  RepositorioFacturacionElectronica();
+            return Datos.ListarUltimaCotizacion();
+        }
+
         #endregion
+
+        //LISTADOS 
+
+        public static DataTable ListarCotizacionesEncabezado()
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarCotizacionesEncabezado();
+        }
+        
+        public static DataTable ListarCotizaciones()
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarCotizaciones();
+        }
+
+        public static DataTable ListarClientesInterfaz()
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarClientesInterfaz();
+        }
 
 
     }
