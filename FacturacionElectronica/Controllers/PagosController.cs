@@ -148,7 +148,15 @@ namespace FacturacionElectronica.Controllers
                 {
                     pagos.IdTipoPago=pagoslist.IdTipoPago;
                 }
-                
+                if (pagoslist.IdTipoPago == 3)
+                {
+                    pagos.IdTipoPago = 6;
+                }
+                else
+                {
+                    pagos.IdTipoPago = pagoslist.IdTipoPago;
+                }
+
 
                 await repositorioPagos.Insertar(pagos);
                 if (pagos.Id < 0)

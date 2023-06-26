@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,10 +30,10 @@ namespace Controlador
             return Datos.ListarPagos();
         }
 
-        public static string ActualizaEstadoPagos()
+        public static string ActualizaEstadoPagos(int id)
         {
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            return Datos.ActualizaEstadoPagos();
+            return Datos.ActualizaEstadoPagos(id);
         }
 
         //INTERFAZ
@@ -49,6 +50,14 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ValidarExisteCliente(documento);
         }
+
+        public static DataTable ListarDocumentoVendedor()
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarDocumentoVendedor();
+        }
+
+
 
         #endregion
 

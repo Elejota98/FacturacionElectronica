@@ -78,7 +78,7 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT  C.Empresa, c.Fecha,c.NumeroDocumento,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total," +
+                string cadena = ("SELECT  P.Id, C.Empresa, c.Fecha,c.NumeroDocumento,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total," +
                                 " p.IdEstacionamiento, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN  T_Pagos P on c.NumeroDocumento = p.NumeroDocumento" +
                                 " INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
@@ -99,14 +99,14 @@ namespace Servicios
             }
         }
 
-        public string ActualizaEstadoPagos()
+        public string ActualizaEstadoPagos(int id)
         {
             string rta = "";
             SqlConnection sqlcon = new SqlConnection();
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("UPDATE T_Pagos SET Estado=1 WHERE Estado=0");
+                string cadena = ("UPDATE T_Pagos SET Estado=1 WHERE Estado=0 and Id="+id+"");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
                 comando.ExecuteNonQuery();
@@ -216,6 +216,7 @@ namespace Servicios
             FbConnection fbCon = new FbConnection();
             try
             {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
                 string cadena = (codigo);
                 FbCommand comando = new FbCommand(codigo, fbCon);
                 fbCon.Open();
@@ -289,6 +290,34 @@ namespace Servicios
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
         }
+
+        public DataTable ListarDocumentoVendedor()
+        {
+            FbConnection fbCon = new FbConnection();
+            DataTable tabla = new DataTable();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("SELECT VEN_IDENTIFICACION FROM VENDEDORES WHERE VEN_NOMBRE='PARQUEARSE S.A.S.'");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                FbDataReader resultado = comando.ExecuteReader();
+                tabla.Load(resultado);
+                return tabla;
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+        }
+
+
 
         #endregion
 

@@ -76,3 +76,5 @@ C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronic
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\obj\Debug\net6.0\FacturacionElectronica.pdb
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\obj\Debug\net6.0\FacturacionElectronica.genruntimeconfig.cache
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\obj\Debug\net6.0\ref\FacturacionElectronica.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
