@@ -28,6 +28,7 @@ namespace FacturacionElectronicaFrm
         public string rtCTO = string.Empty;
         public string rtaCE = string.Empty;
         public int cotNum = 1;
+        public int numeroFacturaAnterior = 1;
 
         #endregion
 
@@ -105,13 +106,13 @@ namespace FacturacionElectronicaFrm
 
                         #region Old
                         // INSERTAR A LA BD INTERFAZ
-                        FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                        string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
-                        fbCon.Open();
-                        FbCommand comando = new FbCommand(eliminar, fbCon);
-                        comando.ExecuteNonQuery();
-                        MensajeAListBox("Se guardó un cliente OK");
-                        fbCon.Close();
+                        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                        //string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
+                        //fbCon.Open();
+                        //FbCommand comando = new FbCommand(eliminar, fbCon);
+                        //comando.ExecuteNonQuery();
+                        //MensajeAListBox("Se guardó un cliente OK");
+                        //fbCon.Close();
                         #endregion
 
                         if (VerificarClienteExiste(cliente.NumeroDocumento.ToString()))
@@ -334,7 +335,7 @@ namespace FacturacionElectronicaFrm
                                     
                                 }
 
-                                if((cotizaciones.Cot_Centro_Costo==pagos.IdEstacionamiento) && (cotizaciones.Cot_Valor_Unitario == totalVenta) && (cotizaciones.Cot_Descripcion_Item==descripcion))
+                                if(numeroFacturaAnterior!=pagos.NumeroFactura)
                                 {
 
                                     cotNum = cotizaciones.Cot_Numero + 1;
@@ -344,7 +345,7 @@ namespace FacturacionElectronicaFrm
                                     cotNum = cotizaciones.Cot_Numero;
                                 }
 
-
+                                numeroFacturaAnterior = pagos.NumeroFactura;
                             }
                             string referencia = "";
                             if (idTipoPago == 1)
@@ -576,6 +577,19 @@ namespace FacturacionElectronicaFrm
         private void button1_Click(object sender, EventArgs e)
         {
             ListarClientesInterfaz();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DateTime miFecha = DateTime.Now;
+
+            string fechaStr = miFecha.ToString("yyyy-MM-dd");
+
+
+            DateTime fecha = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
+            int numero = (int)(fecha - new DateTime(1899, 12, 30)).TotalDays;
+
+            MensajeAListBox(numero.ToString());
         }
     }
 
