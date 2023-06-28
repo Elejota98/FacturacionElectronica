@@ -78,7 +78,9 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT * FROM T_Pagos WHERE Estado = 0");
+                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.NumeroDocumento,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total," +
+                    "p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN  T_Pagos P on c.NumeroDocumento = p.NumeroDocumento" +
+                    " INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
                 SqlDataReader rta = comando.ExecuteReader();

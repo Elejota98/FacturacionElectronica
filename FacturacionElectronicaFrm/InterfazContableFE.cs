@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -94,20 +95,17 @@ namespace FacturacionElectronicaFrm
                             cliente.Vendedor = Convert.ToInt32(rtaTabla["VEN_IDENTIFICACION"]);
 
                         }
-
-
                         // Generar el texto del cliente
                         textoCliente = $"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
                            $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
-                           $"VALUES ('1', '{cliente.NumeroDocumento}', 0, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
+                           $"VALUES ('1', '{cliente.NumeroDocumento}', 1, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
                            $"'{cliente.Telefono}', '{cliente.Email}', '{ciudad}', {cliente.Vendedor}, NULL,NULL)";
+
                         MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
-
-
                         #region Old
                         // INSERTAR A LA BD INTERFAZ
                         //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                        //string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
+                        //string eliminar = "DELETE FROM COTIZACIONES";
                         //fbCon.Open();
                         //FbCommand comando = new FbCommand(eliminar, fbCon);
                         //comando.ExecuteNonQuery();
@@ -156,10 +154,16 @@ namespace FacturacionElectronicaFrm
                                 tablaPagos = FacturacionElectronicaController.ListarPagos();
                                 if (tablaPagos.Rows.Count > 0)
                                 {
+                                    tabla = FacturacionElectronicaController.ListarDocumentoVendedor();
+                                    foreach (DataRow rtaTabla in tabla.Rows)
+                                    {
+                                        cliente.Vendedor = Convert.ToInt32(rtaTabla["VEN_IDENTIFICACION"]);
+
+                                    }
                                     int itemCounter = 1;
                                     foreach (DataRow registrosPagos in tablaPagos.Rows)
                                     {
-                                        pagos.IdEstacionamiento = Convert.ToInt32(tablaPagos.Rows[0]["IdEstacionamiento"]);
+                                        pagos.IdEstacionamiento = Convert.ToInt32(registrosPagos["IdEstacionamiento"]);
 
                                         //Listar datos EmpresaParquearse
                                         DataTable tablaEmpresas = FacturacionElectronicaController.ListarDatosEmpresasPorEstacionamiento(pagos.IdEstacionamiento);
@@ -168,17 +172,51 @@ namespace FacturacionElectronicaFrm
                                             COE_EMPRESA = tablaEmpresas.Rows[0]["Idc_Empresa"].ToString();
                                             COE_DOCUMENTO = tablaEmpresas.Rows[0]["DocumentoEmpresa"].ToString();
                                         }
+                                        pagos.Id = Convert.ToInt32(registrosPagos["Id"]);
+                                        string empresa = registrosPagos["Empresa"].ToString();
+                                        pagos.FechaPago = Convert.ToDateTime(registrosPagos["FechaPago"]);
+                                        //string fechaFormateada = (pagos.Fecha.ToString("dd.MM.yyyy HH.mm");
+                                        pagos.NumeroDocumento = (registrosPagos["NumeroDocumento"].ToString());
+                                        string codigoSucursal = registrosPagos["CodigoSucursal"].ToString();
+                                        pagos.Prefijo = registrosPagos["Prefijo"].ToString();
+                                        pagos.NumeroFactura = Convert.ToInt32(registrosPagos["NumeroFactura"]);
+                                        int vendedor = Convert.ToInt32(registrosPagos["Vendedor"]);
+                                        int totalVenta = Convert.ToInt32(registrosPagos["Total"]);
+                                        int idTipoPago = Convert.ToInt32(registrosPagos["IdTipoPago"]);
+                                        string descripcion = Convert.ToString(registrosPagos["TipoPago"]);
 
-                                        string empresa = tablaPagos.Rows[0]["Empresa"].ToString();
-                                        DateTime fecha = Convert.ToDateTime(tablaPagos.Rows[0]["Fecha"]);
-                                        string fechaFormateada = fecha.ToString("dd.MM.yyyy HH.mm");
-                                        pagos.NumeroDocumento = (tablaPagos.Rows[0]["NumeroDocumento"].ToString());
-                                        string codigoSucursal = tablaPagos.Rows[0]["CodigoSucursal"].ToString();
-                                        pagos.Prefijo = tablaPagos.Rows[0]["Prefijo"].ToString();
-                                        pagos.NumeroFactura = Convert.ToInt32(tablaPagos.Rows[0]["NumeroFactura"]);
-                                        int vendedor = Convert.ToInt32(tablaPagos.Rows[0]["Vendedor"]);
-                                        int totalVenta = Convert.ToInt32(tablaPagos.Rows[0]["Total"]);
-                                        int idTipoPago = Convert.ToInt32(tablaPagos.Rows[0]["IdTipoPago"]);
+                                        DataTable tablaCotizaciones;
+                                        tablaCotizaciones = FacturacionElectronicaController.ListarCotizaciones();
+                                        if (tablaCotizaciones.Rows.Count > 0)
+                                        {
+                                            foreach (DataRow registroCotizaciones in tablaCotizaciones.Rows)
+                                            {
+
+                                                cotizaciones.Cot_Empresa = Convert.ToInt32(registroCotizaciones["COT_EMPRESA"]);
+                                                cotizaciones.Cot_Documento = Convert.ToString(registroCotizaciones["COT_DOCUMENTO"]);
+                                                cotizaciones.Cot_Numero = Convert.ToInt32(registroCotizaciones["COT_NUMERO"]);
+                                                cotizaciones.Cot_Item = Convert.ToInt32(registroCotizaciones["COT_ITEM"]);
+                                                cotizaciones.Cot_Tipo_Item = Convert.ToInt32(registroCotizaciones["COT_TIPO_ITEM"]);
+                                                cotizaciones.Cot_Descripcion_Item = Convert.ToString(registroCotizaciones["COT_DESCRIPCION_ITEM"]);
+                                                cotizaciones.Cot_Referencia = Convert.ToString(registroCotizaciones["COT_REFERENCIA"]);
+                                                cotizaciones.Cot_Centro_Costo = Convert.ToInt32(registroCotizaciones["COT_CENTRO_COSTO"]);
+                                                cotizaciones.Cot_Valor_Unitario = Convert.ToInt32(registroCotizaciones["COT_VALOR_UNITARIO"]);
+
+                                            }
+
+                                            if (numeroFacturaAnterior != pagos.NumeroFactura)
+                                            {
+
+                                                cotNum = cotizaciones.Cot_Numero + 1;
+
+                                            }
+                                            else
+                                            {
+                                                cotNum = cotizaciones.Cot_Numero;
+                                            }
+
+                                         
+                                        }
                                         string referencia = "";
                                         if (idTipoPago == 1)
                                         {
@@ -204,65 +242,42 @@ namespace FacturacionElectronicaFrm
                                         {
                                             referencia = "98";
                                         }
+                                        numeroFacturaAnterior = pagos.NumeroFactura;
+
+                                        string fechaStr = pagos.FechaPago.ToString("yyyy-MM-dd");
+
+                                        DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
+                                        int numeroFecha = (int)(pagos.FechaPago - new DateTime(1899, 12, 30)).TotalDays;
+
 
                                         textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
-                                $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                                $"VALUES({empresa},'OF01',0,{fechaFormateada},{pagos.NumeroDocumento},0,1,NULL,NULL,1,NULL,0,'{pagos.Prefijo}',{pagos.NumeroFactura},NULL,'{cliente.Vendedor}')";
+                                             $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
+                                             $"VALUES({empresa},'OF01',{cotNum},{numeroFecha},{pagos.NumeroDocumento},1,0,NULL,NULL,1,NULL,0,NULL,NULL,NULL,'{cliente.Vendedor}')";
 
-                                        //M/*ensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");*/
+                                        
 
-                                        #region Old
-                                        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                                        //fbCon.Open();
-                                        //FbCommand comando = new FbCommand(textoPagos, fbCon);
-                                        //comando.ExecuteNonQuery();
-                                        //MensajeAListBox("Se guardó un pago OK");
-                                        #endregion
-
-                                        try
+                                        
+                                        textoCotizaciones = $"INSERT INTO COTIZACIONES (COT_EMPRESA, COT_DOCUMENTO, COT_NUMERO, COT_ITEM, COT_TIPO_ITEM, COT_DESCRIPCION_ITEM, COT_REFERENCIA, COT_BODEGA," +
+                                                             $"  COT_CANTIDAD, COT_VALOR_UNITARIO, COT_VR_DTO, COT_FECHA_UPDATE, COT_CENTRO_COSTO, COT_PROYECTO)" +
+                                                             $" VALUES({empresa},'OF01',{cotNum},{itemCounter},2,'{descripcion}',{referencia},NULL,1,{totalVenta},0,NULL,{pagos.IdEstacionamiento},NULL);";
+                                     
+                                        if (InsertarCotizaciones(textoCotizaciones))
                                         {
-                                            textoCotizaciones = $"INSERT INTO COTIZACIONES (COT_EMPRESA, COT_DOCUMENTO,COT_NUMERO, COT_ITEM, COT_TIPO_ITEM, COT_DESCRIPCION_ITEM, COT_REFERENCIA, COT_BODEGA," +
-                                                                 $"  COT_CANTIDAD, COT_VALOR_UNITARIO, COT_VR_DTO, COT_FECHA_UPDATE, COT_CENTRO_COSTO, COT_PROYECTO)" +
-                                                                 $" VALUES({empresa},'OF01',{COE_EMPRESA},{itemCounter},2,'{referencia}',NULL,NULL,1,{totalVenta},0,NULL,{pagos.IdEstacionamiento},NULL);";
-                                             rtCTO = FacturacionElectronicaController.InsetarPagos(textoCotizaciones);
-                                            if (rtCTO.Equals("OK"))
-                                            {
-                                                MensajeAListBox("Cotizaciones guardado correcto OK");
-                                                GenerarArchivoPlano(textoCotizaciones);
-                                                itemCounter++;
-                                            }
-                                            else
-                                            {
-                                                MensajeAListBox("No se guardo en la tabla cotizaciones" + rtCTO.ToString());
-                                            }
-
+                                            itemCounter++;
                                         }
-                                        catch (Exception ex)
+                                        if (InsertarCotizacionesEncabezado(textoPagos))
                                         {
 
-                                            MensajeAListBox(ex.ToString());
                                         }
-
-                                        try
+                                        else
                                         {
-                                             rtaCE = FacturacionElectronicaController.InsertarCotizacionesEncabezado(textoPagos);
-                                            if (rtaCE.Equals("OK"))
-                                            {
-                                                MensajeAListBox("Cotizaciones Encabezado guardado correcto OK");
-
-                                                GenerarArchivoPlano(textoPagos);
-                                            }
-                                            else
-                                            {
-                                                MensajeAListBox("No se guardo en la tabla cotizaciones encabezado" + rtaCE.ToString());
-                                            }
+                                            MensajeAListBox("Cotizaciones encabezazdo ya está registrado para este pago");
                                         }
-                                        catch (Exception ex)
-                                        {
+                                    
+                                        ActualizarEstadoPagos(pagos.Id);
 
-                                            MensajeAListBox(ex.ToString());
-                                        }
                                     }
+
                                 }
                                 else
                                 {
@@ -294,7 +309,7 @@ namespace FacturacionElectronicaFrm
                         int itemCounter = 1;
                         foreach (DataRow registrosPagos in tablaPagos.Rows)
                         {
-                            pagos.IdEstacionamiento = Convert.ToInt32(tablaPagos.Rows[0]["IdEstacionamiento"]);
+                            pagos.IdEstacionamiento = Convert.ToInt32(registrosPagos["IdEstacionamiento"]);
 
                             //Listar datos EmpresaParquearse
                             DataTable tablaEmpresas = FacturacionElectronicaController.ListarDatosEmpresasPorEstacionamiento(pagos.IdEstacionamiento);
@@ -305,8 +320,8 @@ namespace FacturacionElectronicaFrm
                             }
                             pagos.Id = Convert.ToInt32(registrosPagos["Id"]);
                             string empresa = registrosPagos["Empresa"].ToString();
-                            DateTime fecha = Convert.ToDateTime(registrosPagos["Fecha"]);
-                            string fechaFormateada = fecha.ToString("dd.MM.yyyy HH.mm");
+                            pagos.FechaPago = Convert.ToDateTime(registrosPagos["FechaPago"]);
+                            //string fechaFormateada = (pagos.Fecha.ToString("dd.MM.yyyy HH.mm");
                             pagos.NumeroDocumento = (registrosPagos["NumeroDocumento"].ToString());
                             string codigoSucursal = registrosPagos["CodigoSucursal"].ToString();
                             pagos.Prefijo = registrosPagos["Prefijo"].ToString();
@@ -339,13 +354,14 @@ namespace FacturacionElectronicaFrm
                                 {
 
                                     cotNum = cotizaciones.Cot_Numero + 1;
+                                    
                                 }
                                 else
                                 {
                                     cotNum = cotizaciones.Cot_Numero;
                                 }
 
-                                numeroFacturaAnterior = pagos.NumeroFactura;
+                                //numeroFacturaAnterior = pagos.NumeroFactura;
                             }
                             string referencia = "";
                             if (idTipoPago == 1)
@@ -372,14 +388,24 @@ namespace FacturacionElectronicaFrm
                             {
                                 referencia = "98";
                             }
-
+                            numeroFacturaAnterior = pagos.NumeroFactura;
                             //DateTime selectedDate = datePicker.Value;
-                            int dateNumber = int.Parse(fecha.ToString("yyyyMMdd"));
-                            fechaFormateada = dateNumber.ToString();
+                            //int dateNumber = int.Parse(fecha.ToString("yyyyMMdd"));
+                            //fechaFormateada = dateNumber.ToString();
+
+                            //CAMBIAR FECHA A FORMATO NUMERO
+
+
+                            string fechaStr = pagos.FechaPago.ToString("yyyy-MM-dd");
+
+
+                            DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
+                            int numeroFecha = (int)(pagos.FechaPago - new DateTime(1899, 12, 30)).TotalDays;
+                            
 
                             textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
                                  $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                                 $"VALUES({empresa},'OF01',{cotNum},0,{pagos.NumeroDocumento},0,0,NULL,NULL,1,NULL,0,'{pagos.Prefijo}',{pagos.NumeroFactura},NULL,'{cliente.Vendedor}')";
+                                 $"VALUES({empresa},'OF01',{cotNum},{numeroFecha},{pagos.NumeroDocumento},1,0,NULL,NULL,1,NULL,0,NULL,NULL,NULL,'{cliente.Vendedor}')";
 
                             //M/*ensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");*/
 
@@ -391,61 +417,58 @@ namespace FacturacionElectronicaFrm
                             //MensajeAListBox("Se guardó un pago OK");
                             #endregion
 
-
-
-                            try
-                            {
+                            //try
+                            //{
                                 textoCotizaciones = $"INSERT INTO COTIZACIONES (COT_EMPRESA, COT_DOCUMENTO, COT_NUMERO, COT_ITEM, COT_TIPO_ITEM, COT_DESCRIPCION_ITEM, COT_REFERENCIA, COT_BODEGA," +
                                                      $"  COT_CANTIDAD, COT_VALOR_UNITARIO, COT_VR_DTO, COT_FECHA_UPDATE, COT_CENTRO_COSTO, COT_PROYECTO)" +
                                                      $" VALUES({empresa},'OF01',{cotNum},{itemCounter},2,'{descripcion}',{referencia},NULL,1,{totalVenta},0,NULL,{pagos.IdEstacionamiento},NULL);";
-                                string rtCTO = FacturacionElectronicaController.InsetarPagos(textoCotizaciones);
-                                if (rtCTO.Equals("OK"))
+                                //string rtCTO = FacturacionElectronicaController.InsetarPagos(textoCotizaciones);
+                                //if (rtCTO.Equals("OK"))
+                                //{
+                                //    MensajeAListBox("Cotizaciones guardado correcto OK");
+                                //    GenerarArchivoPlano(textoCotizaciones);
+                                //    MensajeAListBox("Se generó archivo plano cotizaciones OK");
+                                //    itemCounter++;
+                                if (InsertarCotizaciones(textoCotizaciones))
                                 {
-                                    MensajeAListBox("Cotizaciones guardado correcto OK");
-                                    GenerarArchivoPlano(textoCotizaciones);
-                                    MensajeAListBox("Se generó archivo plano cotizaciones OK");
                                     itemCounter++;
-
                                 }
-                                else
-                                {
-                                    MensajeAListBox("No se guardo en la tabla cotizaciones" + rtCTO.ToString());
-                                }
-
-                            }
-                            catch (Exception ex)
+                            if (InsertarCotizacionesEncabezado(textoPagos))
                             {
-
-                                MensajeAListBox(ex.ToString());
+                                
                             }
-
-                            try
+                            else
                             {
-                                string rtaCE = FacturacionElectronicaController.InsertarCotizacionesEncabezado(textoPagos);
-                                if (rtaCE.Equals("OK"))
-                                {
-                                    MensajeAListBox("Cotizaciones Encabezado guardado correcto OK");
-                                    GenerarArchivoPlano(textoPagos);
-                                    MensajeAListBox("Se generó archivo plano cotizaciones encabezado OK");
-
-
-                                }
-                                else
-                                {
-                                    MensajeAListBox("No se guardo en la tabla cotizaciones encabezado" + rtaCE.ToString());
-                                }
+                                MensajeAListBox("Cotizaciones encabezazdo ya está registrado para este pago");
                             }
-                            catch (Exception ex)
-                            {
+                                //}
+                                //else
+                                //{
+                                //    MensajeAListBox("No se guardo en la tabla cotizaciones" + rtCTO.ToString());
+                                //}
 
-                                MensajeAListBox(ex.ToString());
-                            }
+                            //}
+                            //catch (Exception ex)
+                            //{
 
-                            string rtaAct = FacturacionElectronicaController.ActualizaEstadoPagos(pagos.Id);
-                            if (rtaAct.Equals("OK"))
-                            {
-                                MensajeAListBox("Se actualizó el pago id = " + pagos.Id);
-                            }
+                            //    MensajeAListBox(ex.ToString());
+                            //}
+
+                            //try
+                            //{
+
+                            //}
+                            //catch (Exception ex)
+                            //{
+
+                            //    MensajeAListBox(ex.ToString());
+                            //}
+                            ActualizarEstadoPagos(pagos.Id);
+                            //string rtaAct = FacturacionElectronicaController.ActualizaEstadoPagos(pagos.Id);
+                            //if (rtaAct.Equals("OK"))
+                            //{
+                            //    MensajeAListBox("Se actualizó el pago id = " + pagos.Id);
+                            //}
                                 
                     
                         }
@@ -526,6 +549,91 @@ namespace FacturacionElectronicaFrm
             return ok;
 
         }
+
+        public bool InsertarCotizacionesEncabezado(string texto)
+        {
+            bool ok = false;
+            try
+            {
+                string rtaCE = FacturacionElectronicaController.InsertarCotizacionesEncabezado(textoPagos);
+                if (rtaCE.Equals("OK"))
+                {
+                    MensajeAListBox("Cotizaciones Encabezado guardado correcto OK");
+                    GenerarArchivoPlano(textoPagos);
+                    MensajeAListBox("Se generó archivo plano cotizaciones encabezado OK");
+                    ok=true;
+
+
+                }
+                else
+                {
+                    MensajeAListBox("No se guardo en la tabla cotizaciones encabezado" + rtaCE.ToString());
+                    ok=false;
+                }
+            }
+            catch (Exception ex )
+            {
+
+                MensajeAListBox(ex.ToString());
+            }
+            return ok;
+        }
+
+        public bool InsertarCotizaciones(string texto)
+        {
+            bool ok = false;
+            try
+            {
+                string rtCTO = FacturacionElectronicaController.InsetarPagos(textoCotizaciones);
+                if (rtCTO.Equals("OK"))
+                {
+                    MensajeAListBox("Cotizaciones guardado correcto OK");
+                    GenerarArchivoPlano(textoCotizaciones);
+                    MensajeAListBox("Se generó archivo plano cotizaciones OK");
+                    ok=true;
+                    //itemCounter++;
+
+                }
+                else
+                {
+                    MensajeAListBox("No se guardo en la tabla cotizaciones" + rtCTO.ToString());
+                    ok=false;
+                }
+            }
+            catch (Exception ex )
+            {
+
+                MensajeAListBox("Error insertando Cotizaciones" + ex.ToString());
+            }
+            return ok;
+        }
+
+        public bool ActualizarEstadoPagos(int id)
+        {
+            bool ok = false;
+            try
+            {
+                string rtaAct = FacturacionElectronicaController.ActualizaEstadoPagos(id);
+                if (rtaAct.Equals("OK"))
+                {
+                    
+                    MensajeAListBox("Se actualizó el pago id = " + id);
+                    ok = true;
+                }
+                else
+                {
+                    MensajeAListBox("No se actulizó el estado del pago");
+                    ok=false;
+                }
+            }
+            catch (Exception ex )
+            {
+
+                MensajeAListBox( "No se actualizó estado pagos " + ex.ToString());
+            }
+            return ok;
+        }
+
 
 
         //LISTADOS
