@@ -8,7 +8,7 @@ namespace FacturacionElectronica.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage ="El número de documento es obligatorio")]
-        [Display(Name ="Iadntificación")]
+        [Display(Name ="Identificación")]
         public string NumeroDocumento { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [Display(Name = "Número de factura")]
@@ -23,5 +23,8 @@ namespace FacturacionElectronica.Models
         public byte[] Imagen { get; set; }
 
         public bool Estado = false;
+        [Required(ErrorMessage ="Este campo es requerido")]
+        [Display(Name ="Fecha de la factura")]
+        public DateTime FechaPago = DateTime.Now;
     }
 }

@@ -85,13 +85,13 @@ namespace Controlador
 
         }
 
-        public static DataTable ListarDatosEmpresasPorEstacionamiento(int idEstacionamiento)
-        {
+        //public static DataTable ListarDatosEmpresasPorEstacionamiento(int idEstacionamiento)
+        //{
 
-            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            return Datos.ListarDatosEmpresasPorEstacionamiento(idEstacionamiento);
+        //    RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+        //    return Datos.ListarDatosEmpresasPorEstacionamiento(idEstacionamiento);
 
-        }
+        //}
 
         public static string InsertarCotizacionesEncabezado(string codigo)
         {
@@ -125,6 +125,12 @@ namespace Controlador
         {
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ListarClientesInterfaz();
+        }
+
+        public static DataTable ListarCentroCosto(int idEstacionamiento)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarCentroCosto(idEstacionamiento);
         }
 
 

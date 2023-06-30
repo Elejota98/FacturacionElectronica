@@ -10,6 +10,7 @@ namespace FacturacionElectronica.Servicios
         Task<bool> Existe(string identificacion);
         Task Insertar(PagosCreacionViewModel pagosCreacionViewModel);
         Task<IEnumerable<Estacionamientos>> ListarEstacionamientos();
+        Task<List<ReporteFacturas>> ListarFacturas(string fechaInicio, string fechaFinal);
         Task<Facturacion> ListarIdModuloPorPrefijo(string prefijo, int idEstacionamiento);
         Task<TipoPagos> ListarTipoPago(string tipoPago);
         Task<Pagos> ListarTotal(int numeroFactura, string idModulo, int idEstacionamiento);
@@ -91,6 +92,7 @@ namespace FacturacionElectronica.Servicios
                 total=pagosCreacionViewModel.Total,
                 idEstacionamiento=pagosCreacionViewModel.IdEstacionamiento,
                 idTipoPago = pagosCreacionViewModel.IdTipoPago,
+                fechaPago = pagosCreacionViewModel.FechaPago,
                 imagen=pagosCreacionViewModel.Imagen
 
             }, commandType: System.Data.CommandType.StoredProcedure);
@@ -111,5 +113,24 @@ namespace FacturacionElectronica.Servicios
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<TipoPagos>(@"select IdTipopago from T_TipoPago WHERE TipoPago=@TipoPago", new { tipoPago });
         }
-    }   
+
+        #region REPORTES
+
+        public async Task<List<ReporteFacturas>> ListarFacturas(string fechaInicio, string fechaFinal)
+        {
+            using var connection = new SqlConnection(connectionString);
+
+
+            var listado = await connection.QueryAsync<ReporteFacturas>("ListarFacturasElectronicas",
+                new
+                {
+                    fechainicio = fechaInicio,
+                    fechaFinal = fechaFinal
+                }, commandType: System.Data.CommandType.StoredProcedure);
+
+            return listado.ToList();
+        }
+
+        #endregion
+    }
 }

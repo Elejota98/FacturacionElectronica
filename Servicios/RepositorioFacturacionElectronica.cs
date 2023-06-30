@@ -290,32 +290,32 @@ namespace Servicios
             }
         }
 
-        public DataTable ListarDatosEmpresasPorEstacionamiento(int idEstacionamiento)
-        {
-            SqlConnection sqlCon = new SqlConnection();
-            DataTable tabla = new DataTable();
-            try
-            {
-                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = (" SELECT Idc_Empresa, DocumentoEmpresa FROM T_EmpresaParquearse " +
-                                 "WHERE IdEstacionamiento=" + idEstacionamiento + "");
-                SqlCommand comando = new SqlCommand(cadena, sqlCon);
-                sqlCon.Open();
-                SqlDataReader resultado = comando.ExecuteReader();
-                tabla.Load(resultado);
-                return tabla;
+        //public DataTable ListarDatosEmpresasPorEstacionamiento(int idEstacionamiento)
+        //{
+        //    SqlConnection sqlCon = new SqlConnection();
+        //    DataTable tabla = new DataTable();
+        //    try
+        //    {
+        //        sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+        //        string cadena = (" SELECT Idc_Empresa, DocumentoEmpresa FROM T_EmpresaParquearse " +
+        //                         "WHERE IdEstacionamiento=" + idEstacionamiento + "");
+        //        SqlCommand comando = new SqlCommand(cadena, sqlCon);
+        //        sqlCon.Open();
+        //        SqlDataReader resultado = comando.ExecuteReader();
+        //        tabla.Load(resultado);
+        //        return tabla;
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
-            }
-        }
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+        //    }
+        //}
 
         public DataTable ListarDocumentoVendedor()
         {
@@ -371,8 +371,6 @@ namespace Servicios
                 if (fbCon.State == ConnectionState.Open) fbCon.Close();
             }
         }
-
-
         public DataTable ListarCotizaciones()
         {
             DataTable tabla = new DataTable();
@@ -399,7 +397,6 @@ namespace Servicios
                 if (fbCon.State == ConnectionState.Open) fbCon.Close();
             }
         }
-
         public DataTable ListarClientesInterfaz()
         {
             DataTable tabla = new DataTable();
@@ -423,6 +420,31 @@ namespace Servicios
             finally
             {
                 if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+        }
+        public DataTable ListarCentroCosto(int idEstacionamiento)
+        {
+            SqlConnection sqlCon = new SqlConnection();
+            DataTable tabla = new DataTable();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("Select CentroCosto from T_EmpresaParquearse where idestacionamiento=" + idEstacionamiento + "");
+               SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
         }
 
