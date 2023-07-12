@@ -31,19 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lbEventos = new System.Windows.Forms.ListBox();
-            this.btnIniciar = new System.Windows.Forms.Button();
-            this.btnDetener = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lstCotizaciones = new System.Windows.Forms.Button();
-            this.lstCotEncabezado = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.restaurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minimizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,88 +46,19 @@
             // 
             this.lbEventos.FormattingEnabled = true;
             this.lbEventos.HorizontalScrollbar = true;
-            this.lbEventos.Location = new System.Drawing.Point(645, 23);
+            this.lbEventos.Location = new System.Drawing.Point(115, 27);
             this.lbEventos.Name = "lbEventos";
             this.lbEventos.ScrollAlwaysVisible = true;
             this.lbEventos.Size = new System.Drawing.Size(797, 212);
             this.lbEventos.TabIndex = 1;
-            // 
-            // btnIniciar
-            // 
-            this.btnIniciar.Location = new System.Drawing.Point(80, 69);
-            this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(75, 23);
-            this.btnIniciar.TabIndex = 2;
-            this.btnIniciar.Text = "Iniciar";
-            this.btnIniciar.UseVisualStyleBackColor = true;
-            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
-            // 
-            // btnDetener
-            // 
-            this.btnDetener.Location = new System.Drawing.Point(216, 69);
-            this.btnDetener.Name = "btnDetener";
-            this.btnDetener.Size = new System.Drawing.Size(75, 23);
-            this.btnDetener.TabIndex = 3;
-            this.btnDetener.Text = "Detener";
-            this.btnDetener.UseVisualStyleBackColor = true;
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Location = new System.Drawing.Point(361, 69);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCerrar.TabIndex = 4;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(33, 254);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1333, 288);
+            this.dataGridView1.Size = new System.Drawing.Size(1047, 288);
             this.dataGridView1.TabIndex = 5;
-            // 
-            // lstCotizaciones
-            // 
-            this.lstCotizaciones.Location = new System.Drawing.Point(33, 173);
-            this.lstCotizaciones.Name = "lstCotizaciones";
-            this.lstCotizaciones.Size = new System.Drawing.Size(101, 47);
-            this.lstCotizaciones.TabIndex = 6;
-            this.lstCotizaciones.Text = "LISTAR COTIZACIONES";
-            this.lstCotizaciones.UseVisualStyleBackColor = true;
-            this.lstCotizaciones.Click += new System.EventHandler(this.lstCotizaciones_Click);
-            // 
-            // lstCotEncabezado
-            // 
-            this.lstCotEncabezado.Location = new System.Drawing.Point(177, 173);
-            this.lstCotEncabezado.Name = "lstCotEncabezado";
-            this.lstCotEncabezado.Size = new System.Drawing.Size(101, 47);
-            this.lstCotEncabezado.TabIndex = 7;
-            this.lstCotEncabezado.Text = "LISTAR COTIZACION_ENCABEZADO";
-            this.lstCotEncabezado.UseVisualStyleBackColor = true;
-            this.lstCotEncabezado.Click += new System.EventHandler(this.lstCotEncabezado_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(335, 173);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 47);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "LISTAR CLIENTES";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(499, 67);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // notifyIcon1
             // 
@@ -154,40 +79,38 @@
             // restaurarToolStripMenuItem
             // 
             this.restaurarToolStripMenuItem.Name = "restaurarToolStripMenuItem";
-            this.restaurarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.restaurarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.restaurarToolStripMenuItem.Text = "Restaurar";
             this.restaurarToolStripMenuItem.Click += new System.EventHandler(this.restaurarToolStripMenuItem_Click);
             // 
             // minimizarToolStripMenuItem
             // 
             this.minimizarToolStripMenuItem.Name = "minimizarToolStripMenuItem";
-            this.minimizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.minimizarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.minimizarToolStripMenuItem.Text = "Minimizar";
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1454, 600);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.lstCotEncabezado);
-            this.Controls.Add(this.lstCotizaciones);
+            this.ClientSize = new System.Drawing.Size(1128, 600);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.btnDetener);
-            this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.lbEventos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Facturacion Electronica Interfaz Contable";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -198,19 +121,13 @@
         #endregion
 
         private System.Windows.Forms.ListBox lbEventos;
-        private System.Windows.Forms.Button btnIniciar;
-        private System.Windows.Forms.Button btnDetener;
-        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button lstCotizaciones;
-        private System.Windows.Forms.Button lstCotEncabezado;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem restaurarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem minimizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

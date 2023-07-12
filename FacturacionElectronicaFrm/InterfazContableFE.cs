@@ -63,6 +63,7 @@ namespace FacturacionElectronicaFrm
         {
  
             InitializeComponent();
+            
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -432,11 +433,7 @@ namespace FacturacionElectronicaFrm
 
                     }
 
-                }
-                else
-                {
-                    Application.Exit();
-                }
+                }            
             }
             catch (Exception ex )
             {
@@ -635,6 +632,17 @@ namespace FacturacionElectronicaFrm
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            IniciarProceso();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 
