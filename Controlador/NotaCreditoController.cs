@@ -48,11 +48,11 @@ namespace Controlador
             return Datos.ListarDocumentoEmpresa(idEstacionamiento);
         }
 
-        public static DataTable VerificarSiExisteElRegistro(DateTime fecha, int idcEmpresa, string idcDocumento)
+        public static DataTable VerificarSiExisteElRegistro(DateTime fecha, int idcEmpresa, string idcDocumento, string numeroFactura)
         {
       
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();
-            return Datos.ValidarSiExisteElRegistro(fecha, idcEmpresa,idcDocumento);
+            return Datos.ValidarSiExisteElRegistro(fecha, idcEmpresa,idcDocumento,numeroFactura);
         }
 
         public static DataTable GenerarDatosASubir(int idEstacionamiento, DateTime fecha, int numeroFactura)
@@ -60,11 +60,11 @@ namespace Controlador
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();
             return Datos.GenerarDatosASubir(idEstacionamiento, fecha, numeroFactura);
         }
-        public static bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento)
+        public static bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento,  string numeroFactura)
         {
             bool ok = false;
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();
-            if (Datos.InsertarItemsContable(datos, itemConsecutivo, idEstacionamiento))
+            if (Datos.InsertarItemsContable(datos, itemConsecutivo, idEstacionamiento,numeroFactura))
             {
                 ok = true;
             }

@@ -118,7 +118,7 @@ namespace FacturacionElectronica.Servicios
 
             var id = await connection.QueryFirstOrDefaultAsync<int>("InsertarPagos", new
             {
-                identificacion=pagosCreacionViewModel.Identificacion,
+                numeroDocumento=pagosCreacionViewModel.Identificacion,
                 numeroFactura=pagosCreacionViewModel.NumeroFactura,
                 prefijo=pagosCreacionViewModel.Prefijo,
                 total=pagosCreacionViewModel.Total,

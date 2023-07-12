@@ -78,9 +78,8 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.Factura, p.Total," +
-                    "p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN  T_Pagos P on c.Identificacion = p.Identificacion" +
-                    " INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
+                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total,p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN " +
+                                " T_Pagos P on c.Identificacion = p.NumeroDocumento INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
                 SqlDataReader rta = comando.ExecuteReader();
@@ -429,7 +428,7 @@ namespace Servicios
             try
             {
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("Select CentroCosto from T_EmpresaParquearse where idestacionamiento=" + idEstacionamiento + "");
+                string cadena = ("SELECT replace(ep.documentoempresa,'NCRP','') as CentroCosto FROM T_EmpresaParquearse EP WHERE IdEstacionamiento=" + idEstacionamiento + "");
                SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
                 SqlDataReader rta = comando.ExecuteReader();

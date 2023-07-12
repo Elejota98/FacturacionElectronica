@@ -46,12 +46,12 @@
             </div>
             <div class="mb-3">
                 <label asp-for="IdTipoPago" class="form-label">Tipo de pago</label>
-                <select class="form-select" aria-label="Default select example" name="TipoPago">
-                    <option selected name="TipoDocumento">Seleccione...</option>
-                    <option value="Mensualidad Carro">Mensualidad de carro</option>
-                    <option value="Mensualidad Carro">Mensualidad de moto</option>
-                    <option value="Convenios Carro">Horas carro</option>
-                    <option value="Convenios Moto">Horas Moto</option>
+                <select class="form-select" aria-label="Default select example" name="TipoPago" required>
+                <option selected name="TipoPago">Seleccione...</option>
+                    <option value="Mensualidad Carros">Mensualidad de carro</option>
+                    <option value="Mensualidad Carros">Mensualidad de moto</option>
+                    <option value="Convenios Carros">Horas carro</option>
+                    <option value="Convenios Motos">Horas Moto</option>
                     <option value="Tarjetas">Reposición</option>
                 </select>
             </div>

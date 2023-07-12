@@ -281,7 +281,7 @@ namespace FacturacionElectronicaFrm
                         string empresa = registrosPagos["Empresa"].ToString();
                         pagos.FechaPago = Convert.ToDateTime(registrosPagos["FechaPago"]);
                         //string fechaFormateada = (pagos.Fecha.ToString("dd.MM.yyyy HH.mm");
-                        pagos.NumeroDocumento = (registrosPagos["NumeroDocumento"].ToString());
+                        pagos.NumeroDocumento = (registrosPagos["Identificacion"].ToString());
                         string codigoSucursal = registrosPagos["CodigoSucursal"].ToString();
                         pagos.Prefijo = registrosPagos["Prefijo"].ToString();
                         pagos.NumeroFactura = Convert.ToInt32(registrosPagos["NumeroFactura"]);

@@ -240,9 +240,9 @@ namespace FacturacionElectronica.Controllers
                             }
 
                         }
-                        //pagosNubeList.IdTipoPago = pagos.IdTipoPago;
+                        pagosNubeList.IdTipoPago = pagos.IdTipoPago;
 
-                        //await repositorioPagos.InsertarPagosFE(pagosNubeList);
+                        await repositorioPagos.InsertarPagosFE(pagosNubeList);
                     }
 
                     if (pagos.IdPago < 0)
@@ -252,9 +252,11 @@ namespace FacturacionElectronica.Controllers
 
                 }
             }
-
-            //await GenerarScriptsPagos();
-            return RedirectToAction("NoExiste", "Home");
+            else
+            {
+                return RedirectToAction("NoExiste", "Home");
+            }
+            return RedirectToAction("Index", "Pagos");
         }
 
     }

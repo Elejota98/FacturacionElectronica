@@ -102,18 +102,18 @@ namespace FacturacionElectronicaFrm
                     fechaNew = Convert.ToDateTime(dtmFecha.Text);
                     
 
-                    tabla = NotaCreditoController.VerificarSiExisteElRegistro(Convert.ToDateTime(fechaNew.ToString("dd-MM-yyyy")), idc_Empresa, doc_Empresa);
+                    tabla = NotaCreditoController.VerificarSiExisteElRegistro(Convert.ToDateTime(fechaNew.ToString("dd-MM-yyyy")), idc_Empresa, doc_Empresa, numeroFactura);
                     if (tabla.Rows.Count <= 0)
                     {
                         //GENERAR PROCEDIMIENTO ALMACENADO 
                         DataTable tablaDatos;
-                        tablaDatos = NotaCreditoController.GenerarDatosASubir(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(dtmFecha.Text), Convert.ToInt32(numeroFactura) );
+                        tablaDatos = NotaCreditoController.GenerarDatosASubir(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(dtmFecha.Text), Convert.ToInt32(numeroFactura));
                         if (tablaDatos != null && tablaDatos.Rows.Count > 0)
                         {
                             //INSERTTAR INFORMACION EN LA INTERFAZ
                             int consecutivo = 1;
 
-                            if (NotaCreditoController.InsertarItemsContable(tablaDatos, consecutivo, Convert.ToInt32(cboEstacionamientos.SelectedValue)))
+                            if (NotaCreditoController.InsertarItemsContable(tablaDatos, consecutivo, Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura))
                             {
                                 MensajeAListBox("Finaliza escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
                             }
@@ -215,7 +215,7 @@ namespace FacturacionElectronicaFrm
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("DELETE FROM ITEMSDOCCONTABLE");
+                string cadena = ("DELETE FROM DOCCONTABLE");
                 FbCommand comando = new FbCommand(cadena,fbCon);
                 fbCon.Open();
                 comando.ExecuteNonQuery();

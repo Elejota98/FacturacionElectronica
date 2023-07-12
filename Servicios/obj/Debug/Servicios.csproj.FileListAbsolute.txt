@@ -26,3 +26,17 @@ C:\Users\Administrador\Documents\FacturacionElectronica\Servicios\obj\Debug\Serv
 C:\Users\Administrador\Documents\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.CopyComplete
 C:\Users\Administrador\Documents\FacturacionElectronica\Servicios\obj\Debug\Servicios.dll
 C:\Users\Administrador\Documents\FacturacionElectronica\Servicios\obj\Debug\Servicios.pdb
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\Servicios.dll
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\Servicios.pdb
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\Modelo.dll
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\Modelo.pdb
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.AssemblyReference.cache
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.csproj.CopyComplete
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.dll
+D:\PROYECTOS\LJ\FacturacionElectronica\Servicios\obj\Debug\Servicios.pdb

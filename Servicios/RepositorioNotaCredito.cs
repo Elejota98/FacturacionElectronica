@@ -157,7 +157,7 @@ namespace Servicios
             }
         }
 
-        public DataTable ValidarSiExisteElRegistro(DateTime fecha, int idcEmpresa, string idcDocumento)
+        public DataTable ValidarSiExisteElRegistro(DateTime fecha, int idcEmpresa, string idcDocumento, string numeroFactura)
         {
             DataTable tabla = new DataTable();
             FbConnection fbCon = new FbConnection();
@@ -170,7 +170,8 @@ namespace Servicios
                 string numeroFechaSinEspacios = numeroFecha.ToString().Trim();
 
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                    string cadena = "SELECT * FROM ITEMSDOCCONTABLE WHERE IDC_EMPRESA = " + idcEmpresa + " AND IDC_FECHA = " + numeroFechaSinEspacios + " AND IDC_DOCUMENTO = '" + idcDocumento + "'";
+                    string cadena = "SELECT * FROM ITEMSDOCCONTABLE WHERE IDC_EMPRESA = " + idcEmpresa + " AND IDC_FECHA = " + numeroFechaSinEspacios + " AND IDC_DOCUMENTO = '" + idcDocumento + "'" +
+                                     " AND IDC_CONCEPTO= 'Reemplazo POS "+numeroFactura+"'";
                     FbCommand comando = new FbCommand(cadena, fbCon);
 
                     fbCon.Open();
@@ -254,15 +255,50 @@ namespace Servicios
 
         }
 
+        //ListarItemsContable
 
-        public bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento)
+        //public DataTable ListarItemsContable()
+        //{
+        //    FbConnection fbCon = new FbConnection();
+        //    DataTable tabla = new DataTable();
+        //    try
+        //    {
+        //        fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+        //        string cadena = ("SELECT * FROM ITEMSDOCCONTABLE");
+        //        FbCommand comando = new FbCommand(cadena, fbCon);
+        //        fbCon.Open();
+        //        FbDataReader rta = comando.ExecuteReader();
+        //        tabla.Load(rta);
+        //        return tabla;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        if (fbCon.State == ConnectionState.Open) fbCon.Close();
+        //    }
+
+
+
+        //}
+
+
+        public bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento, string numeroFactura)
         {
+            int consecutivoNumero = 1;
             string rta = "";
             double MyDouble = 0;
             string numero = string.Empty;
             int idc_empresa = 0;
             string documentoempresa = string.Empty;
             bool ok = true;
+            string idcConcepto = "";
+            int idcNumero = 0;
+            DataTable tablaItems;
+
             FbConnection fbCon = new FbConnection();
             try
             {
@@ -273,14 +309,34 @@ namespace Servicios
                     DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[2]), Convert.ToInt32(nuevaFecha[1]), Convert.ToInt32(nuevaFecha[0]));
                     MyDouble = MyDate.ToOADate();
 
+                    //VALIDAR SI EXISTE EL REGISTRO
+
+                    tablaItems = ListarItemsContable();
+                    if (tablaItems.Rows.Count > 0)
+                    {
+                        foreach (DataRow lstTabla in tablaItems.Rows)
+                        {
+                            idcConcepto = Convert.ToString(lstTabla["IDC_CONCEPTO"]);
+                            idcNumero = Convert.ToInt32(lstTabla["IDC_NUMERO"]);
+                        }
+
+                        if (idcConcepto.ToString() != row[5].ToString())
+                        {
+                            consecutivoNumero = idcNumero + 1;
+                        }
+                        else
+                        {
+                            consecutivoNumero = idcNumero;
+                        }
+                    }
 
                     idc_empresa = Convert.ToInt32(row[0]);
                     documentoempresa = row[1].ToString();
-                    numero = row[2].ToString();
+                    numero = Convert.ToString(consecutivoNumero);
 
                     string SQLCommandText = "INSERT into ITEMSDOCCONTABLE Values ("
                                 + row[0]+ ",'"+row[1]+"',"
-                                + row[2]
+                                + consecutivoNumero
                                 + ",'"
                                 + MyDouble
                                 + "',"

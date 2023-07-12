@@ -28,7 +28,7 @@ namespace FacturacionElectronica.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult NoEncontado()
+        public IActionResult NoEncontrado()
         {
             return View();
         }
