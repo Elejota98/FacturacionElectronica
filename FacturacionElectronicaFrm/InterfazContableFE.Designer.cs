@@ -90,7 +90,7 @@
             // 
             // lstCotizaciones
             // 
-            this.lstCotizaciones.Location = new System.Drawing.Point(80, 173);
+            this.lstCotizaciones.Location = new System.Drawing.Point(33, 173);
             this.lstCotizaciones.Name = "lstCotizaciones";
             this.lstCotizaciones.Size = new System.Drawing.Size(101, 47);
             this.lstCotizaciones.TabIndex = 6;
@@ -100,7 +100,7 @@
             // 
             // lstCotEncabezado
             // 
-            this.lstCotEncabezado.Location = new System.Drawing.Point(253, 173);
+            this.lstCotEncabezado.Location = new System.Drawing.Point(177, 173);
             this.lstCotEncabezado.Name = "lstCotEncabezado";
             this.lstCotEncabezado.Size = new System.Drawing.Size(101, 47);
             this.lstCotEncabezado.TabIndex = 7;
@@ -110,7 +110,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(400, 173);
+            this.button1.Location = new System.Drawing.Point(335, 173);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 47);
             this.button1.TabIndex = 8;

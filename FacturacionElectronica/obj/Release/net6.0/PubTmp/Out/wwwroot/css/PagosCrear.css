@@ -1,0 +1,20 @@
+﻿.cuerpo {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
+    color: #ffffff; /* Texto blanco */
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.Form label {
+    font-weight: bold;
+}
+
+.Form .form-control {
+    margin-bottom: 10px;
+}
+
+.Form .btn {
+    margin-top: 10px;
+}

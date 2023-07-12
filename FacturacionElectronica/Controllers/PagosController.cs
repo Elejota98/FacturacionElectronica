@@ -19,10 +19,16 @@ namespace FacturacionElectronica.Controllers
             this.repositorioParametros = repositorioParametros;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Crear()
         {
             var modelo = new PagosCreacionViewModel();
             modelo.Estacionamientos = await ListarEstacionamientos();
+            modelo.FechaPago = DateTime.Now;
             return View(modelo);
         }
 
@@ -86,15 +92,15 @@ namespace FacturacionElectronica.Controllers
 
         //Validar si el cliente existe en la base de datos
         [HttpPost]
-        public async Task<IActionResult> VerificarExisteCliente([FromQuery] string numeroDocumento)
+        public async Task<IActionResult> VerificarExisteCliente([FromQuery] string identificacion)
         {
-            var yaExisteCliente = await repositorioPagos.Existe(numeroDocumento);
+            var yaExisteCliente = await repositorioPagos.Existe(identificacion);
             if (!yaExisteCliente)
             {
                 //return Json($"El documento {pagos.NumeroDocumento}, no se encuentra registrado, por favor registrelo en el botón registar cliente");
                 return RedirectToAction("Crear", "Cliente");
             }
-            return Json(numeroDocumento);
+            return Json(identificacion);
         }
 
         //Crear el registro pagos 
@@ -102,6 +108,7 @@ namespace FacturacionElectronica.Controllers
         public async Task<IActionResult> Crear(PagosCreacionViewModel pagos, IFormFile imagen)
         {
             Pagos oPagos = new Pagos();
+            PagosNube oPagosNube = new PagosNube();
             //ObtenerEstacionamientosPorId
             var idEstacionamiento = await repositorioPagos.ListarEstacionamientos();
             if (idEstacionamiento is null)
@@ -133,37 +140,121 @@ namespace FacturacionElectronica.Controllers
             {
                 return RedirectToAction("NoEncontrado", "Home");
             }
-            
+            //var datosFactura = await repositorioPagos.ListarPagosNube(pagos.NumeroFactura, pagos.IdEstacionamiento,  idModulo.IdModulo);
+            //if (datosFactura is null)
+            //{
+            //    return RedirectToAction("NoEncontrado", "Home");
+            //}
+            //else if (datosFactura != null)
+            //{
+            //    DateTime fechaPagosNube;
+            //    fechaPagosNube = datosFactura.FechaPago;
+            //    if (pagos.FechaPago.Day != fechaPagosNube.Day)
+            //    {
+            //        return RedirectToAction("NoEncontrado", "Home");
+            //    }
 
-            var listadoPagos = await repositorioPagos.ListarTotalesSeparados(pagos.NumeroFactura, idModulo.IdModulo, pagos.IdEstacionamiento);
-            foreach (var pagoslist in listadoPagos)
+            //}
+
+            //VALIDAR SI EXISTE LA FACTURA
+
+            var existeFactura = await repositorioPagos.ExisteFactura(pagos.IdEstacionamiento, idModulo.IdModulo, pagos.FechaPago, pagos.NumeroFactura);
+            if (existeFactura)
             {
-                pagos.NumeroFactura = pagoslist.NumeroFactura;
-                pagos.Total= pagoslist.Total;
-                if (pagoslist.IdTipoPago == 6)
+
+                var datosFactura = await repositorioPagos.ListarPagosNube(pagos.NumeroFactura, pagos.IdEstacionamiento, idModulo.IdModulo);
+
+                if (datosFactura is null)
                 {
-                    pagos.IdTipoPago = 5;
-                }
-                else if (pagoslist.IdTipoPago == 3)
-                {
-                    pagos.IdTipoPago = 6;
-                }
-                else
-                {
-                    pagos.IdTipoPago = idTipoPago.IdTipoPago;
+                    return RedirectToAction("NoEncontrado", "Home");
                 }
 
-
-                await repositorioPagos.Insertar(pagos);
-                if (pagos.Id < 0)
+                bool facturaEncontrada = false;
+                foreach (var factura in datosFactura)
                 {
-                    RedirectToAction("NoEncontrado", "Home");
+                    if (factura.NumeroFactura == pagos.NumeroFactura)
+                    {
+                        facturaEncontrada = true;
+                        DateTime fechaPagosNube = DateTime.Now;
+
+                        if (pagos.FechaPago.Day != fechaPagosNube.Day)
+                        {
+                            DateTime fechaActual = DateTime.Now;
+                            TimeSpan diferencia = fechaActual.Date - pagos.FechaPago.Date;
+                            int diasDiferencia = diferencia.Days;
+
+                            if (diasDiferencia > 3)
+                            {
+                                return RedirectToAction("NoEncontrado", "Home");
+                            }
+                        }
+                    }
                 }
 
+                if (!facturaEncontrada)
+                {
+                    return RedirectToAction("NoEncontrado", "Home");
+                }
+
+                var listadoPagos = await repositorioPagos.ListarTotalesSeparados(pagos.NumeroFactura, idModulo.IdModulo, pagos.IdEstacionamiento);
+                foreach (var pagoslist in listadoPagos)
+                {
+                    pagos.NumeroFactura = pagoslist.NumeroFactura;
+                    pagos.Total = pagoslist.Total;
+                    pagos.IdPago = pagoslist.IdPago;
+                    if (pagoslist.IdTipoPago == 6)
+                    {
+                        pagos.IdTipoPago = 5;
+                    }
+                    else if (pagoslist.IdTipoPago == 3)
+                    {
+                        pagos.IdTipoPago = 6;
+                    }
+                    else
+                    {
+                        pagos.IdTipoPago = idTipoPago.IdTipoPago;
+                    }
+
+                    await repositorioPagos.Insertar(pagos);
+
+                    var listadoPagosNube = await repositorioPagos.ListarPagos(pagoslist.IdPago);
+                    foreach (var pagosNubeList in listadoPagosNube)
+                    {
+                        pagosNubeList.IdTransaccion = pagos.Identificacion;
+                        if (pagosNubeList.IdTipoPago == 2 && pagosNubeList.IdAutorizado > 0)
+                        {
+                            var listarTipoVehiculo = await repositorioPagos.ListarTipoVehiculo(pagosNubeList.IdAutorizado, pagosNubeList.IdTipoPago, pagosNubeList.IdEstacionamiento);
+
+                            foreach (var listTipoVehiculo in listarTipoVehiculo)
+                            {
+                                if (listTipoVehiculo.IdTipoVehiculo == 1)
+                                {
+                                    pagosNubeList.IdTipoPago = 1;
+                                }
+                                else
+                                {
+                                    pagosNubeList.IdTipoPago = 2;
+                                }
+
+
+                            }
+
+                        }
+                        //pagosNubeList.IdTipoPago = pagos.IdTipoPago;
+
+                        //await repositorioPagos.InsertarPagosFE(pagosNubeList);
+                    }
+
+                    if (pagos.IdPago < 0)
+                    {
+                        RedirectToAction("NoEncontrado", "Home");
+                    }
+
+                }
             }
 
             //await GenerarScriptsPagos();
-            return RedirectToAction("Crear");
+            return RedirectToAction("NoExiste", "Home");
         }
 
     }

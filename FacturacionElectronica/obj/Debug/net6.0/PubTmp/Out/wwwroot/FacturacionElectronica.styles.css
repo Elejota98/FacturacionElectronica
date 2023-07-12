@@ -1,3 +1,10 @@
+/* _content/FacturacionElectronica/Views/Pagos/Crear.cshtml.rz.scp.css */
+.bienvenidos[b-jtow97mt1o] {
+    background-image: url("~/wwwroot/imagenes/fondo-encabezado-grande.jpg");
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Alinea la imagen al centro del contenedor */
+}
 /* _content/FacturacionElectronica/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
@@ -46,4 +53,9 @@ button.accept-policy[b-8szya716x7] {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+}
+header[b-8szya716x7] {
+    background: url("~/wwwroot/imagenes/fondo-encabezado-grande.jpg") no-repeat center top;
+    background-size: cover;
+    background-color: forestgreen;
 }

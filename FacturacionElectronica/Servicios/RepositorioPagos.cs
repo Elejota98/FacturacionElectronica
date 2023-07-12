@@ -8,11 +8,16 @@ namespace FacturacionElectronica.Servicios
     {
         Task ActualizarEstadoPago();
         Task<bool> Existe(string identificacion);
+        Task<bool> ExisteFactura(int idEstacionamiento, string idModulo, DateTime fechaPago, int numeroFactura);
         Task Insertar(PagosCreacionViewModel pagosCreacionViewModel);
+        Task InsertarPagosFE(PagosNube pagosNube);
         Task<IEnumerable<Estacionamientos>> ListarEstacionamientos();
         Task<List<ReporteFacturas>> ListarFacturas(string fechaInicio, string fechaFinal);
         Task<Facturacion> ListarIdModuloPorPrefijo(string prefijo, int idEstacionamiento);
+        Task<List<PagosNube>> ListarPagos(int idPago);
+        Task<List<PagosNube>> ListarPagosNube(int numeroFactura, int idEstacionamiento, string idModulo);
         Task<TipoPagos> ListarTipoPago(string tipoPago);
+        Task<List<Tarifas>> ListarTipoVehiculo(long IdAutorizacion, long IdTipoPago, long IdEstacionamiento);
         Task<Pagos> ListarTotal(int numeroFactura, string idModulo, int idEstacionamiento);
         Task<List<Pagos>> ListarTotalesSeparados(int numeroFactura, string idModulo, int idEstacionamiento);
         Task<IEnumerable<Facturacion>> ObtenerPrefijoPorIdEstacionamiento(long idEstacionamiento);
@@ -33,7 +38,7 @@ namespace FacturacionElectronica.Servicios
         {
             using var connection = new SqlConnection(connectionStringNube);
 
-            return await connection.QueryAsync<Estacionamientos>("SELECT IdEstacionamiento,Nombre FROM T_Estacionamientos WHERE Estado=1");
+            return await connection.QueryAsync<Estacionamientos>("SELECT IdEstacionamiento,Nombre FROM T_Estacionamientos WHERE Estado=1 Order By Nombre");
 
         }
         public async Task<IEnumerable<Facturacion>> ObtenerPrefijoPorIdEstacionamiento(long idEstacionamiento)
@@ -62,7 +67,7 @@ namespace FacturacionElectronica.Servicios
         public async Task<List<Pagos>> ListarTotalesSeparados(int numeroFactura, string idModulo, int idEstacionamiento)
         {
             using var connection = new SqlConnection(connectionStringNube);
-            var resultado = await connection.QueryAsync<Pagos>(@"Select NumeroFactura,Total, IdTipoPago from T_Pagos
+            var resultado = await connection.QueryAsync<Pagos>(@"Select IdPago, NumeroFactura,Total, IdTipoPago from T_Pagos
                                                                      WHERE NumeroFactura=@NumeroFactura and IdModulo=@IdModulo and IdEstacionamiento=@IdEstacionamiento", new { numeroFactura, idModulo, idEstacionamiento });
 
             return resultado.ToList();
@@ -70,14 +75,41 @@ namespace FacturacionElectronica.Servicios
 
         //Validar si el cliente ya existe 
 
-        public async Task<bool> Existe(string numeroDocumento)
+        public async Task<bool> Existe(string identificacion)
         {
             using var connection = new SqlConnection(connectionString);
-            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE NumeroDocumento=@NumeroDocumento", new { numeroDocumento }); //El primer registro o un valor por defecto si no existe
+            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE Identificacion=@Identificacion", new { identificacion }); //El primer registro o un valor por defecto si no existe
            
             return existe == 1;
 
         }
+
+        //Verificar si existe la factura 
+
+        public async Task<bool>ExisteFactura(int idEstacionamiento, string idModulo, DateTime fechaPago, int numeroFactura)
+        {
+            string FechaInicio = fechaPago.ToString("yyyy-MM-dd") + " 00:00:00";
+            string FechaFin = fechaPago.ToString("yyyy-MM-dd") + " 23:59:59";
+
+
+            using var connection = new SqlConnection(connectionStringNube);
+            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Pagos
+                                                                            WHERE IdEstacionamiento=@IdEstacionamiento and IdModulo=@IdModulo and NumeroFactura=@NumeroFactura and FechaPago  Between @FechaInicio and @FechaFin",
+                                                                            new {idEstacionamiento,idModulo,numeroFactura,FechaInicio,FechaFin});
+            return existe == 1;
+        }
+
+        public async Task<List<PagosNube>> ListarPagosNube(int numeroFactura, int idEstacionamiento, string idModulo)
+        {
+            using var connection = new SqlConnection(connectionStringNube);
+            var rta = await connection.QueryAsync<PagosNube>(@"select * from T_Pagos
+                                                                        where IdModulo=@IdModulo and NumeroFactura=@NumeroFactura and IdEstacionamiento=@IdEstacionamiento ORDER BY 1 DESC",
+                                                                        new { idModulo, numeroFactura, idEstacionamiento });
+
+        return rta.ToList();
+        }
+
+
 
 
         public async Task Insertar(PagosCreacionViewModel pagosCreacionViewModel)
@@ -86,7 +118,7 @@ namespace FacturacionElectronica.Servicios
 
             var id = await connection.QueryFirstOrDefaultAsync<int>("InsertarPagos", new
             {
-                numeroDocumento=pagosCreacionViewModel.NumeroDocumento,
+                identificacion=pagosCreacionViewModel.Identificacion,
                 numeroFactura=pagosCreacionViewModel.NumeroFactura,
                 prefijo=pagosCreacionViewModel.Prefijo,
                 total=pagosCreacionViewModel.Total,
@@ -96,6 +128,8 @@ namespace FacturacionElectronica.Servicios
                 imagen=pagosCreacionViewModel.Imagen
 
             }, commandType: System.Data.CommandType.StoredProcedure);
+
+            pagosCreacionViewModel.IdPago = id;
         }
 
         //ACTUALIZAR ESTADO 
@@ -129,6 +163,46 @@ namespace FacturacionElectronica.Servicios
                 }, commandType: System.Data.CommandType.StoredProcedure);
 
             return listado.ToList();
+        }
+
+        public async Task<List<PagosNube>> ListarPagos(int idPago)
+        {
+            using var connection = new SqlConnection(connectionStringNube);
+            var listado = await connection.QueryAsync<PagosNube>(@"SELECT * FROM T_Pagos WHERE IdPago=@IdPago", new { IdPago = idPago });
+            return listado.ToList();
+        }
+
+        public async Task InsertarPagosFE(PagosNube pagosNube)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync(@"Insert into T_PagosFE (IdPago, Identificacion, IdAutorizado, IdEstacionamiento, IdModulo, IdFacturacion, IdTipoPago, FechaPago, Subtotal, Iva, Total, NumeroFactura, Sincronizacion, PagoMensual,Anulada)
+                                    VALUES (@IdPago, @IdTransaccion, @IdAutorizado, @IdEstacionamiento, @IdModulo, @IdFacturacion, @IdTipoPago, @FechaPago, @Subtotal, @Iva, @Total, @NumeroFactura,@Sincronizacion,@PagoMensual, @Anulada)",
+                                            new
+                                            {
+                                                pagosNube.IdPago,
+                                                pagosNube.IdTransaccion,
+                                                pagosNube.IdAutorizado,
+                                                pagosNube.IdEstacionamiento,
+                                                pagosNube.IdModulo,
+                                                pagosNube.IdFacturacion,
+                                                pagosNube.IdTipoPago,
+                                                pagosNube.FechaPago,
+                                                pagosNube.Subtotal,
+                                                pagosNube.Iva,
+                                                pagosNube.Total,
+                                                pagosNube.NumeroFactura,
+                                                pagosNube.Sincronizacion,
+                                                pagosNube.PagoMensual,
+                                                pagosNube.Anulada
+                                            });
+        }
+
+        public async Task<List<Tarifas>> ListarTipoVehiculo(long IdAutorizacion, long IdTipoPago, long IdEstacionamiento)
+        {
+            using var connection = new SqlConnection(connectionStringNube);
+            var listado = await connection.QueryAsync<Tarifas>("select IdTipoVehiculo from T_Tarifas where IdAutorizacion=@IdAutorizacion and IdTipoPago=@IdTipoPago" +
+                                                                "    and IdEstacionamiento=@IdEstacionamiento", new { IdAutorizacion, IdTipoPago, IdEstacionamiento });
+            return listado.ToList();    
         }
 
         #endregion

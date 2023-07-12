@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\FacturacionElectronica</_PublishTargetUrl>
-    <History>True|2023-06-28T20:34:11.3350932Z;True|2023-06-28T14:30:59.6951907-05:00;True|2023-06-22T11:29:21.8021953-05:00;True|2023-06-20T15:59:40.7237310-05:00;</History>
+    <History>True|2023-06-30T21:58:37.1529903Z;True|2023-06-28T15:34:11.3350932-05:00;True|2023-06-28T14:30:59.6951907-05:00;True|2023-06-22T11:29:21.8021953-05:00;True|2023-06-20T15:59:40.7237310-05:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

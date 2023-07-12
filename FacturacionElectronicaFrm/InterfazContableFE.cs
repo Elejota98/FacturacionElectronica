@@ -360,11 +360,11 @@ namespace FacturacionElectronicaFrm
 
                         DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
                         int numeroFecha = (int)(pagos.FechaPago - new DateTime(1899, 12, 30)).TotalDays;
-
+                        string observaciones = "Reemplazo factura POS - " + pagos.NumeroFactura + "";
 
                         textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
                              $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                             $"VALUES({empresa},'OF01',{cotNum},{numeroFecha},{pagos.NumeroDocumento},1,0,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'{cliente.Vendedor}')";
+                             $"VALUES({empresa},'OF01',{cotNum},{numeroFecha},{pagos.NumeroDocumento},1,0,NULL,'{observaciones}',NULL,NULL,0,NULL,NULL,NULL,'{cliente.Vendedor}')";
 
                         //M/*ensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");*/
 
@@ -458,7 +458,7 @@ namespace FacturacionElectronicaFrm
                 {
                     foreach (DataRow registrosClientes in tabla.Rows)
                     {
-                        cliente.NumeroDocumento = (registrosClientes["NumeroDocumento"].ToString());
+                        cliente.Identificacion = (registrosClientes["Identificacion"].ToString());
                         cliente.RazonSocial = registrosClientes["RazonSocial"].ToString();
                         cliente.Direccion = registrosClientes["Direccion"].ToString();
                         cliente.Telefono = registrosClientes["Telefono"].ToString();
@@ -476,7 +476,7 @@ namespace FacturacionElectronicaFrm
                         // Generar el texto del cliente
                         textoCliente = $"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
                            $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
-                           $"VALUES ('1', '{cliente.NumeroDocumento}', 1, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
+                           $"VALUES ('1', '{cliente.Identificacion}', 1, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
                            $"'{cliente.Telefono}', '{cliente.Email}', '{ciudad}', {cliente.Vendedor}, NULL,NULL)";
 
                         MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
@@ -491,7 +491,7 @@ namespace FacturacionElectronicaFrm
                         //fbCon.Close();
                         #endregion
 
-                        if (VerificarClienteExiste(cliente.NumeroDocumento.ToString()))
+                        if (VerificarClienteExiste(cliente.Identificacion.ToString()))
                         {
                             string rtaCliente = "";
                             rtaCliente = FacturacionElectronicaController.ActualizarEstadoCliente();

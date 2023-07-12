@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="~/css/Index.css" />
+    <style>
+        .bienvenidos {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .texto-encabezado {
+            margin-top: 30vh; 
+            text-align: center;
+            color: white;
+        }
+
+        .btn {
+            margin-top: 4rem; 
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bienvenidos">
+        <div></div>
+        <div class="texto-encabezado">
+            <div class="container">
+                <h1 class="display-4 wow bounceIn">Solicitud Facturación Electrónica</h1>
+                <p class="wow bounceIn" data-wow-delay=".3s">Por medio de esta página podrá solicitar la factura electrónica</p>
+                <a class="btn btn-primary btn-lg" asp-controller="Pagos" asp-action="Crear">¡Solicitar ahora!</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

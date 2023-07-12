@@ -1,12 +1,28 @@
 {
   "Files": [
     {
-      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\FacturacionElectronica.bundle.scp.css",
-      "PackagePath": "staticwebassets\\FacturacionElectronica.bundle.scp.css"
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\ClientesCrear.css",
+      "PackagePath": "staticwebassets\\css\\ClientesCrear.css"
     },
     {
       "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Custom.css",
       "PackagePath": "staticwebassets\\css\\Custom.css"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Index.css",
+      "PackagePath": "staticwebassets\\css\\Index.css"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Layout.css",
+      "PackagePath": "staticwebassets\\css\\Layout.css"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\PagosCrear.css",
+      "PackagePath": "staticwebassets\\css\\PagosCrear.css"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\boostrap.css",
+      "PackagePath": "staticwebassets\\css\\boostrap.css"
     },
     {
       "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\site.css",
@@ -15,6 +31,22 @@
     {
       "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\FondoBody.jpg",
+      "PackagePath": "staticwebassets\\imagenes\\FondoBody.jpg"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\agencia.svg",
+      "PackagePath": "staticwebassets\\imagenes\\agencia.svg"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\fondo-servicios-grande.jpg",
+      "PackagePath": "staticwebassets\\imagenes\\fondo-servicios-grande.jpg"
+    },
+    {
+      "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\fondo-servicios.jpg",
+      "PackagePath": "staticwebassets\\imagenes\\fondo-servicios.jpg"
     },
     {
       "Id": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\js\\site.js",

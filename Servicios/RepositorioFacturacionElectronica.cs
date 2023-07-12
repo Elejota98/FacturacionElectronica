@@ -18,12 +18,12 @@ namespace Servicios
 
         public DataTable ListarClientes()
         {
-            DataTable tabla = new DataTable();
+            DataTable tabla = new DataTable();  
             SqlConnection sqlcon = new SqlConnection();
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT NumeroDocumento,RazonSocial,Direccion,Telefono,Email, c.Nombre, Fecha,Estado FROM" +
+                string cadena = ("SELECT Identificacion,RazonSocial,Direccion,Telefono,Email, c.Nombre, Fecha,Estado FROM" +
                                 " T_Clientes inner join T_Ciudades c on IdCiudad=c.Id where estado=0");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
@@ -78,8 +78,8 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.NumeroDocumento,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total," +
-                    "p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN  T_Pagos P on c.NumeroDocumento = p.NumeroDocumento" +
+                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.Factura, p.Total," +
+                    "p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN  T_Pagos P on c.Identificacion = p.Identificacion" +
                     " INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();

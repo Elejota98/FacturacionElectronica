@@ -29,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Pagos}/{action=Crear}/{id?}");
+    pattern: "{controller=Pagos}/{action=Index}/{id?}");
 
 app.Run();
