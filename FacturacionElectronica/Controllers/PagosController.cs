@@ -123,6 +123,10 @@ namespace FacturacionElectronica.Controllers
                     pagos.Imagen = stream.ToArray();
                 }
             }
+            if (pagos.Total == 0)
+            {
+                return RedirectToAction("NoExiste", "Home");
+            }
             if (!ModelState.IsValid)
             {
                 pagos.Estacionamientos = await ListarEstacionamientos();
