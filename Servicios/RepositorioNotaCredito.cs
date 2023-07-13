@@ -165,7 +165,7 @@ namespace Servicios
             {
                 string fechaFormateada = fecha.ToString("yyyy-MM-dd");
                 string[] nuevaFecha = fechaFormateada.ToString().Split('-');
-                DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[0]), Convert.ToInt32(nuevaFecha[2]), Convert.ToInt32(nuevaFecha[1]));
+                DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[0]), Convert.ToInt32(nuevaFecha[1]), Convert.ToInt32(nuevaFecha[2]));
                 double numeroFecha = MyDate.ToOADate();
                 string numeroFechaSinEspacios = numeroFecha.ToString().Trim();
 
@@ -294,7 +294,7 @@ namespace Servicios
                 string fechaInicio = fecha.ToString("yyyy-MM-dd") + "00:00:00";
                 string fechaFin = fecha.ToString("yyyy-MM-dd") + "23:59:59";
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
-                string cadena = ("SELEC * FROM T_PagosFE where IdEstacionamiento=" + idEstacionamiento + " AND NumeroFactura=" + numeroFactura + " and FechaPago Between '" + fechaInicio + "' AND '" + fechaFin + "'");
+                string cadena = ("SELECT * FROM T_PagosFE where IdEstacionamiento=" + idEstacionamiento + " AND NumeroFactura=" + numeroFactura + " and FechaPago Between '" + fechaInicio + "' AND '" + fechaFin + "'");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
                 SqlDataReader rta = comando.ExecuteReader();
