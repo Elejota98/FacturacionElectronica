@@ -35,6 +35,7 @@
             this.dtmFecha = new System.Windows.Forms.DateTimePicker();
             this.cboEstacionamientos = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkSelect = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.lblRtaFacturas = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.dvgListadoInterfaz = new System.Windows.Forms.DataGridView();
             this.chkSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lbEventos = new System.Windows.Forms.ListBox();
-            this.chkSelect = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgListadoInterfaz)).BeginInit();
@@ -97,7 +97,7 @@
             // 
             // dtmFecha
             // 
-            this.dtmFecha.CustomFormat = "yyyy-dd-MM";
+            this.dtmFecha.CustomFormat = "yyyy-MM-dd";
             this.dtmFecha.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtmFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtmFecha.Location = new System.Drawing.Point(454, 56);
@@ -128,6 +128,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1031, 246);
             this.panel2.TabIndex = 2;
+            // 
+            // chkSelect
+            // 
+            this.chkSelect.AutoSize = true;
+            this.chkSelect.Location = new System.Drawing.Point(80, 12);
+            this.chkSelect.Name = "chkSelect";
+            this.chkSelect.Size = new System.Drawing.Size(110, 17);
+            this.chkSelect.TabIndex = 9;
+            this.chkSelect.Text = "Seleccionar Todo";
+            this.chkSelect.UseVisualStyleBackColor = true;
+            this.chkSelect.CheckedChanged += new System.EventHandler(this.chkSelect_CheckedChanged);
             // 
             // button3
             // 
@@ -198,22 +209,11 @@
             this.lbEventos.Size = new System.Drawing.Size(1204, 212);
             this.lbEventos.TabIndex = 3;
             // 
-            // chkSelect
-            // 
-            this.chkSelect.AutoSize = true;
-            this.chkSelect.Location = new System.Drawing.Point(80, 12);
-            this.chkSelect.Name = "chkSelect";
-            this.chkSelect.Size = new System.Drawing.Size(110, 17);
-            this.chkSelect.TabIndex = 9;
-            this.chkSelect.Text = "Seleccionar Todo";
-            this.chkSelect.UseVisualStyleBackColor = true;
-            this.chkSelect.CheckedChanged += new System.EventHandler(this.chkSelect_CheckedChanged);
-            // 
             // FrmNotaCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1249, 683);
+            this.ClientSize = new System.Drawing.Size(1258, 683);
             this.Controls.Add(this.lbEventos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

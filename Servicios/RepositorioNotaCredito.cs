@@ -293,7 +293,7 @@ namespace Servicios
             {
                 string fechaInicio = fecha.ToString("yyyy-MM-dd") + "00:00:00";
                 string fechaFin = fecha.ToString("yyyy-MM-dd") + "23:59:59";
-                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
                 string cadena = ("SELEC * FROM T_PagosFE where IdEstacionamiento=" + idEstacionamiento + " AND NumeroFactura=" + numeroFactura + " and FechaPago Between '" + fechaInicio + "' AND '" + fechaFin + "'");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
@@ -311,6 +311,32 @@ namespace Servicios
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
 
+        }
+
+        public string AnularFacturaPOS(int idPago)
+        {
+            string rta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
+                string cadena = ("UPDATE T_Pagos SET Anulada=1 Where IdPago=" + idPago + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return rta;
         }
 
 

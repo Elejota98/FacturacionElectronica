@@ -70,3 +70,5 @@ D:\PROYECTOS\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\Factu
 D:\PROYECTOS\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.csproj.CopyComplete
 D:\PROYECTOS\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.exe
 D:\PROYECTOS\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\QRCoder.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.FrmNotaCredito.resources

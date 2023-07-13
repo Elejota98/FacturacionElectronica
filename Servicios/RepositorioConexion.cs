@@ -25,6 +25,11 @@ namespace Servicios
             SqlConnection cadena = new SqlConnection(ConfigurationManager.AppSettings["ConexionNube"]);
             return cadena;
         }
+        public SqlConnection CrearConexionNubeParking()
+        {
+            SqlConnection cadena = new SqlConnection(ConfigurationManager.AppSettings["ConexionNubeParking"]);
+            return cadena;
+        }
 
         public static RepositorioConexion getInstancia()
         {
