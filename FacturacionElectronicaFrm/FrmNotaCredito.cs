@@ -270,6 +270,21 @@ namespace FacturacionElectronicaFrm
 
         }
 
+        private void chkSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            int columnIndex = 0; 
+            int columna2= 1;
 
+            foreach (DataGridViewRow row in dvgListadoInterfaz.Rows)
+            {
+                DataGridViewCheckBoxCell checkBoxCell = row.Cells[columnIndex] as DataGridViewCheckBoxCell;
+
+                if (row.Cells[columna2].Value != null)
+                {
+                    checkBoxCell.Value = true; 
+
+                }
+            }
+        }
     }
 }

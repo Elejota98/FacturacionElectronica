@@ -42,6 +42,7 @@
             this.dvgListadoInterfaz = new System.Windows.Forms.DataGridView();
             this.chkSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lbEventos = new System.Windows.Forms.ListBox();
+            this.chkSelect = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgListadoInterfaz)).BeginInit();
@@ -117,6 +118,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.chkSelect);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.lblRtaFacturas);
@@ -196,6 +198,17 @@
             this.lbEventos.Size = new System.Drawing.Size(1204, 212);
             this.lbEventos.TabIndex = 3;
             // 
+            // chkSelect
+            // 
+            this.chkSelect.AutoSize = true;
+            this.chkSelect.Location = new System.Drawing.Point(80, 12);
+            this.chkSelect.Name = "chkSelect";
+            this.chkSelect.Size = new System.Drawing.Size(110, 17);
+            this.chkSelect.TabIndex = 9;
+            this.chkSelect.Text = "Seleccionar Todo";
+            this.chkSelect.UseVisualStyleBackColor = true;
+            this.chkSelect.CheckedChanged += new System.EventHandler(this.chkSelect_CheckedChanged);
+            // 
             // FrmNotaCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,5 +244,6 @@
         private System.Windows.Forms.ListBox lbEventos;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox chkSelect;
     }
 }
