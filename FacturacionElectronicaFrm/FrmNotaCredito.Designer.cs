@@ -98,7 +98,7 @@
             // 
             // dtmFecha
             // 
-            this.dtmFecha.CustomFormat = "yyyy-dd-MM";
+            this.dtmFecha.CustomFormat = "yyyy-MM-dd";
             this.dtmFecha.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtmFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtmFecha.Location = new System.Drawing.Point(454, 56);
