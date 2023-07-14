@@ -291,9 +291,9 @@ namespace Servicios
             SqlConnection sqlCon = new SqlConnection();
             try
             {
-                string fechaInicio = fecha.ToString("yyyy-MM-dd") + "00:00:00";
-                string fechaFin = fecha.ToString("yyyy-MM-dd") + "23:59:59";
-                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
+                string fechaInicio = fecha.ToString("yyyy-MM-dd") + " 00:00:00";
+                string fechaFin = fecha.ToString("yyyy-MM-dd") + " 23:59:59";
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
                 string cadena = ("SELECT * FROM T_PagosFE where IdEstacionamiento=" + idEstacionamiento + " AND NumeroFactura=" + numeroFactura + " and FechaPago Between '" + fechaInicio + "' AND '" + fechaFin + "'");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
@@ -364,6 +364,12 @@ namespace Servicios
                     string[] nuevaFecha = row[3].ToString().Split('/');
                     DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[2]), Convert.ToInt32(nuevaFecha[1]), Convert.ToInt32(nuevaFecha[0]));
                     MyDouble = MyDate.ToOADate();
+
+                    #region AnulaFacturaPOS
+                    
+
+                    
+                    #endregion
 
                     //VALIDAR SI EXISTE EL REGISTRO
 

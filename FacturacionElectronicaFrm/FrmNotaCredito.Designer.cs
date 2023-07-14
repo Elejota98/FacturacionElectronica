@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNotaCredito));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -132,7 +133,7 @@
             // chkSelect
             // 
             this.chkSelect.AutoSize = true;
-            this.chkSelect.Location = new System.Drawing.Point(80, 12);
+            this.chkSelect.Location = new System.Drawing.Point(49, 15);
             this.chkSelect.Name = "chkSelect";
             this.chkSelect.Size = new System.Drawing.Size(110, 17);
             this.chkSelect.TabIndex = 9;
@@ -213,10 +214,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1258, 683);
+            this.ClientSize = new System.Drawing.Size(1249, 683);
             this.Controls.Add(this.lbEventos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmNotaCredito";
             this.Text = "FrmNotaCredito";
             this.panel1.ResumeLayout(false);
