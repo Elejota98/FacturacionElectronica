@@ -355,17 +355,17 @@ namespace FacturacionElectronicaFrm
 
                         //CAMBIAR FECHA A FORMATO NUMERO
 
-
-                        string fechaStr = pagos.FechaPago.ToString("yyyy-MM-dd");
+                        DateTime fechaHoy= DateTime.Now;
+                        string fechaStr = fechaHoy.ToString("yyyy-MM-dd");
 
 
                         DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
-                        int numeroFecha = (int)(pagos.FechaPago - new DateTime(1899, 12, 30)).TotalDays;
+                        int numeroFecha = (int)(fechaHoy - new DateTime(1899, 12, 30)).TotalDays;
                         string observaciones = "Reemplazo factura POS - " + pagos.NumeroFactura + "";
 
                         textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
-                             $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR)" +
-                             $"VALUES({empresa},'OF01',{cotNum},{numeroFecha},{pagos.NumeroDocumento},1,0,NULL,'{observaciones}',NULL,NULL,0,NULL,NULL,NULL,'{cliente.Vendedor}')";
+                             $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR,COE_FORMA_PAGO)" +
+                             $"VALUES({empresa},'OF01',{cotNum},{numeroFecha},{pagos.NumeroDocumento},1,0,NULL,'{observaciones}',NULL,NULL,0,NULL,NULL,NULL,'{cliente.Vendedor}',1)";
 
                         //M/*ensajeAListBox("Registro Numero " + tablaPagos.Rows.Count + " " + textoPagos + "");*/
 
@@ -643,6 +643,11 @@ namespace FacturacionElectronicaFrm
         {
             timer1.Start();
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            listarCotizaciones();
         }
     }
 

@@ -52,7 +52,7 @@ namespace FacturacionElectronica.Servicios
         {
             using var connection = new SqlConnection(connectionStringNube);
             return await connection.QueryFirstOrDefaultAsync<Facturacion>(@"SELECT IdModulo FROM T_Facturacion
-                                                                            WHERE IdEstacionamiento=@IdEstacionamiento AND Prefijo=@Prefijo", new { prefijo, idEstacionamiento });
+                                                                            WHERE IdEstacionamiento=@IdEstacionamiento AND Prefijo=@Prefijo AND Estado=1", new { prefijo, idEstacionamiento });
         }
         //Listar total por el idModulo 
         public async Task<Pagos> ListarTotal(int numeroFactura, string idModulo, int idEstacionamiento)
