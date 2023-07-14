@@ -119,20 +119,25 @@ namespace FacturacionElectronicaFrm
                                 string rtaPos = string.Empty;
                                 DataTable tablaPagos;
                                 tablaPagos = NotaCreditoController.ListarPagosAnular(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(dtmFecha.Text), Convert.ToInt32(numeroFactura));
-                                foreach (DataRow lstPagos in tablaPagos.Rows)
+
+                                if (tablaPagos.Rows.Count > 0)
                                 {
-                                    int idPago = Convert.ToInt32(lstPagos["IdPago"]);
 
-                                    rtaPos = NotaCreditoController.AnularFacturaPOS(idPago);
-                                    if (rtaPos.Equals("OK"))
+                                    foreach (DataRow lstPagos in tablaPagos.Rows)
                                     {
-                                        MensajeAListBox("Se anuló la factura Pos con Id " + idPago + "");
-                                    }
+                                        int idPago = Convert.ToInt32(lstPagos["IdPago"]);
 
+                                        rtaPos = NotaCreditoController.AnularFacturaPOS(idPago);
+                                        if (rtaPos.Equals("OK"))
+                                        {
+                                            MensajeAListBox("Se anuló la factura Pos con Id " + idPago + "");
+                                        }
+
+                                    }
+                                    #endregion
+                                    MensajeAListBox("Finaliza escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
                                 }
-                                #endregion
-                                MensajeAListBox("Finaliza escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
-                            }
+                                }
                             else
                             {
                                 MensajeAListBox("Falla escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));

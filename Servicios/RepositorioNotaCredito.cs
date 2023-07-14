@@ -291,9 +291,9 @@ namespace Servicios
             SqlConnection sqlCon = new SqlConnection();
             try
             {
-                string fechaInicio = fecha.ToString("yyyy-MM-dd") + "00:00:00";
-                string fechaFin = fecha.ToString("yyyy-MM-dd") + "23:59:59";
-                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
+                string fechaInicio = fecha.ToString("yyyy-MM-dd") + " 00:00:00";
+                string fechaFin = fecha.ToString("yyyy-MM-dd") + " 23:59:59";
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
                 string cadena = ("SELECT * FROM T_PagosFE where IdEstacionamiento=" + idEstacionamiento + " AND NumeroFactura=" + numeroFactura + " and FechaPago Between '" + fechaInicio + "' AND '" + fechaFin + "'");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
