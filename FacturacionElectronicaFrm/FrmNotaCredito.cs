@@ -125,6 +125,10 @@ namespace FacturacionElectronicaFrm
                         }
 
                     }
+                    else
+                    {
+                        MensajeAListBox("El registro con número "+numeroFactura+" ya se encuentra en la  interfaz");
+                    }
 
                 }
             }

@@ -309,6 +309,12 @@ namespace Servicios
                     DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[2]), Convert.ToInt32(nuevaFecha[1]), Convert.ToInt32(nuevaFecha[0]));
                     MyDouble = MyDate.ToOADate();
 
+                    #region AnulaFacturaPOS
+                    
+
+                    
+                    #endregion
+
                     //VALIDAR SI EXISTE EL REGISTRO
 
                     tablaItems = ListarItemsContable();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNotaCredito));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -35,6 +36,7 @@
             this.dtmFecha = new System.Windows.Forms.DateTimePicker();
             this.cboEstacionamientos = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkSelect = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.lblRtaFacturas = new System.Windows.Forms.Label();
@@ -42,7 +44,6 @@
             this.dvgListadoInterfaz = new System.Windows.Forms.DataGridView();
             this.chkSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lbEventos = new System.Windows.Forms.ListBox();
-            this.chkSelect = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgListadoInterfaz)).BeginInit();
@@ -129,6 +130,17 @@
             this.panel2.Size = new System.Drawing.Size(1031, 246);
             this.panel2.TabIndex = 2;
             // 
+            // chkSelect
+            // 
+            this.chkSelect.AutoSize = true;
+            this.chkSelect.Location = new System.Drawing.Point(49, 15);
+            this.chkSelect.Name = "chkSelect";
+            this.chkSelect.Size = new System.Drawing.Size(110, 17);
+            this.chkSelect.TabIndex = 9;
+            this.chkSelect.Text = "Seleccionar Todo";
+            this.chkSelect.UseVisualStyleBackColor = true;
+            this.chkSelect.CheckedChanged += new System.EventHandler(this.chkSelect_CheckedChanged);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(891, 95);
@@ -198,17 +210,6 @@
             this.lbEventos.Size = new System.Drawing.Size(1204, 212);
             this.lbEventos.TabIndex = 3;
             // 
-            // chkSelect
-            // 
-            this.chkSelect.AutoSize = true;
-            this.chkSelect.Location = new System.Drawing.Point(80, 12);
-            this.chkSelect.Name = "chkSelect";
-            this.chkSelect.Size = new System.Drawing.Size(110, 17);
-            this.chkSelect.TabIndex = 9;
-            this.chkSelect.Text = "Seleccionar Todo";
-            this.chkSelect.UseVisualStyleBackColor = true;
-            this.chkSelect.CheckedChanged += new System.EventHandler(this.chkSelect_CheckedChanged);
-            // 
             // FrmNotaCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +218,7 @@
             this.Controls.Add(this.lbEventos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmNotaCredito";
             this.Text = "FrmNotaCredito";
             this.panel1.ResumeLayout(false);
