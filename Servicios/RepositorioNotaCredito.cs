@@ -78,7 +78,7 @@ namespace Servicios
                 DateTime fechaFinal;
                 fechaFinal = Convert.ToDateTime(fechaPago.ToString());
                 fechaPago = fechaFinal.Year +"-"+ fechaFinal.Month +"-"+ fechaFinal.Day;
-                string fechaFormateada = fechaFinal.ToString("yyyy-dd-MM");
+                string fechaFormateada = fechaFinal.ToString("yyyy-MM-dd");
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
                 SqlCommand comando = new SqlCommand("InterfazContableNC", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -165,7 +165,7 @@ namespace Servicios
             {
                 string fechaFormateada = fecha.ToString("yyyy-MM-dd");
                 string[] nuevaFecha = fechaFormateada.ToString().Split('-');
-                DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[0]), Convert.ToInt32(nuevaFecha[2]), Convert.ToInt32(nuevaFecha[1]));
+                DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[0]), Convert.ToInt32(nuevaFecha[1]), Convert.ToInt32(nuevaFecha[2]));
                 double numeroFecha = MyDate.ToOADate();
                 string numeroFechaSinEspacios = numeroFecha.ToString().Trim();
 
@@ -200,7 +200,7 @@ namespace Servicios
         public DataTable GenerarDatosASubir(int idEstacionamiento, DateTime fecha, int numeroFactura)
         {
 
-            string fechaNew = fecha.ToString("yyyy-dd-MM");
+            string fechaNew = fecha.ToString("yyyy-MM-dd");
             DataTable tabla = new DataTable();
             SqlConnection sqlCon = new SqlConnection();
             try
@@ -285,6 +285,61 @@ namespace Servicios
 
         //}
 
+        public DataTable ListarPagosParaAnular(int idEstacionamiento, DateTime fecha, int numeroFactura)
+        {
+            DataTable tabla= new DataTable();
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                string fechaInicio = fecha.ToString("yyyy-MM-dd") + "00:00:00";
+                string fechaFin = fecha.ToString("yyyy-MM-dd") + "23:59:59";
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
+                string cadena = ("SELECT * FROM T_PagosFE where IdEstacionamiento=" + idEstacionamiento + " AND NumeroFactura=" + numeroFactura + " and FechaPago Between '" + fechaInicio + "' AND '" + fechaFin + "'");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+            }
+            catch (Exception ex )
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+
+        }
+
+        public string AnularFacturaPOS(int idPago)
+        {
+            string rta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
+                string cadena = ("UPDATE T_Pagos SET Anulada=1 Where IdPago=" + idPago + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return rta;
+        }
+
+
 
         public bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento, string numeroFactura)
         {
@@ -301,7 +356,8 @@ namespace Servicios
 
             FbConnection fbCon = new FbConnection();
             try
-            {
+            {               
+
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
                 foreach (DataRow row in datos.Rows)
                 {
@@ -376,6 +432,7 @@ namespace Servicios
                     comando.ExecuteNonQuery();
                     fbCon.Close();
                     GenerarArchivoPlano(SQLCommandText);
+                    ok = true;
                 }
                 string SQLCommandText2 = "INSERT into DOCCONTABLE Values (" + idc_empresa + ",'"
                                                                             + documentoempresa
@@ -388,12 +445,14 @@ namespace Servicios
                 fbCon.Open();
                 comando2.ExecuteNonQuery();
                 fbCon.Close();
-
+                GenerarArchivoPlano(SQLCommandText2);
+                    ok = true;
             }
             catch (Exception ex)
             {
 
                 throw ex;
+                ok=false;
             }
             finally
             {

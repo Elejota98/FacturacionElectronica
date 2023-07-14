@@ -115,6 +115,22 @@ namespace FacturacionElectronicaFrm
 
                             if (NotaCreditoController.InsertarItemsContable(tablaDatos, consecutivo, Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura))
                             {
+                                #region AnularFactura
+                                string rtaPos = string.Empty;
+                                DataTable tablaPagos;
+                                tablaPagos = NotaCreditoController.ListarPagosAnular(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(dtmFecha.Text), Convert.ToInt32(numeroFactura));
+                                foreach (DataRow lstPagos in tablaPagos.Rows)
+                                {
+                                    int idPago = Convert.ToInt32(lstPagos["IdPago"]);
+
+                                    rtaPos = NotaCreditoController.AnularFacturaPOS(idPago);
+                                    if (rtaPos.Equals("OK"))
+                                    {
+                                        MensajeAListBox("Se anuló la factura Pos con Id " + idPago + "");
+                                    }
+
+                                }
+                                #endregion
                                 MensajeAListBox("Finaliza escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
                             }
                             else

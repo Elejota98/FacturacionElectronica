@@ -75,5 +75,19 @@ namespace Controlador
             return ok;
 
         }
+
+        public static DataTable ListarPagosAnular(int idEstacionamiento, DateTime fecha, int numeroFactura)
+        {
+            RepositorioNotaCredito Datos = new RepositorioNotaCredito();
+            return Datos.ListarPagosParaAnular(idEstacionamiento,fecha,numeroFactura);
+        }
+        public static string AnularFacturaPOS(int idPago)
+        {
+            RepositorioNotaCredito Datos = new RepositorioNotaCredito();
+            return Datos.AnularFacturaPOS(idPago);
+        }
+
+
+
     }
 }
