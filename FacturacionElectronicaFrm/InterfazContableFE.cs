@@ -477,6 +477,7 @@ namespace FacturacionElectronicaFrm
                            $"'{cliente.Telefono}', '{cliente.Email}', '{ciudad}', {cliente.Vendedor}, NULL,NULL)";
 
                         MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
+
                         #region Old
                         // INSERTAR A LA BD INTERFAZ
                         //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
