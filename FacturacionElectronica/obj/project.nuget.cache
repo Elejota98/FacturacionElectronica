@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FkTO4PHoknFmg4GcvIhUPCGu+EKS4UoRoxHKodXVYgH+YUUfQ1Kheb0DqjATUGmcl4ZKDObMWhBkXNZgdGa9UA==",
+  "dgSpecHash": "Vj1JO8u81ay3WulLafr9w564g9P6B8IjjMQJaengINS7YSqeU23uyvrk9vW8Ia6FdHEGLK1yEnVCfGtEjjY9xg==",
   "success": true,
-  "projectFilePath": "D:\\PROYECTOS\\LJ\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
+  "projectFilePath": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrador\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Administrador\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

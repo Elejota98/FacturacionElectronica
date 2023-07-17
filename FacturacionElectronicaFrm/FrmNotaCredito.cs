@@ -240,7 +240,7 @@ namespace FacturacionElectronicaFrm
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("DELETE FROM DOCCONTABLE");
+                string cadena = ("DELETE FROM ITEMSDOCCONTABLE");
                 FbCommand comando = new FbCommand(cadena,fbCon);
                 fbCon.Open();
                 comando.ExecuteNonQuery();
