@@ -154,3 +154,9 @@ C:\Users\Administrador\Documents\FacturacionElectronica\FacturacionElectronica\o
 C:\Users\Administrador\Documents\FacturacionElectronica\FacturacionElectronica\obj\Debug\net6.0\FacturacionElectronica.pdb
 C:\Users\Administrador\Documents\FacturacionElectronica\FacturacionElectronica\obj\Debug\net6.0\FacturacionElectronica.genruntimeconfig.cache
 C:\Users\Administrador\Documents\FacturacionElectronica\FacturacionElectronica\obj\Debug\net6.0\ref\FacturacionElectronica.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\SendGrid.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\StarkbankEcdsa.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\MailKit.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\bin\Debug\net6.0\BouncyCastle.Crypto.dll

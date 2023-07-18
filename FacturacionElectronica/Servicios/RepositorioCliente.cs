@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using FacturacionElectronica.Models;
+using MimeKit.Cryptography;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 
@@ -9,6 +10,7 @@ namespace FacturacionElectronica.Servicios
     {
         Task ActualizarEstado();
         Task Crear(Cliente cliente);
+        Task CrearSolicitudCliente(SolicitudClientesViewModel clientes);
         Task<bool> Existe(string identificacion);
         Task<IEnumerable<Ciudades>> ListarCiudadesPorDepartamento(int id);
         Task<Ciudades> ListarCiudadesPorId(int IdCiudad);
@@ -97,5 +99,24 @@ namespace FacturacionElectronica.Servicios
             return existe == 1;
 
         }
+
+
+        #region ClientesNuevos
+        public async Task CrearSolicitudCliente(SolicitudClientesViewModel clientes)
+        {
+            using var connection = new SqlConnection(connectionString);
+            var id = await connection.QueryFirstOrDefaultAsync<int>(@"InsertarSolicitudClientes", new
+            {
+                documento = clientes.Documento,
+                nombre = clientes.Nombre,
+                correo = clientes.Correo,
+                rut = clientes.Rut
+            }, commandType: System.Data.CommandType.StoredProcedure);
+
+            clientes.Documento = id;
+
+        }
+
+        #endregion
     }
 }

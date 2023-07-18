@@ -1,0 +1,31 @@
+﻿@model SolicitudClientesViewModel
+@{
+    ViewData["Title "] = "Cliente Nuevo";
+}
+<div asp-validation-summary="ModelOnly"></div>
+<form asp-action="Crear" enctype="multipart/form-data" class="Form">
+    <div class="mb-3">
+        <label for="Documento" class="form-label">Identificación</label>
+        <input type="text" id="Documento" asp-for="Documento" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Documento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input type="text" id="Nombre" asp-for="Nombre" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Correo" class="form-label"></label>
+        <input type="text" id="Correo" asp-for="Correo" autocomplete="off" class="form-control" />
+        <span asp-validation-for="Correo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Seleccione la imagen de la factura</label>
+        <input class="form-control" type="file" id="formFile" name="Rut" asp-for="Rut">
+    </div>
+
+    <button type="submit" class="btn btn-success">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+

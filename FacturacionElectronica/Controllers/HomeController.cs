@@ -37,5 +37,10 @@ namespace FacturacionElectronica.Controllers
         {
             return View();
         }
+        public IActionResult YaExisteFactura()
+        {
+            return View();
+        }
+        
     }
 }

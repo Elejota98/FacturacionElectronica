@@ -9,6 +9,7 @@ namespace FacturacionElectronica.Servicios
         Task ActualizarEstadoPago();
         Task<bool> Existe(string identificacion);
         Task<bool> ExisteFactura(int idEstacionamiento, string idModulo, DateTime fechaPago, int numeroFactura);
+        Task<bool> ExisteFacturaElectronica(int idEstacionamiento, string prefijo, DateTime fechaPago, int numeroFactura);
         Task Insertar(PagosCreacionViewModel pagosCreacionViewModel);
         Task InsertarPagosFE(PagosNube pagosNube);
         Task<IEnumerable<Estacionamientos>> ListarEstacionamientos();
@@ -96,6 +97,19 @@ namespace FacturacionElectronica.Servicios
             var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Pagos
                                                                             WHERE IdEstacionamiento=@IdEstacionamiento and IdModulo=@IdModulo and NumeroFactura=@NumeroFactura and FechaPago  Between @FechaInicio and @FechaFin",
                                                                             new {idEstacionamiento,idModulo,numeroFactura,FechaInicio,FechaFin});
+            return existe == 1;
+        }
+
+        public async Task<bool> ExisteFacturaElectronica(int idEstacionamiento, string prefijo, DateTime fechaPago, int numeroFactura)
+        {
+            string FechaInicio = fechaPago.ToString("yyyy-MM-dd") + " 00:00:00";
+            string FechaFin = fechaPago.ToString("yyyy-MM-dd") + " 23:59:59";
+
+
+            using var connection = new SqlConnection(connectionString);
+            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Pagos
+                                                                            WHERE IdEstacionamiento=@IdEstacionamiento and Prefijo=@Prefijo and NumeroFactura=@NumeroFactura and FechaPago  Between @FechaInicio and @FechaFin",
+                                                                            new { idEstacionamiento, prefijo, numeroFactura, FechaInicio, FechaFin });
             return existe == 1;
         }
 
