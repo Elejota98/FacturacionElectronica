@@ -12,6 +12,7 @@ namespace FacturacionElectronica.Servicios
         Task Crear(Cliente cliente);
         Task CrearSolicitudCliente(SolicitudClientesViewModel clientes);
         Task<bool> Existe(string identificacion);
+        Task<IEnumerable<ActividadEconomica>> ListarActividadEconomica();
         Task<IEnumerable<Ciudades>> ListarCiudadesPorDepartamento(int id);
         Task<Ciudades> ListarCiudadesPorId(int IdCiudad);
         Task<IEnumerable<Departamentos>> ListarDepartamentos();
@@ -65,6 +66,14 @@ namespace FacturacionElectronica.Servicios
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryAsync<Departamentos>(@"Select Id, Nombre FROM T_Departamento");
+        }
+
+        //Listar ActividadEconomica 
+
+        public async Task<IEnumerable<ActividadEconomica>> ListarActividadEconomica()
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QueryAsync<ActividadEconomica>(@"Select Codigo,Descripcion from t_actividadEconomica");
         }
 
         //Listar ciudades por departamentos

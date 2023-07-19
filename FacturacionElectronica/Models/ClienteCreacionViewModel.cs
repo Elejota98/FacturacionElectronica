@@ -6,5 +6,6 @@ namespace FacturacionElectronica.Models
     {
         public IEnumerable<SelectListItem> Departamentos { get; set; }
         public IEnumerable<SelectListItem> Ciudades { get; set; }
+        public IEnumerable<SelectListItem> ActividadesEconomicas { get; set; }
     }
 }

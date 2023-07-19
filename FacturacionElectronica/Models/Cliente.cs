@@ -38,6 +38,10 @@ namespace FacturacionElectronica.Models
         [Display(Name = "Ciudad")]
         public int IdCiudad { get; set; }
         public string Ciudad { get; set; }
+        public int ActividadEconomica { get; set; }
+        public string ResponsabilidadFiscal { get; set; }
+        public string Regimen { get; set; }
+        public byte[] Rut { get; set; }
         public int Vendedor { get; set; }
         public int CupoCredito { get; set; }
         public DateTime Fecha { get; set; }

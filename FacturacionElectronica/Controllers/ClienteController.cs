@@ -27,7 +27,7 @@ namespace FacturacionElectronica.Controllers
         {
             var modelo = new  ClienteCreacionViewModel();
              modelo.Departamentos = await ListarDepartamentos();
-                      
+            modelo.ActividadesEconomicas = await ListarActividadEconomica();      
             return View(modelo);
         }
 
@@ -39,6 +39,14 @@ namespace FacturacionElectronica.Controllers
             var estacionamientoPorDefecto = new SelectListItem("Departamento...", "0", true);
             resultado.Insert(0, estacionamientoPorDefecto);
             return resultado;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> ListarActividadEconomica()
+        {
+            var actividades = await repositorioCliente.ListarActividadEconomica();
+            var rta = actividades.Select(x => new SelectListItem(x.Descripcion, x.Codigo.ToString())).ToList();
+            var actividadesDefault = new SelectListItem("Actividades...", "0", true);
+            return rta;
         }
 
        [HttpPost]

@@ -80,6 +80,26 @@ Clientes nuevos
         <input type="text" id="Email" asp-for="Email" autocomplete="off" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
+        <div class="mb-3">
+        <label asp-for="ActividadEconomica" class="form-label"></label>
+        <select asp-for="ActividadEconomica" asp-items="Model.ActividadesEconomicas" class="form-select"></select>
+            <span asp-validation-for="ActividadEconomica" class="text-danger"></span>
+    </div>
+
+        <select class="form-select" aria-label="Default select example" name="Regimen">
+            <option selected name="Regimen">Seleccione...</option>
+            <option value="RS" id="RS">Régimen simplificado - RS</option>
+            <option value="GC" id="GC">Gran contribuyente - GC</option>
+            <option value="RC" id="RC">Régimen común - RC</option>
+        </select>
+        <select class="form-select" aria-label="Default select example" name="ResponsabilidadFiscal">
+            <option selected name="ResponsabilidadFiscal">Seleccione...</option>
+            <option value="Gran contribuyente" id="Gran contribuyente">Gran contribuyente</option>
+            <option value="No responsable" id="No responsable">No responsable</option>
+            <option value="Autorretenedor<" id="Autorretenedor<">Autorretenedor</option>
+            <option value="Agente de retencion IVA" id="Agente de retencion IVA">Agente de retencion IVA</option>
+            <option value="Régimen simple de tributación" id="Régimen simple de tributación">Régimen simple de tributación</option>
+        </select>
 
     <button type="submit" class="btn btn-success">Guardar</button>
     <a class="btn btn-secondary" asp-action="Index" asp-controller="Pagos">Cancelar</a>
