@@ -44,21 +44,30 @@ namespace FacturacionElectronica.Controllers
         public async Task<IEnumerable<SelectListItem>> ListarActividadEconomica()
         {
             var actividades = await repositorioCliente.ListarActividadEconomica();
-            var rta = actividades.Select(x => new SelectListItem(x.Descripcion, x.Codigo.ToString())).ToList();
+            var rta = actividades.Select(x => new SelectListItem($"{x.Codigo} - {x.Descripcion}", x.Codigo.ToString())).ToList();
             var actividadesDefault = new SelectListItem("Actividades...", "0", true);
+            rta.Insert(0, actividadesDefault); 
             return rta;
         }
 
-       [HttpPost]
+        [HttpPost]
 
-        public async Task<IActionResult> Crear(ClienteCreacionViewModel cliente)
+        public async Task<IActionResult> Crear(ClienteCreacionViewModel cliente, IFormFile Rut)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("NoEncontrado", "Home");
             }
+            if (Rut != null && Rut.Length > 0)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    Rut.CopyTo(stream);
+                    cliente.Rut = stream.ToArray();
+                }
+            }
 
-            if(cliente.IdCiudad ==0 )
+            if (cliente.IdCiudad ==0 )
             {
                 ModelState.AddModelError(nameof(cliente.IdCiudad), $"Por favor seleccione una ciudad.");
                 return View(cliente);

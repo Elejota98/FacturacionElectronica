@@ -448,6 +448,83 @@ namespace Servicios
         }
 
 
+        public DataTable ListarClientesNuevos()
+        {
+            DataTable tabla = new DataTable();
+            SqlConnection sqlcon = new SqlConnection();
+            try
+            {
+                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT TOP(1) * FROM T_CLIENTES WHERE ESTADO=0");
+                SqlCommand comando = new SqlCommand(cadena, sqlcon);
+                sqlcon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
+        }
+        public DataTable ListarClientesNuevosPorDoc(int identificacion)
+        {
+            DataTable tabla = new DataTable();
+            SqlConnection sqlcon = new SqlConnection();
+            try
+            {
+                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT TOP(1) * FROM T_CLIENTES WHERE ESTADO=0 AND Identificacion= "+identificacion+"");
+                SqlCommand comando = new SqlCommand(cadena, sqlcon);
+                sqlcon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
+        }
+
+        public string ActualizaEstadoCliente(int identificacion)
+        {
+            string rta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("UPDATE T_CLIENTES SET ESTADO=1 WHERE Identificacion=" + identificacion + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+            return rta;
+        }
+
 
 
     }

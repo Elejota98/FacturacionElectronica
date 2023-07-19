@@ -11,7 +11,7 @@ namespace FacturacionElectronica.Servicios
         Task ActualizarEstado();
         Task Crear(Cliente cliente);
         Task CrearSolicitudCliente(SolicitudClientesViewModel clientes);
-        Task<bool> Existe(string identificacion);
+        Task<bool> Existe(int identificacion);
         Task<IEnumerable<ActividadEconomica>> ListarActividadEconomica();
         Task<IEnumerable<Ciudades>> ListarCiudadesPorDepartamento(int id);
         Task<Ciudades> ListarCiudadesPorId(int IdCiudad);
@@ -49,6 +49,10 @@ namespace FacturacionElectronica.Servicios
                 telefono = cliente.Telefono,
                 email = cliente.Email,
                 ciudad = cliente.IdCiudad,
+                actividadEconomica = cliente.ActividadEconomica,
+                responsabilidadFiscal = cliente.ResponsabilidadFiscal,
+                regimen = cliente.Regimen,
+                rut=cliente.Rut
             }, commandType: System.Data.CommandType.StoredProcedure);
 
         }
@@ -100,7 +104,7 @@ namespace FacturacionElectronica.Servicios
              await connection.ExecuteAsync(@"UPDATE T_Clientes SET Estado=1 WHERE Estado=0");
         }
 
-        public async Task<bool> Existe(string identificacion)
+        public async Task<bool> Existe(int identificacion)
         {
             using var connection = new SqlConnection(connectionString);
             var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes

@@ -38,7 +38,8 @@
             this.minimizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblTexto = new System.Windows.Forms.Label();
+            this.btnDescargarDoc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,9 +57,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(33, 254);
+            this.dataGridView1.Location = new System.Drawing.Point(28, 337);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1047, 288);
+            this.dataGridView1.Size = new System.Drawing.Size(1047, 105);
             this.dataGridView1.TabIndex = 5;
             // 
             // notifyIcon1
@@ -101,22 +102,35 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button1
+            // lblTexto
             // 
-            this.button1.Location = new System.Drawing.Point(999, 96);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.lblTexto.AutoSize = true;
+            this.lblTexto.Font = new System.Drawing.Font("Arial Rounded MT Bold", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTexto.ForeColor = System.Drawing.Color.Red;
+            this.lblTexto.Location = new System.Drawing.Point(186, 265);
+            this.lblTexto.Name = "lblTexto";
+            this.lblTexto.Size = new System.Drawing.Size(662, 40);
+            this.lblTexto.TabIndex = 6;
+            this.lblTexto.Text = "¡Un Nuevo Cliente Solicita Registrase!";
+            // 
+            // btnDescargarDoc
+            // 
+            this.btnDescargarDoc.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescargarDoc.Location = new System.Drawing.Point(453, 465);
+            this.btnDescargarDoc.Name = "btnDescargarDoc";
+            this.btnDescargarDoc.Size = new System.Drawing.Size(136, 60);
+            this.btnDescargarDoc.TabIndex = 7;
+            this.btnDescargarDoc.Text = "Descargar Documento";
+            this.btnDescargarDoc.UseVisualStyleBackColor = true;
+            this.btnDescargarDoc.Click += new System.EventHandler(this.btnDescargarDoc_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 600);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDescargarDoc);
+            this.Controls.Add(this.lblTexto);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lbEventos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -127,6 +141,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -140,7 +155,8 @@
         private System.Windows.Forms.ToolStripMenuItem minimizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblTexto;
+        private System.Windows.Forms.Button btnDescargarDoc;
     }
 }
 

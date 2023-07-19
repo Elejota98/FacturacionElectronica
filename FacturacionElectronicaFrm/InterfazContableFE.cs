@@ -1,6 +1,7 @@
 ﻿using Controlador;
 using FirebirdSql.Data.FirebirdClient;
 using Modelo;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,7 @@ namespace FacturacionElectronicaFrm
         public int cotNum = 1;
         public int numeroFacturaAnterior = 1;
         public string centroCosto = string.Empty;
+        public string sRutaCarpeta = ConfigurationManager.AppSettings["RutaArchvoClientes"];
 
 
         #endregion
@@ -433,7 +435,22 @@ namespace FacturacionElectronicaFrm
 
                     }
 
-                }            
+                }
+                else
+                {
+                    if (ListarClientesNuevos())
+                    {
+                        notifyIcon1.Icon = SystemIcons.Application;
+                        notifyIcon1.BalloonTipText = "Una nuevo cliente solicita registrarse";
+                        notifyIcon1.ShowBalloonTip(1000);
+                    }
+                    else
+                    {
+                        this.WindowState = FormWindowState.Minimized;
+                        this.Hide();
+
+                    }
+                }
             }
             catch (Exception ex )
             {
@@ -442,102 +459,118 @@ namespace FacturacionElectronicaFrm
             }
 
         }
+
+        public void GuardarRegistrosEnExcel(string rutaArchivo, DataTable tabla)
+        {
+            using (StreamWriter writer = new StreamWriter(rutaArchivo))
+            {
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    foreach (DataColumn columna in tabla.Columns)
+                    {
+                        writer.WriteLine(columna.ColumnName + ": " + fila[columna]);
+                    }
+
+                    writer.WriteLine(); // Agregar una línea en blanco entre cada fila
+                }
+            }
+        }
         public void RegistrarClientes()
         {
             try
             {
-                //Cliente cliente = new Cliente();
-                bool ok = false;
-                string textCliente = string.Empty;
+                ////Cliente cliente = new Cliente();
+                //bool ok = false;
+                //string textCliente = string.Empty;
 
-                tabla = FacturacionElectronicaController.ListarClientes();
-                if (tabla.Rows.Count > 0)
-                {
-                    foreach (DataRow registrosClientes in tabla.Rows)
-                    {
-                        cliente.Identificacion = (registrosClientes["Identificacion"].ToString());
-                        cliente.RazonSocial = registrosClientes["RazonSocial"].ToString();
-                        cliente.Direccion = registrosClientes["Direccion"].ToString();
-                        cliente.Telefono = registrosClientes["Telefono"].ToString();
-                        cliente.Email = registrosClientes["Email"].ToString();
-                        string ciudad = registrosClientes["Nombre"].ToString();
-                        string fechaSeparada = cliente.Fecha.ToString("dd.MM.yyyy HH.mm");
-                        cliente.Estado = Convert.ToBoolean(registrosClientes["Estado"]);
+                //tabla = FacturacionElectronicaController.ListarClientes();
+                //if (tabla.Rows.Count > 0)
+                //{
+                //    foreach (DataRow registrosClientes in tabla.Rows)
+                //    {
+                //        cliente.Identificacion = (registrosClientes["Identificacion"].ToString());
+                //        cliente.RazonSocial = registrosClientes["RazonSocial"].ToString();
+                //        cliente.Direccion = registrosClientes["Direccion"].ToString();
+                //        cliente.Telefono = registrosClientes["Telefono"].ToString();
+                //        cliente.Email = registrosClientes["Email"].ToString();
+                //        string ciudad = registrosClientes["Nombre"].ToString();
+                //        string fechaSeparada = cliente.Fecha.ToString("dd.MM.yyyy HH.mm");
+                //        cliente.Estado = Convert.ToBoolean(registrosClientes["Estado"]);
 
-                        tabla = FacturacionElectronicaController.ListarDocumentoVendedor();
-                        foreach (DataRow rtaTabla in tabla.Rows)
-                        {
-                            cliente.Vendedor = Convert.ToInt32(rtaTabla["VEN_IDENTIFICACION"]);
+                //        tabla = FacturacionElectronicaController.ListarDocumentoVendedor();
+                //        foreach (DataRow rtaTabla in tabla.Rows)
+                //        {
+                //            cliente.Vendedor = Convert.ToInt32(rtaTabla["VEN_IDENTIFICACION"]);
 
-                        }
-                        // Generar el texto del cliente
-                        textoCliente = $"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
-                           $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
-                           $"VALUES ('1', '{cliente.Identificacion}', 1, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
-                           $"'{cliente.Telefono}', '{cliente.Email}', '{ciudad}', {cliente.Vendedor}, NULL,NULL)";
+                //        }
+                //        // Generar el texto del cliente
+                //        textoCliente = $"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
+                //           $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
+                //           $"VALUES ('1', '{cliente.Identificacion}', 1, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
+                //           $"'{cliente.Telefono}', '{cliente.Email}', '{ciudad}', {cliente.Vendedor}, NULL,NULL)";
 
-                        MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
+                //        MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
 
-                        #region Old
-                        // INSERTAR A LA BD INTERFAZ
-                        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                        //string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
-                        //fbCon.Open();
-                        //FbCommand comando = new FbCommand(eliminar, fbCon);
-                        //comando.ExecuteNonQuery();
-                        //MensajeAListBox("Se guardó un cliente OK");
-                        //fbCon.Close();
-                        #endregion
+                //        #region Old
+                //        // INSERTAR A LA BD INTERFAZ
+                //        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                //        //string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
+                //        //fbCon.Open();
+                //        //FbCommand comando = new FbCommand(eliminar, fbCon);
+                //        //comando.ExecuteNonQuery();
+                //        //MensajeAListBox("Se guardó un cliente OK");
+                //        //fbCon.Close();
+                //        #endregion
 
-                        if (VerificarClienteExiste(cliente.Identificacion.ToString()))
-                        {
-                            string rtaCliente = "";
-                            rtaCliente = FacturacionElectronicaController.ActualizarEstadoCliente();
-                            if (rtaCliente.Equals("OK"))
-                            {
-                                MensajeAListBox("Se actualizó estado cliente OK");
-                                RegistrarPagos();
-                            }
-                            else
-                            {
-                                MensajeAListBox("Error " + "No se actualizó el cliente");
-                            }
+                //        if (VerificarClienteExiste(cliente.Identificacion.ToString()))
+                //        {
+                //            string rtaCliente = "";
+                //            rtaCliente = FacturacionElectronicaController.ActualizarEstadoCliente();
+                //            if (rtaCliente.Equals("OK"))
+                //            {
+                //                MensajeAListBox("Se actualizó estado cliente OK");
+                //                RegistrarPagos();
+                //            }
+                //            else
+                //            {
+                //                MensajeAListBox("Error " + "No se actualizó el cliente");
+                //            }
                            
-                        }
-                        else
-                        {
-                            MensajeAListBox("Cliente no existe en la base de datos");
+                //        }
+                //        else
+                //        {
+                //            MensajeAListBox("Cliente no existe en la base de datos");
 
-                            if (InsertarClienteInterfaz(textoCliente))
-                            {
-                                MensajeAListBox("Cliente guardado en la base de datos OK");
-                                string rtaCliente = "";
-                                rtaCliente = FacturacionElectronicaController.ActualizarEstadoCliente();
-                                if (rtaCliente.Equals("OK"))
-                                {
-                                    MensajeAListBox("Se actualizó estado cliente OK");
-                                    GenerarArchivoPlano(textoCliente);
-                                    MensajeAListBox("Se generó el documento .txt OK");
-                                    RegistrarPagos();
-                                }
-                                else
-                                {
-                                    MensajeAListBox("Error " + "No se actualizó el cliente");
-                                }
+                //            if (InsertarClienteInterfaz(textoCliente))
+                //            {
+                //                MensajeAListBox("Cliente guardado en la base de datos OK");
+                //                string rtaCliente = "";
+                //                rtaCliente = FacturacionElectronicaController.ActualizarEstadoCliente();
+                //                if (rtaCliente.Equals("OK"))
+                //                {
+                //                    MensajeAListBox("Se actualizó estado cliente OK");
+                //                    GenerarArchivoPlano(textoCliente);
+                //                    MensajeAListBox("Se generó el documento .txt OK");
+                //                    RegistrarPagos();
+                //                }
+                //                else
+                //                {
+                //                    MensajeAListBox("Error " + "No se actualizó el cliente");
+                //                }
 
                                
 
-                            }
-                        }
+                //            }
+                //        }
 
 
-                    }
-                }
-                else
-                {
+                //    }
+                //}
+                //else
+                //{
                     RegistrarPagos();
 
-                }
+                //}
             }
             catch (Exception ex )
             {
@@ -562,6 +595,126 @@ namespace FacturacionElectronicaFrm
         public void ListarClientesInterfaz()
         {
             dataGridView1.DataSource = FacturacionElectronicaController.ListarClientesInterfaz();
+        }
+
+        public bool ListarClientesNuevos()
+        {
+            //DataTable tabla;
+            //bool ok= false; 
+            //tabla = FacturacionElectronicaController.ListarClientesNuevos();
+            //if (tabla.Rows.Count > 0)
+            //{
+            //    dataGridView1.DataSource = FacturacionElectronicaController.ListarClientesNuevos();
+            //    ok=true;
+            //}
+            //else
+            //{
+            //    ok=false;
+            //}
+            //return ok;
+            DataTable tabla;
+            bool ok = false;
+            tabla = FacturacionElectronicaController.ListarClientesNuevos();
+            if (tabla.Rows.Count > 0)
+            {
+                string valor = Convert.ToString(tabla.Rows[0]["Identificacion"].ToString());
+                dataGridView1.DataSource = tabla;
+                ok = true;
+
+                // Obtener la fecha actual
+                DateTime fechaActual = DateTime.Now;
+
+                // Crear la ruta de la carpeta
+                string carpetaFecha = fechaActual.ToString("yyyy-MM-dd");
+                 sRutaCarpeta = Path.Combine("C:\\Users\\Administrador\\Desktop", carpetaFecha, valor);
+                Directory.CreateDirectory(sRutaCarpeta);
+
+                string correo = Convert.ToString(dataGridView1.CurrentRow.Cells["Email"].Value);
+                string rut = Convert.ToString(dataGridView1.CurrentRow.Cells["rut"].Value);
+
+                tabla = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
+
+                if (tabla.Rows.Count > 0)
+                {
+                    if (rut != string.Empty)
+                    {
+                        byte[] pdfData = (byte[])tabla.Rows[0]["Rut"];
+                        if (pdfData != null && pdfData.Length > 0)
+                        {
+                            string nombreArchivoPDF = valor + "-" + correo + ".pdf";
+                            string rutaArchivoPDF = Path.Combine(sRutaCarpeta, nombreArchivoPDF);
+                            File.WriteAllBytes(rutaArchivoPDF, pdfData);
+                            ActualizaEstadoCliente(Convert.ToInt32(valor));
+                        }
+                    }
+                    else
+                    {
+                        ActualizaEstadoCliente(Convert.ToInt32(valor));
+
+                    }
+                }
+
+                // Guardar los datos en un archivo de texto vertical
+                string nombreArchivoTexto = valor + ".txt";
+                string rutaArchivoTexto = Path.Combine(sRutaCarpeta, nombreArchivoTexto);
+                GuardarRegistrosEnExcel(rutaArchivoTexto, tabla);
+            }
+            else
+            {
+                ok = false;
+            }
+            return ok;
+        }
+
+        public bool ActualizaEstadoCliente(int identificacion)
+        {
+            string rta = "";
+            bool ok = false;
+            rta = FacturacionElectronicaController.ActualizaEstadoCliente(identificacion);
+            if (rta.Equals("OK"))
+            {
+                ok = true;
+            }
+            else
+            {
+                ok = false;
+            }
+            return ok;
+        }
+
+        public void DescargarDocumento()
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                string valor = Convert.ToString(dataGridView1.CurrentRow.Cells["Identificacion"].Value);
+                string correo = Convert.ToString(dataGridView1.CurrentRow.Cells["Email"].Value);
+                string rut = Convert.ToString(dataGridView1.CurrentRow.Cells["rut"].Value);
+
+                tabla = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
+
+                if (tabla.Rows.Count > 0)
+                {
+                    if (rut!=string.Empty) { 
+                    
+                    byte[] pdfData = (byte[])tabla.Rows[0]["Rut"];
+                        if (pdfData != null && pdfData.Length > 0)
+                        {
+                            SaveFileDialog saveFileDialog = new SaveFileDialog();
+                            saveFileDialog.FileName = "" + valor + "-" + correo + ".pdf";
+                            saveFileDialog.DefaultExt = ".pdf";
+                            saveFileDialog.Filter = "Archivos PDF (*.pdf)|*.pdf";
+                            saveFileDialog.Title = "Guardar archivo PDF";
+
+                            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                string rutaArchivo = saveFileDialog.FileName;
+                                File.WriteAllBytes(rutaArchivo, pdfData);
+                                ActualizaEstadoCliente(Convert.ToInt32(valor));
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         #endregion
@@ -649,6 +802,11 @@ namespace FacturacionElectronicaFrm
         private void button1_Click_1(object sender, EventArgs e)
         {
             //listarCotizaciones();
+        }
+
+        private void btnDescargarDoc_Click(object sender, EventArgs e)
+        {
+            DescargarDocumento();
         }
     }
 

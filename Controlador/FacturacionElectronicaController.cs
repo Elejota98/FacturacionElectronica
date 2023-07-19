@@ -35,8 +35,22 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ActualizaEstadoPagos(id);
         }
+        public static DataTable ListarClientesNuevos()
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarClientesNuevos();
+        }
+        public static DataTable ListarClientesNuevosPorDoc(int identificacion)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarClientesNuevosPorDoc(identificacion);
+        }
+        public static string ActualizaEstadoCliente(int identificacion)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ActualizaEstadoCliente(identificacion);
 
-        
+        }
 
         //INTERFAZ
 

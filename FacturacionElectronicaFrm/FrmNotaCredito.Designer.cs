@@ -37,8 +37,6 @@
             this.cboEstacionamientos = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkSelect = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.lblRtaFacturas = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dvgListadoInterfaz = new System.Windows.Forms.DataGridView();
@@ -120,8 +118,6 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.chkSelect);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.lblRtaFacturas);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.dvgListadoInterfaz);
@@ -141,26 +137,6 @@
             this.chkSelect.UseVisualStyleBackColor = true;
             this.chkSelect.CheckedChanged += new System.EventHandler(this.chkSelect_CheckedChanged);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(891, 95);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(104, 41);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Listar DocContable";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(891, 35);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 41);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Listar ItemsContable";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // lblRtaFacturas
             // 
             this.lblRtaFacturas.AutoSize = true;
@@ -176,7 +152,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(891, 174);
+            this.button1.Location = new System.Drawing.Point(885, 102);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 42);
             this.button1.TabIndex = 5;
@@ -244,8 +220,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkSeleccionar;
         private System.Windows.Forms.Label lblRtaFacturas;
         private System.Windows.Forms.ListBox lbEventos;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.CheckBox chkSelect;
     }
 }
