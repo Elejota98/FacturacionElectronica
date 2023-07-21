@@ -51,7 +51,11 @@ C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronic
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\FacturacionElectronicaFrm.exe
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\FacturacionElectronicaFrm.pdb
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Controlador.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.System.Drawing.dll
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Modelo.dll
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\QRCoder.dll
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Servicios.dll
@@ -60,6 +64,8 @@ C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronic
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Controlador.pdb
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Modelo.pdb
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Servicios.pdb
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.xml
+C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.csproj.AssemblyReference.cache
@@ -72,9 +78,3 @@ C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronic
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.csproj.CopyComplete
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.exe
 C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\obj\Debug\FacturacionElectronicaFrm.pdb
-C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.dll
-C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.Interfaces.dll
-C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.System.Drawing.dll
-C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
-C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\EPPlus.xml
-C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronicaFrm\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml

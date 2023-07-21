@@ -48,7 +48,7 @@
             // 
             this.lbEventos.FormattingEnabled = true;
             this.lbEventos.HorizontalScrollbar = true;
-            this.lbEventos.Location = new System.Drawing.Point(115, 27);
+            this.lbEventos.Location = new System.Drawing.Point(125, 164);
             this.lbEventos.Name = "lbEventos";
             this.lbEventos.ScrollAlwaysVisible = true;
             this.lbEventos.Size = new System.Drawing.Size(797, 212);
@@ -61,6 +61,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1047, 105);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.Visible = false;
             // 
             // notifyIcon1
             // 
@@ -112,6 +113,7 @@
             this.lblTexto.Size = new System.Drawing.Size(662, 40);
             this.lblTexto.TabIndex = 6;
             this.lblTexto.Text = "¡Un Nuevo Cliente Solicita Registrase!";
+            this.lblTexto.Visible = false;
             // 
             // btnDescargarDoc
             // 
@@ -122,6 +124,7 @@
             this.btnDescargarDoc.TabIndex = 7;
             this.btnDescargarDoc.Text = "Descargar Documento";
             this.btnDescargarDoc.UseVisualStyleBackColor = true;
+            this.btnDescargarDoc.Visible = false;
             this.btnDescargarDoc.Click += new System.EventHandler(this.btnDescargarDoc_Click);
             // 
             // Form1

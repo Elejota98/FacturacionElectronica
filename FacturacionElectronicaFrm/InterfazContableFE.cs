@@ -76,6 +76,7 @@ namespace FacturacionElectronicaFrm
         #region Funciones
         public void IniciarProceso()
         {
+          
             try
             {
                 RegistrarClientes();
@@ -446,8 +447,8 @@ namespace FacturacionElectronicaFrm
                     }
                     else
                     {
-                        this.WindowState = FormWindowState.Minimized;
-                        this.Hide();
+                        //this.WindowState = FormWindowState.Minimized;
+                        ////this.Hide();
 
                     }
                 }
@@ -795,6 +796,7 @@ namespace FacturacionElectronicaFrm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MensajeAListBox("Inicia el proceso a la espera de información a sincronizar");
             timer1.Start();
             this.WindowState = FormWindowState.Minimized;
         }
