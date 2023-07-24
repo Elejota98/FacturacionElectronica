@@ -397,7 +397,7 @@ namespace Servicios
                     numero = Convert.ToString(consecutivoNumero);
 
                     string SQLCommandText = "INSERT into ITEMSDOCCONTABLE Values ("
-                                + row[0]+ ",'"+row[1]+"',"+ consecutivoNumero+ ",'"+ MyDouble+ "',"+ itemConsecutivo+ ",'"+ row[5]+ "',"+ row[6]+ ","+ row[7]+ ","+ row[8]+ ","+ "NULL"+ ",'"+ row[10]+ "',"+ "NULL"+ ","+ "NULL"+ ",'"+ row[13]+ "',"+ row[14]+ ","+"NULL,"+"NULL,"+"NULL"+");";
+                                + row[0]+ ",'"+row[1]+"',"+ consecutivoNumero+ ",'"+ MyDouble+ "',"+ itemConsecutivo+ ",'"+ row[5]+ "',"+ row[6]+ ","+ row[7]+ ","+ row[8]+ ","+ "NULL"+ ",'"+ row[10]+ "',"+ "NULL"+ ","+ "NULL"+ ",'"+ row[13]+ "',"+ row[14]+ ");";
 
                     itemConsecutivo++;
                     fbCon.Open();

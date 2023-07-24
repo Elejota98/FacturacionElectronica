@@ -627,11 +627,11 @@ namespace FacturacionElectronicaFrm
 
                 // Crear la ruta de la carpeta
                 string carpetaFecha = fechaActual.ToString("yyyy-MM-dd");
-                 sRutaCarpeta = Path.Combine("C:\\Users\\Administrador\\Desktop", carpetaFecha, valor);
+                 sRutaCarpeta = Path.Combine(sRutaCarpeta, carpetaFecha, valor);
                 Directory.CreateDirectory(sRutaCarpeta);
 
-                string correo = Convert.ToString(dataGridView1.CurrentRow.Cells["Email"].Value);
-                string rut = Convert.ToString(dataGridView1.CurrentRow.Cells["rut"].Value);
+                string correo = Convert.ToString(tabla.Rows[0]["Email"].ToString());
+                string rut = Convert.ToString(tabla.Rows[0]["Rut"].ToString());
 
                 tabla = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
 
