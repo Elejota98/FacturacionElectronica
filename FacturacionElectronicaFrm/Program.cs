@@ -16,7 +16,7 @@ namespace FacturacionElectronicaFrm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmNotaCredito());
+            Application.Run(new Form1());
         }
     }
 }

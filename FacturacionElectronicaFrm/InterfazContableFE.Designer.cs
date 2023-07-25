@@ -40,6 +40,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblTexto = new System.Windows.Forms.Label();
             this.btnDescargarDoc = new System.Windows.Forms.Button();
+            this.btnEncabezado = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +50,7 @@
             // 
             this.lbEventos.FormattingEnabled = true;
             this.lbEventos.HorizontalScrollbar = true;
-            this.lbEventos.Location = new System.Drawing.Point(125, 164);
+            this.lbEventos.Location = new System.Drawing.Point(133, 24);
             this.lbEventos.Name = "lbEventos";
             this.lbEventos.ScrollAlwaysVisible = true;
             this.lbEventos.Size = new System.Drawing.Size(797, 212);
@@ -57,11 +59,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 337);
+            this.dataGridView1.Location = new System.Drawing.Point(28, 282);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1047, 105);
+            this.dataGridView1.Size = new System.Drawing.Size(1153, 209);
             this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.Visible = false;
             // 
             // notifyIcon1
             // 
@@ -108,7 +109,7 @@
             this.lblTexto.AutoSize = true;
             this.lblTexto.Font = new System.Drawing.Font("Arial Rounded MT Bold", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTexto.ForeColor = System.Drawing.Color.Red;
-            this.lblTexto.Location = new System.Drawing.Point(186, 265);
+            this.lblTexto.Location = new System.Drawing.Point(192, 239);
             this.lblTexto.Name = "lblTexto";
             this.lblTexto.Size = new System.Drawing.Size(662, 40);
             this.lblTexto.TabIndex = 6;
@@ -118,7 +119,7 @@
             // btnDescargarDoc
             // 
             this.btnDescargarDoc.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescargarDoc.Location = new System.Drawing.Point(453, 465);
+            this.btnDescargarDoc.Location = new System.Drawing.Point(507, 515);
             this.btnDescargarDoc.Name = "btnDescargarDoc";
             this.btnDescargarDoc.Size = new System.Drawing.Size(136, 60);
             this.btnDescargarDoc.TabIndex = 7;
@@ -127,11 +128,33 @@
             this.btnDescargarDoc.Visible = false;
             this.btnDescargarDoc.Click += new System.EventHandler(this.btnDescargarDoc_Click);
             // 
+            // btnEncabezado
+            // 
+            this.btnEncabezado.Location = new System.Drawing.Point(1009, 163);
+            this.btnEncabezado.Name = "btnEncabezado";
+            this.btnEncabezado.Size = new System.Drawing.Size(102, 73);
+            this.btnEncabezado.TabIndex = 8;
+            this.btnEncabezado.Text = "Cotizaciones Encabezado";
+            this.btnEncabezado.UseVisualStyleBackColor = true;
+            this.btnEncabezado.Click += new System.EventHandler(this.btnEncabezado_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1117, 163);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 73);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Cotizaciones";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1128, 600);
+            this.ClientSize = new System.Drawing.Size(1246, 600);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnEncabezado);
             this.Controls.Add(this.btnDescargarDoc);
             this.Controls.Add(this.lblTexto);
             this.Controls.Add(this.dataGridView1);
@@ -160,6 +183,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblTexto;
         private System.Windows.Forms.Button btnDescargarDoc;
+        private System.Windows.Forms.Button btnEncabezado;
+        private System.Windows.Forms.Button button1;
     }
 }
 

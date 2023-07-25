@@ -191,7 +191,7 @@ namespace FacturacionElectronica.Controllers
 
                                 if (diasDiferencia > 3)
                                 {
-                                    return RedirectToAction("NoEncontrado", "Home");
+                                    return RedirectToAction("FechaNoValida", "Home");
                                 }
                             }
                         }
@@ -201,6 +201,7 @@ namespace FacturacionElectronica.Controllers
                     {
                         return RedirectToAction("NoEncontrado", "Home");
                     }
+                    #region Old
 
                     var listadoPagos = await repositorioPagos.ListarTotalesSeparados(pagos.NumeroFactura, idModulo.IdModulo, pagos.IdEstacionamiento);
                     foreach (var pagoslist in listadoPagos)
@@ -249,14 +250,21 @@ namespace FacturacionElectronica.Controllers
                             pagosNubeList.IdTipoPago = pagos.IdTipoPago;
 
                             await repositorioPagos.InsertarPagosFE(pagosNubeList);
+
                         }
 
-                        if (pagos.IdPago < 0)
-                        {
-                            RedirectToAction("NoEncontrado", "Home");
-                        }
 
                     }
+
+                    if (pagos.IdPago < 0)
+                    {
+                        RedirectToAction("NoEncontrado", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Enviada", "Home");
+                    }
+                    #endregion
                 }
                 return RedirectToAction("YaExisteFactura", "Home");
             }
@@ -264,7 +272,7 @@ namespace FacturacionElectronica.Controllers
             {
                 return RedirectToAction("NoExiste", "Home");
             }
-            return RedirectToAction("Index", "Pagos");
+           
         }
 
     }

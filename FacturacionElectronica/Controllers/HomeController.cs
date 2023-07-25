@@ -41,6 +41,14 @@ namespace FacturacionElectronica.Controllers
         {
             return View();
         }
+        public IActionResult Enviada()
+        {
+            return View();
+        }
+        public IActionResult FechaNoValida()
+        {
+            return View();
+        }
         
     }
 }

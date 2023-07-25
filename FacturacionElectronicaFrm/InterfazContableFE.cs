@@ -396,10 +396,7 @@ namespace FacturacionElectronicaFrm
                         {
                             itemCounter++;
                         }
-                        if (InsertarCotizacionesEncabezado(textoPagos))
-                        {
 
-                        }
                         else
                         {
                             MensajeAListBox("Cotizaciones encabezazdo ya está registrado para este pago");
@@ -433,6 +430,10 @@ namespace FacturacionElectronicaFrm
                         //    MensajeAListBox("Se actualizó el pago id = " + pagos.Id);
                         //}
 
+
+                    }
+                    if (InsertarCotizacionesEncabezado(textoPagos))
+                    {
 
                     }
 
@@ -513,14 +514,14 @@ namespace FacturacionElectronicaFrm
                 //        MensajeAListBox("Registro Numero " + tabla.Rows.Count + " " + textoCliente + "");
 
                 //        #region Old
-                //        // INSERTAR A LA BD INTERFAZ
-                //        //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-                //        //string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
-                //        //fbCon.Open();
-                //        //FbCommand comando = new FbCommand(eliminar, fbCon);
-                //        //comando.ExecuteNonQuery();
-                //        //MensajeAListBox("Se guardó un cliente OK");
-                //        //fbCon.Close();
+                //INSERTAR A LA BD INTERFAZ
+               //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+               // string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
+               // fbCon.Open();
+               // FbCommand comando = new FbCommand(eliminar, fbCon);
+               // comando.ExecuteNonQuery();
+               // MensajeAListBox("Se guardó un cliente OK");
+               // fbCon.Close();
                 //        #endregion
 
                 //        if (VerificarClienteExiste(cliente.Identificacion.ToString()))
@@ -536,7 +537,7 @@ namespace FacturacionElectronicaFrm
                 //            {
                 //                MensajeAListBox("Error " + "No se actualizó el cliente");
                 //            }
-                           
+
                 //        }
                 //        else
                 //        {
@@ -559,7 +560,7 @@ namespace FacturacionElectronicaFrm
                 //                    MensajeAListBox("Error " + "No se actualizó el cliente");
                 //                }
 
-                               
+
 
                 //            }
                 //        }
@@ -569,7 +570,7 @@ namespace FacturacionElectronicaFrm
                 //}
                 //else
                 //{
-                    RegistrarPagos();
+                RegistrarPagos();
 
                 //}
             }
@@ -809,6 +810,16 @@ namespace FacturacionElectronicaFrm
         private void btnDescargarDoc_Click(object sender, EventArgs e)
         {
             DescargarDocumento();
+        }
+
+        private void btnEncabezado_Click(object sender, EventArgs e)
+        {
+            listarCotizacionesEncabezado();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            listarCotizaciones();
         }
     }
 
