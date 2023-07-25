@@ -313,14 +313,14 @@ namespace Servicios
 
         }
 
-        public string AnularFacturaPOS(int idPago)
+        public string AnularFacturaPOS(int numeroFactura)
         {
             string rta = "";
             SqlConnection sqlCon = new SqlConnection();
             try
             {
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
-                string cadena = ("UPDATE T_Pagos SET Anulada=1 Where IdPago=" + idPago + "");
+                string cadena = ("UPDATE T_PagosFE SET Anulada=1 Where NumeroFactura=" + numeroFactura + "");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
@@ -338,8 +338,6 @@ namespace Servicios
             }
             return rta;
         }
-
-
 
         public bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento, string numeroFactura)
         {

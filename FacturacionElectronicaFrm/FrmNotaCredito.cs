@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -25,6 +26,21 @@ namespace FacturacionElectronicaFrm
         {
             InitializeComponent();
             ListarEstacionamientos();
+        }
+        private string _ConnectionStringFirebird
+        {
+            get
+            {
+                string sSerial = ConfigurationManager.AppSettings["ConexionLocal"];
+                if (string.IsNullOrEmpty(sSerial))
+                {
+                    return "User ID=SYSDBA;Password=masterkey;Database=C://magister/datos/magisterz.mgt;DataSource=localhost;Charset=NONE;";
+                }
+                else
+                {
+                    return sSerial;
+                }
+            }
         }
 
 
@@ -316,6 +332,55 @@ namespace FacturacionElectronicaFrm
         private void button2_Click_1(object sender, EventArgs e)
         {
             ListarItemsContable();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+            //string eliminar = "DELETE FROM ITEMSDOCCONTABLE";
+            //fbCon.Open();
+            //FbCommand comando = new FbCommand(eliminar, fbCon);
+            //comando.ExecuteNonQuery();
+            //MensajeAListBox("Se guardó un cliente OK");
+            //fbCon.Close();
+
+
+            //try
+            //{
+            //    using (FbConnection fbCon = new FbConnection(_ConnectionStringFirebird))
+            //    {
+            //        fbCon.Open();
+
+            //        DataTable schemaTable = fbCon.GetSchema("Columns", new string[] { null, null, "DOCCONTABLE" });
+
+            //        if (schemaTable.Rows.Count > 0)
+            //        {
+            //            foreach (DataRow row in schemaTable.Rows)
+            //            {
+            //                string columnName = row["COLUMN_NAME"].ToString();
+            //                // Aquí puedes hacer lo que necesites con el nombre de la columna.
+            //                Console.WriteLine("Columna: " + columnName);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("La tabla no existe o no tiene columnas.");
+            //        }
+
+            //        fbCon.Close();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Manejo de excepciones en caso de error
+            //    Console.WriteLine("Error al consultar la base de datos: " + ex.Message);
+            //}
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+       
         }
     }
 }
