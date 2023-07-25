@@ -36,13 +36,13 @@
             this.dtmFecha = new System.Windows.Forms.DateTimePicker();
             this.cboEstacionamientos = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.chkSelect = new System.Windows.Forms.CheckBox();
             this.lblRtaFacturas = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dvgListadoInterfaz = new System.Windows.Forms.DataGridView();
             this.chkSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lbEventos = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -132,16 +132,6 @@
             this.panel2.Size = new System.Drawing.Size(1031, 246);
             this.panel2.TabIndex = 2;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(909, 65);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // chkSelect
             // 
             this.chkSelect.AutoSize = true;
@@ -202,6 +192,17 @@
             this.lbEventos.Size = new System.Drawing.Size(1204, 212);
             this.lbEventos.TabIndex = 3;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(909, 65);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(909, 113);
@@ -220,6 +221,7 @@
             this.button4.TabIndex = 12;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // FrmNotaCredito
@@ -257,8 +259,8 @@
         private System.Windows.Forms.Label lblRtaFacturas;
         private System.Windows.Forms.ListBox lbEventos;
         private System.Windows.Forms.CheckBox chkSelect;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
     }
 }

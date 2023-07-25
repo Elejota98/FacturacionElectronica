@@ -359,14 +359,18 @@ namespace Servicios
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
                 foreach (DataRow row in datos.Rows)
                 {
-                    string[] nuevaFecha = row[3].ToString().Split('/');
-                    DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[2]), Convert.ToInt32(nuevaFecha[1]), Convert.ToInt32(nuevaFecha[0]));
-                    MyDouble = MyDate.ToOADate();
+                    //string[] nuevaFecha = row[3].ToString().Split('/');
+                    //DateTime MyDate = new DateTime(Convert.ToInt32(nuevaFecha[2]), Convert.ToInt32(nuevaFecha[1]), Convert.ToInt32(nuevaFecha[0]));
+                    //MyDouble = MyDate.ToOADate();
+
+                    DateTime fechaActual = DateTime.Now;
+                    DateTime fechaSoloFecha = fechaActual.Date;
+                    MyDouble = fechaSoloFecha.ToOADate();
 
                     #region AnulaFacturaPOS
-                    
 
-                    
+
+
                     #endregion
 
                     //VALIDAR SI EXISTE EL REGISTRO
@@ -395,7 +399,7 @@ namespace Servicios
                     numero = Convert.ToString(consecutivoNumero);
 
                     string SQLCommandText = "INSERT into ITEMSDOCCONTABLE Values ("
-                                + row[0]+ ",'"+row[1]+"',"+ consecutivoNumero+ ",'"+ MyDouble+ "',"+ itemConsecutivo+ ",'"+ row[5]+ "',"+ row[6]+ ","+ row[7]+ ","+ row[8]+ ","+ "NULL"+ ",'"+ row[10]+ "',"+ "NULL"+ ","+ "NULL"+ ",'"+ row[13]+ "',"+ row[14]+ ");";
+                                + row[0]+ ",'"+row[1]+"',"+ consecutivoNumero+ ",'"+ MyDouble + "',"+ itemConsecutivo+ ",'"+ row[5]+ "',"+ row[6]+ ","+ row[7]+ ","+ row[8]+ ","+ "NULL"+ ",'"+ row[10]+ "',"+ "NULL"+ ","+ "NULL"+ ",'"+ row[13]+ "',"+ row[14]+ ");";
 
                     itemConsecutivo++;
                     fbCon.Open();

@@ -357,6 +357,14 @@ namespace FacturacionElectronicaFrm
             //comando.ExecuteNonQuery();
             //MensajeAListBox("Se guardó un cliente OK");
             //fbCon.Close();
+            double MyDouble = 0;
+            DateTime fechaActual = DateTime.Now;
+
+            // Crear un nuevo objeto DateTime solo con la fecha (sin hora) de la fecha actual
+            DateTime fechaSoloFecha = fechaActual.Date;
+
+            // Convertir la fecha solo con la fecha a formato OADate
+             MyDouble = fechaSoloFecha.ToOADate();
 
 
             //try
