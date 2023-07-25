@@ -27,6 +27,7 @@ namespace FacturacionElectronicaFrm
             InitializeComponent();
             ListarEstacionamientos();
         }
+        #region Definiciones
         private string _ConnectionStringFirebird
         {
             get
@@ -42,6 +43,8 @@ namespace FacturacionElectronicaFrm
                 }
             }
         }
+        public string idModulo = string.Empty;
+        #endregion
 
 
         #region Funciones 
@@ -55,17 +58,24 @@ namespace FacturacionElectronicaFrm
 
         public void ListarPagosInterfaz()
         {
-
-            dvgListadoInterfaz.DataSource = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text);
-            if (dvgListadoInterfaz.Rows.Count > 0)
+            DataTable tablaDatosInterfaz;
+            tablaDatosInterfaz = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text);
+            if (tablaDatosInterfaz.Rows.Count > 0)
             {
                 dvgListadoInterfaz.DataSource = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text);
 
                 dvgListadoInterfaz.Columns[0].Visible = true;
                 lblRtaFacturas.Visible = true;
                 lblRtaFacturas.Text = "Resultados facturas electrónicas de " + cboEstacionamientos.Text + " de la fecha " + dtmFecha.Text + "";
+                MensajeAListBox("Se encontraron, " + tablaDatosInterfaz.Rows.Count + " Registros");
                
 
+            }
+            else
+            {
+                MensajeAListBox("Sin datos para la interfaz, en caso de algún error comunicarse con Tecnología");
+
+                MessageBox.Show("No existe información o la factura de la fecha seleccionada ya se le hizo nota crédito", "Parquearse Tecnología");
             }
         }
 
@@ -89,6 +99,7 @@ namespace FacturacionElectronicaFrm
                     {
                         string numeroFactura = fila.Cells[5].Value.ToString();
                         numerosFacturaSeleccionados.Add(numeroFactura);
+                         idModulo = fila.Cells[6].Value.ToString();
                     }
                 }
                 foreach (string numeroFactura in numerosFacturaSeleccionados)
@@ -129,7 +140,7 @@ namespace FacturacionElectronicaFrm
                             //INSERTTAR INFORMACION EN LA INTERFAZ
                             int consecutivo = 1;
 
-                            if (NotaCreditoController.InsertarItemsContable(tablaDatos, consecutivo, Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura))
+                            if (NotaCreditoController.InsertarItemsContable(tablaDatos, consecutivo, Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura, idModulo))
                             {
                                 #region AnularFactura
                                 //string rtaPos = string.Empty;
@@ -154,6 +165,9 @@ namespace FacturacionElectronicaFrm
                                 //    MensajeAListBox("Finaliza escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
                                 //}
                                 #endregion
+
+                MensajeAListBox("Se generó la nota de credito de manera correcta");
+
                             }
                             else
                             {

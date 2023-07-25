@@ -48,9 +48,9 @@ namespace Servicios
                 string fechaConsultaInicio = fechaPago + " 00:00:00";
                 string fechaConsultaFin = fechaPago + " 23:59:59";
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT cl.Identificacion, e.Nombre, SUM(Total) AS Total, FechaPago,  NumeroFactura " +
+                string cadena = ("SELECT cl.Identificacion, e.Nombre, SUM(Total) AS Total, FechaPago,   NumeroFactura, IdModulo " +
                     "FROM T_PagosFE INNER JOIN T_Clientes cl on T_PagosFE.Identificacion = cl.Identificacion INNER JOIN T_Estacionamientos e on T_PagosFE.IdEstacionamiento = e.IdEstacionamiento" +
-                    " WHERE T_PagosFE.IdEstacionamiento=" + idEstacionamiento+" and FechaPago BETWEEN '"+fechaConsultaInicio+"' and '"+fechaConsultaFin+"' GROUP BY NumeroFactura, FechaPago, cl.Identificacion, e.Nombre");
+                    " WHERE T_PagosFE.IdEstacionamiento=" + idEstacionamiento+" and FechaPago BETWEEN '"+fechaConsultaInicio+"' and '"+fechaConsultaFin+ "' AND T_PagosFE.Anulada=0 GROUP BY NumeroFactura, FechaPago, cl.Identificacion, T_PagosFE.IdModulo, e.Nombre");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
                 SqlDataReader rta = comando.ExecuteReader();
@@ -313,14 +313,14 @@ namespace Servicios
 
         }
 
-        public string AnularFacturaPOS(int numeroFactura)
+        public string AnularFacturaPOS(int numeroFactura, int idEstacionamiento, string idModulo)
         {
             string rta = "";
             SqlConnection sqlCon = new SqlConnection();
             try
             {
-                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
-                string cadena = ("UPDATE T_PagosFE SET Anulada=1 Where NumeroFactura=" + numeroFactura + "");
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("UPDATE T_PagosFE SET Anulada=1 Where NumeroFactura=" + numeroFactura + " AND IdEstacionamiento="+idEstacionamiento+" AND IdModulo='"+idModulo+"'");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
@@ -339,7 +339,7 @@ namespace Servicios
             return rta;
         }
 
-        public bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento, string numeroFactura)
+        public bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento, string numeroFactura, string idModulo)
         {
             int consecutivoNumero = 1;
             string rta = "";
@@ -418,6 +418,7 @@ namespace Servicios
                 comando2.ExecuteNonQuery();
                 fbCon.Close();
                 GenerarArchivoPlano(SQLCommandText2);
+                AnularFacturaPOS(Convert.ToInt32(numeroFactura), idEstacionamiento, idModulo);
                     ok = true;
             }
             catch (Exception ex)

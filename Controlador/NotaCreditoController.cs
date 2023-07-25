@@ -60,11 +60,11 @@ namespace Controlador
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();
             return Datos.GenerarDatosASubir(idEstacionamiento, fecha, numeroFactura);
         }
-        public static bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento,  string numeroFactura)
+        public static bool InsertarItemsContable(DataTable datos, int itemConsecutivo, int idEstacionamiento,  string numeroFactura, string idModulo)
         {
             bool ok = false;
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();
-            if (Datos.InsertarItemsContable(datos, itemConsecutivo, idEstacionamiento,numeroFactura))
+            if (Datos.InsertarItemsContable(datos, itemConsecutivo, idEstacionamiento,numeroFactura,idModulo))
             {
                 ok = true;
             }
@@ -81,11 +81,11 @@ namespace Controlador
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();
             return Datos.ListarPagosParaAnular(idEstacionamiento,fecha,numeroFactura);
         }
-        public static string AnularFacturaPOS(int idPago)
-        {
-            RepositorioNotaCredito Datos = new RepositorioNotaCredito();
-            return Datos.AnularFacturaPOS(idPago);
-        }
+        //public static string AnularFacturaPOS(int idPago)
+        //{
+        //    RepositorioNotaCredito Datos = new RepositorioNotaCredito();
+        //    return Datos.AnularFacturaPOS(idPago, );
+        //}
 
 
 
