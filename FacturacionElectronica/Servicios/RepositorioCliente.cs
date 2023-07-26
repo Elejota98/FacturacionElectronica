@@ -17,6 +17,7 @@ namespace FacturacionElectronica.Servicios
         Task<Ciudades> ListarCiudadesPorId(int IdCiudad);
         Task<IEnumerable<Departamentos>> ListarDepartamentos();
         Task<IEnumerable<Cliente>> ObtenerClientes();
+
     }
 
     public class RepositorioCliente : IRepositorioCliente
@@ -113,13 +114,7 @@ namespace FacturacionElectronica.Servicios
 
         }
 
-        public async Task<bool> VerificarClienteExiste(int identificacion)
-        {
-            using var connection = new SqlConnection(connectionString);
-            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE Identificacionl=@Identificacion AND Estado=1", new { identificacion });
-            return existe == 1;
 
-        }
 
 
         #region ClientesNuevos

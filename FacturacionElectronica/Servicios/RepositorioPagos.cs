@@ -22,6 +22,7 @@ namespace FacturacionElectronica.Servicios
         Task<Pagos> ListarTotal(int numeroFactura, string idModulo, int idEstacionamiento);
         Task<List<Pagos>> ListarTotalesSeparados(int numeroFactura, string idModulo, int idEstacionamiento);
         Task<IEnumerable<Facturacion>> ObtenerPrefijoPorIdEstacionamiento(long idEstacionamiento);
+        Task<bool> VerificarClienteExiste(int identificacion);
     }
     public class RepositorioPagos : IRepositorioPagos
     {
@@ -81,6 +82,14 @@ namespace FacturacionElectronica.Servicios
             using var connection = new SqlConnection(connectionString);
             var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE Identificacion=@Identificacion", new { identificacion }); //El primer registro o un valor por defecto si no existe
            
+            return existe == 1;
+
+        }
+
+        public async Task<bool> VerificarClienteExiste(int identificacion)
+        {
+            using var connection = new SqlConnection(connectionString);
+            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE Identificacion=@Identificacion AND Estado=0", new { identificacion });
             return existe == 1;
 
         }

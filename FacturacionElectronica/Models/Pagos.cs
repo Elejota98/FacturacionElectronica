@@ -9,8 +9,7 @@ namespace FacturacionElectronica.Models
         public int IdPago { get; set; }
         [Required(ErrorMessage ="El número de documento es obligatorio")]
         [Display(Name ="Identificación")]
-        //[Required(ErrorMessage ="El campo es requerido")]
-        public string Identificacion { get; set; }
+       public string Identificacion { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [Display(Name = "Número de factura")]
         public int NumeroFactura { get; set; }
@@ -28,6 +27,7 @@ namespace FacturacionElectronica.Models
         public bool Estado = false;
         [Required(ErrorMessage = "Este campo es requerido")]
         [Display(Name = "Fecha de la factura")]
+        [Remote(action: "ValidarDiasFechaFactura", controller:"Pagos")]
         public DateTime FechaPago { get; set; }
     }
 }

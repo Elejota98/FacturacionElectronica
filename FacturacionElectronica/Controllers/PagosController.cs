@@ -90,18 +90,83 @@ namespace FacturacionElectronica.Controllers
             return Ok(prefijos);
         }
 
+        //Verificar si el cliente esta activo 
+        //public async Task<IActionResult> VerificarClienteActivo(int identificacion)
+        //{
+        //    var yaExisteCliente = await repositorioPagos.VerificarClienteExiste(identificacion);
+        //    if (yaExisteCliente)
+        //    {
+        //        return RedirectToAction("ClienteProceso", "Haome");
+        //    }
+        //    return Json(identificacion);
+        //}
+
         //Validar si el cliente existe en la base de datos
         [HttpPost]
         public async Task<IActionResult> VerificarExisteCliente([FromQuery] string identificacion)
         {
-            var yaExisteCliente = await repositorioPagos.Existe(identificacion);
-            if (!yaExisteCliente)
+            if (identificacion != string.Empty)
             {
-                //return Json($"El documento {pagos.NumeroDocumento}, no se encuentra registrado, por favor registrelo en el botón registar cliente");
-                return RedirectToAction("Crear", "Cliente");
+                var yaExisteCliente = await repositorioPagos.Existe(identificacion);
+                if (!yaExisteCliente)
+                {
+                    //return Json($"El documento {pagos.NumeroDocumento}, no se encuentra registrado, por favor registrelo en el botón registar cliente");
+                    return RedirectToAction("Crear", "Cliente");
+                }
             }
-            return Json(identificacion);
+            else
+            {
+                return View();
+            }
+            return Json(true);
+
         }
+
+        //VALIDAR VIGENCIA DE DÍAS SEGUN LA FECHA 
+        [HttpGet]
+        public async Task<IActionResult> ValidarDiasFechaFactura(Pagos pagos)
+        {
+            //var idModulo = await repositorioPagos.ListarIdModuloPorPrefijo(pagos.Prefijo, pagos.IdEstacionamiento);
+            //if (idModulo is null)
+            //{
+            //    return RedirectToAction("NoEncontrado", "Home");
+            //}
+            //var datosFactura = await repositorioPagos.ListarPagosNube(pagos.NumeroFactura, pagos.IdEstacionamiento, idModulo.IdModulo);
+
+            //if (datosFactura is null)
+            //{
+            //    return RedirectToAction("NoEncontrado", "Home");
+            //}
+
+            //bool facturaEncontrada = false;
+            //foreach (var factura in datosFactura)
+            //{
+            //    if (factura.NumeroFactura == pagos.NumeroFactura)
+            //    {
+                    //facturaEncontrada = true;
+                    DateTime fechaPagosNube = DateTime.Now;
+
+                    if (pagos.FechaPago.Day != fechaPagosNube.Day)
+                    {
+                        DateTime fechaActual = DateTime.Now;
+                        TimeSpan diferencia = fechaActual.Date - pagos.FechaPago.Date;
+                        int diasDiferencia = diferencia.Days;
+
+                        if (diasDiferencia > 3)
+                        {
+                            return Json($"La fecha {pagos.FechaPago} de solicitud de la factura supera el día máximo para solicitar la factura electrónica");
+                        }
+                    //}
+                }
+            
+
+            //if (!facturaEncontrada)
+            //{
+            //    return RedirectToAction("NoEncontrado", "Home");
+            //}
+            return Json(pagos.FechaPago);
+        }
+
 
         //Crear el registro pagos 
         [HttpPost]
@@ -144,22 +209,6 @@ namespace FacturacionElectronica.Controllers
             {
                 return RedirectToAction("NoEncontrado", "Home");
             }
-            //var datosFactura = await repositorioPagos.ListarPagosNube(pagos.NumeroFactura, pagos.IdEstacionamiento,  idModulo.IdModulo);
-            //if (datosFactura is null)
-            //{
-            //    return RedirectToAction("NoEncontrado", "Home");
-            //}
-            //else if (datosFactura != null)
-            //{
-            //    DateTime fechaPagosNube;
-            //    fechaPagosNube = datosFactura.FechaPago;
-            //    if (pagos.FechaPago.Day != fechaPagosNube.Day)
-            //    {
-            //        return RedirectToAction("NoEncontrado", "Home");
-            //    }
-
-            //}
-
             //VALIDAR SI EXISTE LA FACTURA
 
             var existeFactura = await repositorioPagos.ExisteFactura(pagos.IdEstacionamiento, idModulo.IdModulo, pagos.FechaPago, pagos.NumeroFactura);
@@ -168,40 +217,8 @@ namespace FacturacionElectronica.Controllers
                 var existeFacturaElectronica = await repositorioPagos.ExisteFacturaElectronica(pagos.IdEstacionamiento, pagos.Prefijo, pagos.FechaPago, pagos.NumeroFactura);
                 if (!existeFacturaElectronica)
                 {
-                    var datosFactura = await repositorioPagos.ListarPagosNube(pagos.NumeroFactura, pagos.IdEstacionamiento, idModulo.IdModulo);
+                    //Se quita el codigo 
 
-                    if (datosFactura is null)
-                    {
-                        return RedirectToAction("NoEncontrado", "Home");
-                    }
-
-                    bool facturaEncontrada = false;
-                    foreach (var factura in datosFactura)
-                    {
-                        if (factura.NumeroFactura == pagos.NumeroFactura)
-                        {
-                            facturaEncontrada = true;
-                            DateTime fechaPagosNube = DateTime.Now;
-
-                            if (pagos.FechaPago.Day != fechaPagosNube.Day)
-                            {
-                                DateTime fechaActual = DateTime.Now;
-                                TimeSpan diferencia = fechaActual.Date - pagos.FechaPago.Date;
-                                int diasDiferencia = diferencia.Days;
-
-                                if (diasDiferencia > 3)
-                                {
-                                    return RedirectToAction("FechaNoValida", "Home");
-                                }
-                            }
-                        }
-                    }
-
-                    if (!facturaEncontrada)
-                    {
-                        return RedirectToAction("NoEncontrado", "Home");
-                    }
-                    #region Old
 
                     var listadoPagos = await repositorioPagos.ListarTotalesSeparados(pagos.NumeroFactura, idModulo.IdModulo, pagos.IdEstacionamiento);
                     foreach (var pagoslist in listadoPagos)
@@ -264,7 +281,7 @@ namespace FacturacionElectronica.Controllers
                     {
                         return RedirectToAction("Enviada", "Home");
                     }
-                    #endregion
+
                 }
                 return RedirectToAction("YaExisteFactura", "Home");
             }
