@@ -113,6 +113,14 @@ namespace FacturacionElectronica.Servicios
 
         }
 
+        public async Task<bool> VerificarClienteExiste(int identificacion)
+        {
+            using var connection = new SqlConnection(connectionString);
+            var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM T_Clientes WHERE Identificacionl=@Identificacion AND Estado=1", new { identificacion });
+            return existe == 1;
+
+        }
+
 
         #region ClientesNuevos
         public async Task CrearSolicitudCliente(SolicitudClientesViewModel clientes)
