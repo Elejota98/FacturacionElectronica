@@ -49,6 +49,10 @@ namespace FacturacionElectronica.Controllers
         {
             return View();
         }
+        public IActionResult ClienteCreado()
+        {
+            return View();
+        }
         
     }
 }
