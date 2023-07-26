@@ -397,7 +397,8 @@ namespace Servicios
                     idc_empresa = Convert.ToInt32(row[0]);
                     documentoempresa = row[1].ToString();
                     numero = Convert.ToString(consecutivoNumero);
-
+                    //Consecutivo
+                    itemConsecutivo = fechaActual.Day + fechaActual.Month;
                     string SQLCommandText = "INSERT into ITEMSDOCCONTABLE Values ("
                                 + row[0]+ ",'"+row[1]+"',"+ consecutivoNumero+ ",'"+ MyDouble + "',"+ itemConsecutivo+ ",'"+ row[5]+ "',"+ row[6]+ ","+ row[7]+ ","+ row[8]+ ","+ "NULL"+ ",'"+ row[10]+ "',"+ "NULL"+ ","+ "NULL"+ ",'"+ row[13]+ "',"+ row[14]+ ");";
 
