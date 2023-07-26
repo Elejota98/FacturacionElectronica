@@ -80,7 +80,7 @@ namespace FacturacionElectronica.Controllers
                 return RedirectToAction("Crear", "Pagos");
             }
             await repositorioCliente.Crear(cliente);
-            return RedirectToAction("Crear", "Pagos");
+            return RedirectToAction("ClienteCreado", "Home");
         }
 
         public async Task<IActionResult> Index()

@@ -9,81 +9,85 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FacturacionElectronica
 build_property.RootNamespace = FacturacionElectronica
-build_property.ProjectDir = C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica\
+build_property.ProjectDir = D:\PROYECTOS\PARQUEARSE\FacturacionElectronica\FacturacionElectronica\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Administrador\Documents\LJ\FacturacionElectronica\FacturacionElectronica
+build_property.MSBuildProjectDirectory = D:\PROYECTOS\PARQUEARSE\FacturacionElectronica\FacturacionElectronica
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Cliente/Crear.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Cliente/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Cliente/Index.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Cliente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Home/Enviada.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/ClienteCreado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDbGllbnRlQ3JlYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/Enviada.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFbnZpYWRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Home/FechaNoValida.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/FechaNoValida.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGZWNoYU5vVmFsaWRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Home/Index.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Home/NoEncontrado.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/NoEncontrado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb0VuY29udHJhZG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Home/NoExiste.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/NoExiste.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb0V4aXN0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Home/Privacy.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Home/YaExisteFactura.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Home/YaExisteFactura.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxZYUV4aXN0ZUZhY3R1cmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Pagos/Crear.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Pagos/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcQ3JlYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Pagos/Index.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Pagos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Registros/Index.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Registros/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cm9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Shared/Error.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Shared/_Layout.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/SolicitudCliente/Crear.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/SolicitudCliente/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdHVkQ2xpZW50ZVxDcmVhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/_ViewImports.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrador/Documents/LJ/FacturacionElectronica/FacturacionElectronica/Views/_ViewStart.cshtml]
+[D:/PROYECTOS/PARQUEARSE/FacturacionElectronica/FacturacionElectronica/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
