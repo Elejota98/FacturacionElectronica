@@ -17,6 +17,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace FacturacionElectronicaFrm
 {
@@ -166,7 +167,7 @@ namespace FacturacionElectronicaFrm
                                 //}
                                 #endregion
 
-                MensajeAListBox("Se generó la nota de credito de manera correcta");
+                            MensajeAListBox("Se generó la nota de credito de manera correcta");
 
                             }
                             else
@@ -403,6 +404,42 @@ namespace FacturacionElectronicaFrm
         private void button4_Click_1(object sender, EventArgs e)
         {
        
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
+            DataTable tabla;
+            dvgListadoInterfaz.DataSource = FacturacionElectronicaController.ListarClientesNuevos();
+            if (dvgListadoInterfaz.Rows.Count > 0)
+            {
+                string valor = Convert.ToString(dvgListadoInterfaz.CurrentRow.Cells["Identificacion"].Value);
+                string correo = Convert.ToString(dvgListadoInterfaz.CurrentRow.Cells["Email"].Value);
+                string rut = Convert.ToString(dvgListadoInterfaz.CurrentRow.Cells["rut"].Value);
+
+                tabla = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
+
+                if (tabla.Rows.Count > 0)
+                {
+
+                    ActualizaEstadoCliente(Convert.ToInt32(valor));
+                }
+            }
+        }
+
+        public bool ActualizaEstadoCliente(int identificacion)
+        {
+            string rta = "";
+            bool ok = false;
+            rta = FacturacionElectronicaController.ActualizaEstadoCliente(identificacion);
+            if (rta.Equals("OK"))
+            {
+                ok = true;
+            }
+            else
+            {
+                ok = false;
+            }
+            return ok;
         }
     }
 }

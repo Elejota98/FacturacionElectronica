@@ -16,6 +16,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FacturacionElectronicaFrm
@@ -63,9 +64,9 @@ namespace FacturacionElectronicaFrm
 
         public Form1()
         {
- 
+
             InitializeComponent();
-            
+
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -76,7 +77,7 @@ namespace FacturacionElectronicaFrm
         #region Funciones
         public void IniciarProceso()
         {
-          
+
             try
             {
                 RegistrarClientes();
@@ -86,7 +87,7 @@ namespace FacturacionElectronicaFrm
             {
 
                 MensajeAListBox("Error! " + ex.ToString());
-            }        
+            }
         }
         //INTERFAZ
 
@@ -121,12 +122,12 @@ namespace FacturacionElectronicaFrm
             rta = FacturacionElectronicaController.InsertarClienteInterfaz(texto);
             if (rta.Equals("OK"))
             {
-                ok= true;
+                ok = true;
             }
             else
             {
                 MensajeAListBox(rta.ToString());
-                ok= false;
+                ok = false;
             }
             return ok;
 
@@ -162,17 +163,17 @@ namespace FacturacionElectronicaFrm
                     MensajeAListBox("Cotizaciones Encabezado guardado correcto OK");
                     GenerarArchivoPlano(textoPagos);
                     MensajeAListBox("Se generó archivo plano cotizaciones encabezado OK");
-                    ok=true;
+                    ok = true;
 
 
                 }
                 else
                 {
                     MensajeAListBox("No se guardo en la tabla cotizaciones encabezado" + rtaCE.ToString());
-                    ok=false;
+                    ok = false;
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 MensajeAListBox(ex.ToString());
@@ -191,17 +192,17 @@ namespace FacturacionElectronicaFrm
                     MensajeAListBox("Cotizaciones guardado correcto OK");
                     GenerarArchivoPlano(textoCotizaciones);
                     MensajeAListBox("Se generó archivo plano cotizaciones OK");
-                    ok=true;
+                    ok = true;
                     //itemCounter++;
 
                 }
                 else
                 {
                     MensajeAListBox("No se guardo en la tabla cotizaciones" + rtCTO.ToString());
-                    ok=false;
+                    ok = false;
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 MensajeAListBox("Error insertando Cotizaciones" + ex.ToString());
@@ -217,20 +218,20 @@ namespace FacturacionElectronicaFrm
                 string rtaAct = FacturacionElectronicaController.ActualizaEstadoPagos(id);
                 if (rtaAct.Equals("OK"))
                 {
-                    
+
                     MensajeAListBox("Se actualizó el pago id = " + id);
                     ok = true;
                 }
                 else
                 {
                     MensajeAListBox("No se actulizó el estado del pago");
-                    ok=false;
+                    ok = false;
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                MensajeAListBox( "No se actualizó estado pagos " + ex.ToString());
+                MensajeAListBox("No se actualizó estado pagos " + ex.ToString());
             }
             return ok;
         }
@@ -254,7 +255,7 @@ namespace FacturacionElectronicaFrm
                     //    cliente.Vendedor = Convert.ToInt32(rtaTabla["VEN_IDENTIFICACION"]);
 
                     //}
-                  
+
 
                     int itemCounter = 1;
                     foreach (DataRow registrosPagos in tablaPagos.Rows)
@@ -276,7 +277,7 @@ namespace FacturacionElectronicaFrm
                         }
 
                         DataTable tablaDocumentoVendedor = FacturacionElectronicaController.ListarDocumentoVendedor();
-                        if (tablaDocumentoVendedor.Rows.Count>0)
+                        if (tablaDocumentoVendedor.Rows.Count > 0)
                         {
                             cliente.Vendedor = Convert.ToInt32(tablaDocumentoVendedor.Rows[0]["VEN_IDENTIFICACION"]);
 
@@ -358,7 +359,7 @@ namespace FacturacionElectronicaFrm
 
                         //CAMBIAR FECHA A FORMATO NUMERO
 
-                        DateTime fechaHoy= DateTime.Now;
+                        DateTime fechaHoy = DateTime.Now;
                         string fechaStr = fechaHoy.ToString("yyyy-MM-dd");
 
 
@@ -454,7 +455,7 @@ namespace FacturacionElectronicaFrm
                     }
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 MensajeAListBox(ex.ToString());
@@ -515,13 +516,13 @@ namespace FacturacionElectronicaFrm
 
                 //        #region Old
                 //INSERTAR A LA BD INTERFAZ
-               //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-               // string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
-               // fbCon.Open();
-               // FbCommand comando = new FbCommand(eliminar, fbCon);
-               // comando.ExecuteNonQuery();
-               // MensajeAListBox("Se guardó un cliente OK");
-               // fbCon.Close();
+                //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+                // string eliminar = "DELETE FROM COTIZACION_ENCABEZADO";
+                // fbCon.Open();
+                // FbCommand comando = new FbCommand(eliminar, fbCon);
+                // comando.ExecuteNonQuery();
+                // MensajeAListBox("Se guardó un cliente OK");
+                // fbCon.Close();
                 //        #endregion
 
                 //        if (VerificarClienteExiste(cliente.Identificacion.ToString()))
@@ -574,7 +575,7 @@ namespace FacturacionElectronicaFrm
 
                 //}
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 MensajeAListBox(ex.ToString());
@@ -584,14 +585,14 @@ namespace FacturacionElectronicaFrm
         //LISTADOS
         public void listarCotizacionesEncabezado()
         {
-            dataGridView1.DataSource = FacturacionElectronicaController.ListarCotizacionesEncabezado();         
+            dataGridView1.DataSource = FacturacionElectronicaController.ListarCotizacionesEncabezado();
 
         }
 
         public void listarCotizaciones()
         {
             dataGridView1.DataSource = FacturacionElectronicaController.ListarCotizaciones();
-            
+
         }
 
         public void ListarClientesInterfaz()
@@ -628,7 +629,7 @@ namespace FacturacionElectronicaFrm
 
                 // Crear la ruta de la carpeta
                 string carpetaFecha = fechaActual.ToString("yyyy-MM-dd");
-                 sRutaCarpeta = Path.Combine(sRutaCarpeta, carpetaFecha, valor);
+                sRutaCarpeta = Path.Combine(sRutaCarpeta, carpetaFecha, valor);
                 Directory.CreateDirectory(sRutaCarpeta);
 
                 string correo = Convert.ToString(tabla.Rows[0]["Email"].ToString());
@@ -646,12 +647,12 @@ namespace FacturacionElectronicaFrm
                             string nombreArchivoPDF = valor + "-" + correo + ".pdf";
                             string rutaArchivoPDF = Path.Combine(sRutaCarpeta, nombreArchivoPDF);
                             File.WriteAllBytes(rutaArchivoPDF, pdfData);
-                            ActualizaEstadoCliente(Convert.ToInt32(valor));
+                            //ActualizaEstadoCliente(Convert.ToInt32(valor));
                         }
                     }
                     else
                     {
-                        ActualizaEstadoCliente(Convert.ToInt32(valor));
+                        //ActualizaEstadoCliente(Convert.ToInt32(valor));
 
                     }
                 }
@@ -696,9 +697,10 @@ namespace FacturacionElectronicaFrm
 
                 if (tabla.Rows.Count > 0)
                 {
-                    if (rut!=string.Empty) { 
-                    
-                    byte[] pdfData = (byte[])tabla.Rows[0]["Rut"];
+                    if (rut != string.Empty)
+                    {
+
+                        byte[] pdfData = (byte[])tabla.Rows[0]["Rut"];
                         if (pdfData != null && pdfData.Length > 0)
                         {
                             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -711,7 +713,7 @@ namespace FacturacionElectronicaFrm
                             {
                                 string rutaArchivo = saveFileDialog.FileName;
                                 File.WriteAllBytes(rutaArchivo, pdfData);
-                                ActualizaEstadoCliente(Convert.ToInt32(valor));
+                                //ActualizaEstadoCliente(Convert.ToInt32(valor));
                             }
                         }
                     }
@@ -821,6 +823,28 @@ namespace FacturacionElectronicaFrm
         {
             listarCotizaciones();
         }
-    }
 
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                string valor = Convert.ToString(dataGridView1.CurrentRow.Cells["Identificacion"].Value);
+                string correo = Convert.ToString(dataGridView1.CurrentRow.Cells["Email"].Value);
+                string rut = Convert.ToString(dataGridView1.CurrentRow.Cells["rut"].Value);
+
+                tabla = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
+
+                if (tabla.Rows.Count > 0)
+                {
+
+                    ActualizaEstadoCliente(Convert.ToInt32(valor));
+                    dataGridView1.Rows.Clear();
+                }
+            }
+        }
+    }
 }
+        
+    
+
+

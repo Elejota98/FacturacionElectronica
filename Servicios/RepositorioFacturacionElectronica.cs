@@ -480,7 +480,7 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT TOP(1) * FROM T_CLIENTES WHERE ESTADO=0 AND Identificacion= "+identificacion+"");
+                string cadena = ("SELECT TOP(1) * FROM T_CLIENTES WHERE ESTADO=0 AND Identificacion= "+identificacion+" ORDER BY FECHA DESC");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
                 SqlDataReader rta = comando.ExecuteReader();
