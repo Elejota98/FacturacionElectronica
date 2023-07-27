@@ -9,7 +9,8 @@ namespace FacturacionElectronica.Models
         public int IdPago { get; set; }
         [Required(ErrorMessage ="El número de documento es obligatorio")]
         [Display(Name ="Identificación")]
-       public string Identificacion { get; set; }
+        [Remote(action: "ValidarEstadoCliente", controller: "Pagos")]
+        public string Identificacion { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [Display(Name = "Número de factura")]
         public int NumeroFactura { get; set; }

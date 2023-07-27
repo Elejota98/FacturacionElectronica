@@ -89,18 +89,6 @@ namespace FacturacionElectronica.Controllers
             var prefijos = await ObtenerPrefijos(Convert.ToInt32(estacionamientos.IdEstacionamiento));
             return Ok(prefijos);
         }
-
-        //Verificar si el cliente esta activo 
-        //public async Task<IActionResult> VerificarClienteActivo(int identificacion)
-        //{
-        //    var yaExisteCliente = await repositorioPagos.VerificarClienteExiste(identificacion);
-        //    if (yaExisteCliente)
-        //    {
-        //        return RedirectToAction("ClienteProceso", "Haome");
-        //    }
-        //    return Json(identificacion);
-        //}
-
         //Validar si el cliente existe en la base de datos
         [HttpPost]
         public async Task<IActionResult> VerificarExisteCliente([FromQuery] string identificacion)
@@ -118,8 +106,19 @@ namespace FacturacionElectronica.Controllers
             {
                 return View();
             }
-            return Json(true);
+            return Json(identificacion);
 
+        }
+
+        //Validar si existe el cliente registrado
+        public async Task<IActionResult>ValidarEstadoCliente(string identificacion)
+        {
+            var estadoCliente = await repositorioPagos.VerificarClienteExiste(Convert.ToInt32(identificacion));
+            if (estadoCliente)
+            {
+                return RedirectToAction("Crear", "Cliente");
+            }
+            return Json(true);
         }
 
         //VALIDAR VIGENCIA DE DÍAS SEGUN LA FECHA 
@@ -174,6 +173,12 @@ namespace FacturacionElectronica.Controllers
         {
             Pagos oPagos = new Pagos();
             PagosNube oPagosNube = new PagosNube();
+            var yaExisteCliente = await repositorioPagos.VerificarClienteExiste(Convert.ToInt32(pagos.Identificacion));
+            if (yaExisteCliente)
+            {
+                return RedirectToAction("ClienteProceso", "Haome");
+            }
+
             //ObtenerEstacionamientosPorId
             var idEstacionamiento = await repositorioPagos.ListarEstacionamientos();
             if (idEstacionamiento is null)
