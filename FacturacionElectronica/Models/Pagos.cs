@@ -28,7 +28,7 @@ namespace FacturacionElectronica.Models
         public bool Estado = false;
         [Required(ErrorMessage = "Este campo es requerido")]
         [Display(Name = "Fecha de la factura")]
-        [Remote(action: "ValidarDiasFechaFactura", controller:"Pagos")]
+        //[Remote(action: "ValidarDiasFechaFactura", controller:"Pagos")]
         public DateTime FechaPago { get; set; }
     }
 }
