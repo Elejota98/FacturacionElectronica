@@ -349,58 +349,6 @@ namespace FacturacionElectronicaFrm
             ListarItemsContable();
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
-            //string eliminar = "DELETE FROM ITEMSDOCCONTABLE";
-            //fbCon.Open();
-            //FbCommand comando = new FbCommand(eliminar, fbCon);
-            //comando.ExecuteNonQuery();
-            //MensajeAListBox("Se guardó un cliente OK");
-            //fbCon.Close();
-            double MyDouble = 0;
-            DateTime fechaActual = DateTime.Now;
-
-            // Crear un nuevo objeto DateTime solo con la fecha (sin hora) de la fecha actual
-            DateTime fechaSoloFecha = fechaActual.Date;
-
-            // Convertir la fecha solo con la fecha a formato OADate
-             MyDouble = fechaSoloFecha.ToOADate();
-
-
-            //try
-            //{
-            //    using (FbConnection fbCon = new FbConnection(_ConnectionStringFirebird))
-            //    {
-            //        fbCon.Open();
-
-            //        DataTable schemaTable = fbCon.GetSchema("Columns", new string[] { null, null, "DOCCONTABLE" });
-
-            //        if (schemaTable.Rows.Count > 0)
-            //        {
-            //            foreach (DataRow row in schemaTable.Rows)
-            //            {
-            //                string columnName = row["COLUMN_NAME"].ToString();
-            //                // Aquí puedes hacer lo que necesites con el nombre de la columna.
-            //                Console.WriteLine("Columna: " + columnName);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("La tabla no existe o no tiene columnas.");
-            //        }
-
-            //        fbCon.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    // Manejo de excepciones en caso de error
-            //    Console.WriteLine("Error al consultar la base de datos: " + ex.Message);
-            //}
-
-        }
-
         private void button4_Click_1(object sender, EventArgs e)
         {
        
@@ -409,19 +357,22 @@ namespace FacturacionElectronicaFrm
         private void button3_Click_2(object sender, EventArgs e)
         {
             DataTable tabla;
-            dvgListadoInterfaz.DataSource = FacturacionElectronicaController.ListarClientesNuevos();
-            if (dvgListadoInterfaz.Rows.Count > 0)
+            tabla = FacturacionElectronicaController.ListarClientesNuevos();
+            if (tabla.Rows.Count > 0)
             {
-                string valor = Convert.ToString(dvgListadoInterfaz.CurrentRow.Cells["Identificacion"].Value);
-                string correo = Convert.ToString(dvgListadoInterfaz.CurrentRow.Cells["Email"].Value);
-                string rut = Convert.ToString(dvgListadoInterfaz.CurrentRow.Cells["rut"].Value);
-
-                tabla = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
-
-                if (tabla.Rows.Count > 0)
+                foreach (DataRow row in tabla.Rows)
                 {
+                    string valor = Convert.ToString(row["Identificacion"]);
+                    string correo = Convert.ToString(row["Email"]);
+                    string rut = Convert.ToString(row["rut"]);
 
-                    ActualizaEstadoCliente(Convert.ToInt32(valor));
+                    DataTable tablaPorDoc = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
+
+                    if (tablaPorDoc.Rows.Count > 0)
+                    {
+                        ActualizaEstadoCliente(Convert.ToInt32(valor));
+                        MensajeAListBox("El cliente con identificación " + valor + " ya se encuentra activo");
+                    }
                 }
             }
         }
