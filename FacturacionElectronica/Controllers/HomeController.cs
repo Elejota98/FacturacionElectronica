@@ -47,7 +47,9 @@ namespace FacturacionElectronica.Controllers
         }
         public IActionResult FechaNoValida()
         {
-            return View();
+            DateTime fechaInvalida = (DateTime)TempData["FechaInvalida"];
+            TempData.Keep("FechaInvalida");
+            return View(fechaInvalida);
         }
         public IActionResult ClienteCreado()
         {

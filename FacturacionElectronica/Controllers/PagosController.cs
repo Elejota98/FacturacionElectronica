@@ -107,55 +107,7 @@ namespace FacturacionElectronica.Controllers
                 return View();
             }
             return Json(identificacion);
-
         }
-
-
-        //VALIDAR VIGENCIA DE DÍAS SEGUN LA FECHA 
-        [HttpGet]
-        public async Task<IActionResult> ValidarDiasFechaFactura(Pagos pagos)
-        {
-            //var idModulo = await repositorioPagos.ListarIdModuloPorPrefijo(pagos.Prefijo, pagos.IdEstacionamiento);
-            //if (idModulo is null)
-            //{
-            //    return RedirectToAction("NoEncontrado", "Home");
-            //}
-            //var datosFactura = await repositorioPagos.ListarPagosNube(pagos.NumeroFactura, pagos.IdEstacionamiento, idModulo.IdModulo);
-
-            //if (datosFactura is null)
-            //{
-            //    return RedirectToAction("NoEncontrado", "Home");
-            //}
-
-            //bool facturaEncontrada = false;
-            //foreach (var factura in datosFactura)
-            //{
-            //    if (factura.NumeroFactura == pagos.NumeroFactura)
-            //    {
-            //facturaEncontrada = true;
-            DateTime fechaPagosNube = DateTime.Now;
-
-            if (pagos.FechaPago.Day != fechaPagosNube.Day)
-            {
-                DateTime fechaActual = DateTime.Now;
-                TimeSpan diferencia = fechaActual.Date - pagos.FechaPago.Date;
-                int diasDiferencia = diferencia.Days;
-
-                if (diasDiferencia > 3)
-                {
-                    return Json($"La fecha {pagos.FechaPago} de solicitud de la factura supera el día máximo para solicitar la factura electrónica");
-                }
-                //}
-            }
-
-
-            //if (!facturaEncontrada)
-            //{
-            //    return RedirectToAction("NoEncontrado", "Home");
-            //}
-            return Json(pagos.FechaPago);
-        }
-
 
         //Crear el registro pagos 
         [HttpPost]
@@ -229,17 +181,32 @@ namespace FacturacionElectronica.Controllers
                             facturaEncontrada = true;
                             DateTime fechaPagosNube = DateTime.Now;
 
-                            if (pagos.FechaPago.Day != fechaPagosNube.Day)
-                            {
-                                DateTime fechaActual = DateTime.Now;
-                                TimeSpan diferencia = fechaActual.Date - pagos.FechaPago.Date;
-                                int diasDiferencia = diferencia.Days;
 
-                                if (diasDiferencia > 3)
-                                {
-                                    return RedirectToAction("FechaNoValida", "Home");
-                                }
+                            if (pagos.FechaPago.Year != fechaPagosNube.Year)
+                            {
+                                TempData["FechaInvalida"] = fechaPagosNube;
+                                return RedirectToAction("FechaNoValida", "Home");
+
                             }
+                            if (pagos.FechaPago.Month != fechaPagosNube.Month)
+                            {
+                                TempData["FechaInvalida"] = fechaPagosNube;
+                                return RedirectToAction("FechaNoValida", "Home");
+
+                            }
+                            #region Validacion3DiasOld
+                            //if (pagos.FechaPago.Day != fechaPagosNube.Day)
+                            //{
+                            //    DateTime fechaActual = DateTime.Now;
+                            //    TimeSpan diferencia = fechaActual.Date - pagos.FechaPago.Date;
+                            //    int diasDiferencia = diferencia.Days;
+
+                            //    if (diasDiferencia > 3)
+                            //    {
+                            //        return RedirectToAction("FechaNoValida", "Home");
+                            //    }
+                            //}
+                            #endregion
                         }
                     }
 
