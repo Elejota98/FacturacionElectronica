@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DateTime
+@{
     ViewData["Title"] = "Fecha no válida";
 }
 <!DOCTYPE html>
@@ -28,7 +29,8 @@
     </style>
 </head>
 <body>
-    <h1>Fecha de la fáctura no valida</h1>
-    <a href="/Pagos/Crear">Solicitar nueva fáctura</a>
+    
+    <h1> La fecha @Model.ToString("yyyy-MM-dd") de la solicitud no es válida.</h1>
+    <a href="/Pagos/Crear">Solicitar nueva factura</a>
 </body>
 </html>

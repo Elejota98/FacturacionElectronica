@@ -46,7 +46,7 @@ namespace FacturacionElectronica.Servicios
         public async Task<IEnumerable<Facturacion>> ObtenerPrefijoPorIdEstacionamiento(long idEstacionamiento)
         {
             using var connection = new SqlConnection(connectionStringNube);
-            return await connection.QueryAsync<Facturacion>(@"SELECT IdFacturacion,Prefijo FROM T_Facturacion WHERE IdEstacionamiento=@IdEstacionamiento", new { idEstacionamiento });
+            return await connection.QueryAsync<Facturacion>(@"SELECT IdFacturacion,Prefijo FROM T_Facturacion WHERE IdEstacionamiento=@IdEstacionamiento AND Estado=1", new { idEstacionamiento });
         }
 
         //Listar modulo

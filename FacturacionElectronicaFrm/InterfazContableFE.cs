@@ -816,7 +816,15 @@ namespace FacturacionElectronicaFrm
 
         private void btnEncabezado_Click(object sender, EventArgs e)
         {
-            listarCotizacionesEncabezado();
+            //listarCotizacionesEncabezado();
+
+            //FbConnection fbCon = new FbConnection(_ConnectionStringFirebird);
+            //string eliminar = "DELETE FROM COTIZACIONES";
+            //fbCon.Open();
+            //FbCommand comando = new FbCommand(eliminar, fbCon);
+            //comando.ExecuteNonQuery();
+            //MensajeAListBox("Se guardó un cliente OK");
+            //fbCon.Close();
         }
 
         private void button1_Click_2(object sender, EventArgs e)
