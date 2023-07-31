@@ -112,7 +112,7 @@ namespace Servicios
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("SELECT * FROM ITEMSDOCCONTABLE");
+                string cadena = ("SELECT MAX(IDC_NUMERO) FROM ITEMSDOCCONTABLE");
                 FbCommand comando = new FbCommand(cadena, fbCon);
                 fbCon.Open();
                 FbDataReader rta = comando.ExecuteReader();
@@ -361,7 +361,7 @@ namespace Servicios
                 numero = Convert.ToString(consecutivoNumero);
                 //Consecutivo
                 string numeroItem = Convert.ToInt32(fechaActual.Day) + "" + Convert.ToInt32(fechaActual.Month);
-                itemConsecutivo = Convert.ToInt32(numeroItem);
+                consecutivoNumero = Convert.ToInt32(numeroItem);
 
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
                 foreach (DataRow row in datos.Rows)
