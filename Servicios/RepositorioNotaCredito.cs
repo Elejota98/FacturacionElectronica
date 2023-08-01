@@ -112,7 +112,7 @@ namespace Servicios
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("SELECT MAX(IDC_NUMERO) FROM ITEMSDOCCONTABLE");
+                string cadena = ("SELECT * FROM ITEMSDOCCONTABLE ORDER BY IDC_NUMERO DESC ");
                 FbCommand comando = new FbCommand(cadena, fbCon);
                 fbCon.Open();
                 FbDataReader rta = comando.ExecuteReader();
@@ -417,7 +417,7 @@ namespace Servicios
                 string SQLCommandText2 = "INSERT into DOCCONTABLE Values (" + idc_empresa + ",'"
                                                                             + documentoempresa
                                                                             + "','"
-                                                                            + numero
+                                                                            + consecutivoNumero
                                                                             + "','"
                                                                             + MyDouble
                                                                             + "',NULL,NULL,0,NULL,NULL);";

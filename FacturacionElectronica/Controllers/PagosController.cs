@@ -190,9 +190,11 @@ namespace FacturacionElectronica.Controllers
                             }
                             if (pagos.FechaPago.Month != fechaPagosNube.Month)
                             {
-                                TempData["FechaInvalida"] = fechaPagosNube;
-                                return RedirectToAction("FechaNoValida", "Home");
-
+                                if (fechaPagosNube.Day > 1)
+                                {
+                                    TempData["FechaInvalida"] = fechaPagosNube;
+                                    return RedirectToAction("FechaNoValida", "Home");
+                                }
                             }
                             #region Validacion3DiasOld
                             //if (pagos.FechaPago.Day != fechaPagosNube.Day)
