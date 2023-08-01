@@ -109,6 +109,11 @@ namespace FacturacionElectronica.Controllers
             return Json(identificacion);
         }
 
+        public static int MonthDiff(DateTime startDate, DateTime endDate)
+        {
+            return (endDate.Year - startDate.Year) * 12 + endDate.Month - startDate.Month;
+        }
+
         //Crear el registro pagos 
         [HttpPost]
         public async Task<IActionResult> Crear(PagosCreacionViewModel pagos, IFormFile imagen)
@@ -178,6 +183,8 @@ namespace FacturacionElectronica.Controllers
                     {
                         if (factura.NumeroFactura == pagos.NumeroFactura)
                         {
+
+                            //VALIDACION DE FECHAS 
                             facturaEncontrada = true;
                             DateTime fechaPagosNube = DateTime.Now;
 
@@ -188,14 +195,28 @@ namespace FacturacionElectronica.Controllers
                                 return RedirectToAction("FechaNoValida", "Home");
 
                             }
-                            if (pagos.FechaPago.Month != fechaPagosNube.Month)
+
+                            DateTime fechaPago = pagos.FechaPago;
+                            DateTime fechaNube = fechaPagosNube;
+
+                            int mesesDiferencia = MonthDiff(fechaPago, fechaNube);
+
+                            if (mesesDiferencia<=1)
                             {
-                                if (fechaPagosNube.Day > 1)
-                                {
+                              
+                              if (fechaPagosNube.Day > 1)
+                               {
                                     TempData["FechaInvalida"] = fechaPagosNube;
                                     return RedirectToAction("FechaNoValida", "Home");
-                                }
+                              }
                             }
+                            else
+                            {
+                                TempData["FechaInvalida"] = fechaPagosNube;
+                                return RedirectToAction("FechaNoValida", "Home");
+                            }
+
+                            //FIN VALIDACION DE FECHAS
                             #region Validacion3DiasOld
                             //if (pagos.FechaPago.Day != fechaPagosNube.Day)
                             //{
