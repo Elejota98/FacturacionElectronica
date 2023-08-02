@@ -442,6 +442,52 @@ namespace Servicios
             return ok;
         }
 
+        public DataTable listarPrefijoPorModulo(string idModulo, int idEstacionamiento)
+        {
+            DataTable tabla= new DataTable();
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
+                string cadena = ("select Prefijo from T_Facturacion where IdModulo='" + idModulo + "' AND IdEstacionamiento" + idEstacionamiento + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+
+        }
+
+
+        public void ConsultarFechaSolicitudFacturaElectronica()
+        {
+            DataTable tabla;
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex ;
+            }
+
+        }
+
         public void GenerarArchivoPlano(string texto)
         {
 
