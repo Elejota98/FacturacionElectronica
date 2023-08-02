@@ -201,19 +201,14 @@ namespace FacturacionElectronica.Controllers
 
                             int mesesDiferencia = MonthDiff(fechaPago, fechaNube);
 
-                            if (mesesDiferencia<=1)
+                            if (mesesDiferencia>=1)
                             {
                               
                               if (fechaPagosNube.Day > 1)
                                {
                                     TempData["FechaInvalida"] = fechaPagosNube;
                                     return RedirectToAction("FechaNoValida", "Home");
-                              }
-                            }
-                            else
-                            {
-                                TempData["FechaInvalida"] = fechaPagosNube;
-                                return RedirectToAction("FechaNoValida", "Home");
+                               }
                             }
 
                             //FIN VALIDACION DE FECHAS

@@ -112,7 +112,7 @@ namespace Servicios
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("SELECT * FROM ITEMSDOCCONTABLE ORDER BY IDC_NUMERO DESC ");
+                string cadena = ("SELECT * FROM ITEMSDOCCONTABLE ORDER BY IDC_NUMERO");
                 FbCommand comando = new FbCommand(cadena, fbCon);
                 fbCon.Open();
                 FbDataReader rta = comando.ExecuteReader();
@@ -360,7 +360,7 @@ namespace Servicios
                 MyDouble = fechaSoloFecha.ToOADate();
                 numero = Convert.ToString(consecutivoNumero);
                 //Consecutivo
-                string numeroItem = Convert.ToInt32(fechaActual.Day) + "" + Convert.ToInt32(fechaActual.Month);
+                string numeroItem = fechaActual.ToString("ddMM");
                 consecutivoNumero = Convert.ToInt32(numeroItem);
 
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
