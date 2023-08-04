@@ -45,6 +45,7 @@ namespace FacturacionElectronicaFrm
             }
         }
         public string idModulo = string.Empty;
+        public DateTime fechaPago = DateTime.Now;
         #endregion
 
 
@@ -84,103 +85,104 @@ namespace FacturacionElectronicaFrm
         {
             try
             {
-                //int numeroFactura = 0;
-                //dvgListadoInterfaz.DataSource = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text);
-                //foreach (DataRow lstTabla in dvgListadoInterfaz.Rows)
-                //{
-                //     numeroFactura = Convert.ToInt32(lstTabla["NumeroFactura"]);
-
-                //}
 
                 List<string> numerosFacturaSeleccionados = new List<string>();
+                List<DateTime> fechaPagoSeleccionado = new List<DateTime>();
                 foreach (DataGridViewRow fila in dvgListadoInterfaz.Rows)
                 {
                     DataGridViewCheckBoxCell checkbox = fila.Cells[0] as DataGridViewCheckBoxCell;
                     if (Convert.ToBoolean(checkbox.Value))
                     {
                         string numeroFactura = fila.Cells[5].Value.ToString();
+                        fechaPago = Convert.ToDateTime(fila.Cells[4].Value);
                         numerosFacturaSeleccionados.Add(numeroFactura);
+                        fechaPagoSeleccionado.Add(fechaPago);
                          idModulo = fila.Cells[6].Value.ToString();
                     }
                 }
                 foreach (string numeroFactura in numerosFacturaSeleccionados)
                 {
-                    DataTable tabla;
-                    DataTable tablaEmpresa;
-                    int idc_Empresa = 1;
-                    string doc_Empresa = "NCRP";
-                    string rta = "";
-                    //tabla= NotaCreditoController.ListarInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura, dtmFecha.Text);
-                    //tabla = NotaCreditoController.ListarInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura, dtmFecha.Text);
-
-                    //List<ItemsContable> itemsContables = new List<ItemsContable>();
-                    //foreach (DataRow item in tabla.Rows)
-                    //{
-                    //    ItemsContable items = new ItemsContable();
-                    //    items.IDC_DOCUMENTO = Convert.ToInt32(ListarIdcEmpresa());
-                    //    items.IDC_NUMERO = item["IDC_NUMERO"].ToString();
-
-                    //LISTO DATOS EMPRESA
-                    
-
-                    //FIN DATOS EMPRESA 
-
-                    //VALIDO SI EL REGISTRO YA SE SUBIO 
-                    DateTime fechaNew;
-                    fechaNew = Convert.ToDateTime(dtmFecha.Text);
-                    
-
-                    tabla = NotaCreditoController.VerificarSiExisteElRegistro(Convert.ToDateTime(fechaNew.ToString("dd-MM-yyyy")), idc_Empresa, doc_Empresa, numeroFactura);
-                    if (tabla.Rows.Count <= 0)
+                    foreach (DateTime fechaPagoList in fechaPagoSeleccionado)
                     {
-                        //GENERAR PROCEDIMIENTO ALMACENADO 
-                        DataTable tablaDatos;
-                        tablaDatos = NotaCreditoController.GenerarDatosASubir(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(dtmFecha.Text), Convert.ToInt32(numeroFactura));
-                        if (tablaDatos != null && tablaDatos.Rows.Count > 0)
+
+
+                        DataTable tabla;
+                        DataTable tablaEmpresa;
+                        int idc_Empresa = 1;
+                        string doc_Empresa = "NCRP";
+                        string rta = "";
+                        //tabla= NotaCreditoController.ListarInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura, dtmFecha.Text);
+                        //tabla = NotaCreditoController.ListarInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura, dtmFecha.Text);
+
+                        //List<ItemsContable> itemsContables = new List<ItemsContable>();
+                        //foreach (DataRow item in tabla.Rows)
+                        //{
+                        //    ItemsContable items = new ItemsContable();
+                        //    items.IDC_DOCUMENTO = Convert.ToInt32(ListarIdcEmpresa());
+                        //    items.IDC_NUMERO = item["IDC_NUMERO"].ToString();
+
+                        //LISTO DATOS EMPRESA
+
+
+                        //FIN DATOS EMPRESA 
+
+                        //VALIDO SI EL REGISTRO YA SE SUBIO 
+                        DateTime fechaNew;
+                        fechaNew = Convert.ToDateTime(fechaPagoList);
+
+
+                        tabla = NotaCreditoController.VerificarSiExisteElRegistro(Convert.ToDateTime(fechaNew.ToString("dd-MM-yyyy")), idc_Empresa, doc_Empresa, numeroFactura);
+                        if (tabla.Rows.Count <= 0)
                         {
-                            //INSERTTAR INFORMACION EN LA INTERFAZ
-                            int consecutivo = 1;
-
-                            if (NotaCreditoController.InsertarItemsContable(tablaDatos, consecutivo, Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura, idModulo))
+                            //GENERAR PROCEDIMIENTO ALMACENADO 
+                            DataTable tablaDatos;
+                            tablaDatos = NotaCreditoController.GenerarDatosASubir(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(fechaNew.ToString("dd-MM-yyyy")), Convert.ToInt32(numeroFactura));
+                            if (tablaDatos != null && tablaDatos.Rows.Count > 0)
                             {
-                                #region AnularFactura
-                                //string rtaPos = string.Empty;
-                                //DataTable tablaPagos;
-                                //tablaPagos = NotaCreditoController.ListarPagosAnular(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(dtmFecha.Text), Convert.ToInt32(numeroFactura));
+                                //INSERTTAR INFORMACION EN LA INTERFAZ
+                                int consecutivo = 1;
 
-                                //if (tablaPagos.Rows.Count > 0)
-                                //{
+                                if (NotaCreditoController.InsertarItemsContable(tablaDatos, consecutivo, Convert.ToInt32(cboEstacionamientos.SelectedValue), numeroFactura, idModulo))
+                                {
+                                    #region AnularFactura
+                                    //string rtaPos = string.Empty;
+                                    //DataTable tablaPagos;
+                                    //tablaPagos = NotaCreditoController.ListarPagosAnular(Convert.ToInt32(cboEstacionamientos.SelectedValue), Convert.ToDateTime(dtmFecha.Text), Convert.ToInt32(numeroFactura));
 
-                                //    foreach (DataRow lstPagos in tablaPagos.Rows)
-                                //    {
-                                //        int idPago = Convert.ToInt32(lstPagos["IdPago"]);
+                                    //if (tablaPagos.Rows.Count > 0)
+                                    //{
 
-                                //        rtaPos = NotaCreditoController.AnularFacturaPOS(idPago);
-                                //        if (rtaPos.Equals("OK"))
-                                //        {
-                                //            MensajeAListBox("Se anuló la factura Pos con Id " + idPago + "");
-                                //        }
+                                    //    foreach (DataRow lstPagos in tablaPagos.Rows)
+                                    //    {
+                                    //        int idPago = Convert.ToInt32(lstPagos["IdPago"]);
 
-                                //    }
+                                    //        rtaPos = NotaCreditoController.AnularFacturaPOS(idPago);
+                                    //        if (rtaPos.Equals("OK"))
+                                    //        {
+                                    //            MensajeAListBox("Se anuló la factura Pos con Id " + idPago + "");
+                                    //        }
 
-                                //    MensajeAListBox("Finaliza escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
-                                //}
-                                #endregion
+                                    //    }
 
-                            MensajeAListBox("Se generó la nota de credito de manera correcta");
+                                    //    MensajeAListBox("Finaliza escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
+                                    //}
+                                    #endregion
 
-                            }
-                            else
-                            {
-                                MensajeAListBox("Falla escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
+                                    MensajeAListBox("Se generó la nota de credito de manera correcta");
+
+                                }
+                                else
+                                {
+                                    MensajeAListBox("Falla escritura con estacionamiento = " + Convert.ToInt32(cboEstacionamientos.SelectedValue));
+                                }
+
                             }
 
                         }
-
-                    }
-                    else
-                    {
-                        MensajeAListBox("El registro con número "+numeroFactura+" ya se encuentra en la  interfaz");
+                        else
+                        {
+                            MensajeAListBox("El registro con número " + numeroFactura + " ya se encuentra en la  interfaz");
+                        }
                     }
 
                 }
