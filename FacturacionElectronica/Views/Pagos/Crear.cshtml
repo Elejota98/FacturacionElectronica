@@ -12,7 +12,7 @@
 <body class="cuerpo">
 <form asp-action="Crear" enctype="multipart/form-data" class="Form">
             <div class="mb-3">
-                <label for="Identificacion" class="form-label">Identificación</label>
+                <label asp-for="Identificacion" class="form-label"></label>
             <input type="text" id="Identificacion" name="Identificacion" autocomplete="off" class="form-control" onblur="onBlurValidarCliente()" />
             <span asp-validation-for="Identificacion" class="text-danger"></span>
             </div>

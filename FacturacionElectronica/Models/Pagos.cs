@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Principal;
+using System.Text.RegularExpressions;
 
 namespace FacturacionElectronica.Models
 {
@@ -8,7 +9,8 @@ namespace FacturacionElectronica.Models
     {
         public int IdPago { get; set; }
         [Required(ErrorMessage ="El número de documento es obligatorio")]
-        [Display(Name ="Identificación")]
+        [Display(Name ="Identificación sin (DV)")]
+        [RegularExpression("^[a-zA-Z0-9]+$", ErrorMessage = "El campo Identificación no puede contener caracteres especiales.")]
         [Remote(action: "ValidarEstadoCliente", controller: "Pagos")]
         public string Identificacion { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
@@ -31,4 +33,5 @@ namespace FacturacionElectronica.Models
         //[Remote(action: "ValidarDiasFechaFactura", controller:"Pagos")]
         public DateTime FechaPago { get; set; }
     }
+
 }

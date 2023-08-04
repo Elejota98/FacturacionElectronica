@@ -75,7 +75,6 @@ namespace Controlador
             return ok;
 
         }
-
         public static DataTable ListarPagosAnular(int idEstacionamiento, DateTime fecha, int numeroFactura)
         {
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();

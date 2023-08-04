@@ -112,7 +112,7 @@ namespace Servicios
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("SELECT * FROM ITEMSDOCCONTABLE");
+                string cadena = ("SELECT * FROM ITEMSDOCCONTABLE ORDER BY IDC_NUMERO");
                 FbCommand comando = new FbCommand(cadena, fbCon);
                 fbCon.Open();
                 FbDataReader rta = comando.ExecuteReader();
@@ -350,18 +350,34 @@ namespace Servicios
             bool ok = true;
             string idcConcepto = "";
             int idcNumero = 0;
+            string prefijo = string.Empty;
             DataTable tablaItems;
+            DateTime FechaSolicitud = DateTime.Now;
 
             FbConnection fbCon = new FbConnection();
             try
             {
-                DateTime fechaActual = DateTime.Now;
+                tablaItems = listarPrefijoPorModulo(idModulo, idEstacionamiento);
+
+                foreach (DataRow lstTabla in tablaItems.Rows)
+                {
+                     prefijo = Convert.ToString(lstTabla["Prefijo"]);
+                }
+
+                tablaItems = ConsultarFechaSolicitudFacturaElectronica(prefijo, idEstacionamiento, Convert.ToInt32(numeroFactura));
+
+
+                foreach (DataRow lstTabla in tablaItems.Rows)
+                {
+                     FechaSolicitud = (DateTime)lstTabla["FechaSolicitud"];
+                }
+                DateTime fechaActual = FechaSolicitud;
                 DateTime fechaSoloFecha = fechaActual.Date;
                 MyDouble = fechaSoloFecha.ToOADate();
                 numero = Convert.ToString(consecutivoNumero);
                 //Consecutivo
-                string numeroItem = Convert.ToInt32(fechaActual.Day) + "" + Convert.ToInt32(fechaActual.Month);
-                itemConsecutivo = Convert.ToInt32(numeroItem);
+                string numeroItem = fechaActual.ToString("ddMM");
+                consecutivoNumero = Convert.ToInt32(numeroItem);
 
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
                 foreach (DataRow row in datos.Rows)
@@ -417,7 +433,7 @@ namespace Servicios
                 string SQLCommandText2 = "INSERT into DOCCONTABLE Values (" + idc_empresa + ",'"
                                                                             + documentoempresa
                                                                             + "','"
-                                                                            + numero
+                                                                            + consecutivoNumero
                                                                             + "','"
                                                                             + MyDouble
                                                                             + "',NULL,NULL,0,NULL,NULL);";
@@ -440,6 +456,61 @@ namespace Servicios
                 if (fbCon.State == ConnectionState.Open) fbCon.Close();
             }
             return ok;
+        }
+
+        public DataTable listarPrefijoPorModulo(string idModulo, int idEstacionamiento)
+        {
+            DataTable tabla= new DataTable();
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNubeParking();
+                string cadena = ("select Prefijo from T_Facturacion where IdModulo='" + idModulo + "' AND IdEstacionamiento=" + idEstacionamiento + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex )
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+
+        }
+
+
+        public DataTable ConsultarFechaSolicitudFacturaElectronica(string prefijo, int idEstacionamiento, int numeroFactura)
+        {
+            DataTable tabla = new DataTable();
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT FechaSolicitud FROM T_Pagos WHERE Prefijo='"+prefijo+"' AND IdEstacionamiento="+idEstacionamiento+" AND NumeroFactura='"+numeroFactura+"'");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex ;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+
         }
 
         public void GenerarArchivoPlano(string texto)
