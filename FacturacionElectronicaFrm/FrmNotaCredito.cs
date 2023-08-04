@@ -44,7 +44,6 @@ namespace FacturacionElectronicaFrm
                 }
             }
         }
-        public string idModulo = string.Empty;
         public DateTime fechaPago = DateTime.Now;
         #endregion
 
@@ -85,26 +84,46 @@ namespace FacturacionElectronicaFrm
         {
             try
             {
+                #region Old
+                //List<string> numerosFacturaSeleccionados = new List<string>();
+                //Dictionary<string, DateTime> fechaPagoSeleccionado = new Dictionary<string, DateTime>();
 
-                List<string> numerosFacturaSeleccionados = new List<string>();
-                List<DateTime> fechaPagoSeleccionado = new List<DateTime>();
+                //foreach (DataGridViewRow fila in dvgListadoInterfaz.Rows)
+                //{
+                //    DataGridViewCheckBoxCell checkbox = fila.Cells[0] as DataGridViewCheckBoxCell;
+                //    if (Convert.ToBoolean(checkbox.Value))
+                //    {
+                //        string numeroFactura = fila.Cells[5].Value.ToString();
+                //        fechaPago = Convert.ToDateTime(fila.Cells[4].Value);
+                //        numerosFacturaSeleccionados.Add(numeroFactura);
+                //        fechaPagoSeleccionado[numeroFactura] = fechaPago;
+                //        idModulo = fila.Cells[6].Value.ToString();
+                //    }
+                //}
+
+                //foreach (string numeroFactura in numerosFacturaSeleccionados)
+                //{
+                #endregion
+                List<Tuple<string, DateTime, string>> facturasSeleccionadas = new List<Tuple<string, DateTime, string>>();
+
                 foreach (DataGridViewRow fila in dvgListadoInterfaz.Rows)
                 {
                     DataGridViewCheckBoxCell checkbox = fila.Cells[0] as DataGridViewCheckBoxCell;
                     if (Convert.ToBoolean(checkbox.Value))
                     {
                         string numeroFactura = fila.Cells[5].Value.ToString();
-                        fechaPago = Convert.ToDateTime(fila.Cells[4].Value);
-                        numerosFacturaSeleccionados.Add(numeroFactura);
-                        fechaPagoSeleccionado.Add(fechaPago);
-                         idModulo = fila.Cells[6].Value.ToString();
+                        DateTime fechaPago = Convert.ToDateTime(fila.Cells[4].Value);
+                        string idModulo = fila.Cells[6].Value.ToString();
+                        facturasSeleccionadas.Add(Tuple.Create(numeroFactura, fechaPago, idModulo));
+                        
                     }
                 }
-                foreach (string numeroFactura in numerosFacturaSeleccionados)
-                {
-                    foreach (DateTime fechaPagoList in fechaPagoSeleccionado)
-                    {
 
+                foreach (Tuple<string, DateTime, string> factura in facturasSeleccionadas)
+                {
+                    string numeroFactura = factura.Item1;
+                    DateTime fechaPago = factura.Item2;
+                    string idModulo = factura.Item3;
 
                         DataTable tabla;
                         DataTable tablaEmpresa;
@@ -128,7 +147,7 @@ namespace FacturacionElectronicaFrm
 
                         //VALIDO SI EL REGISTRO YA SE SUBIO 
                         DateTime fechaNew;
-                        fechaNew = Convert.ToDateTime(fechaPagoList);
+                        fechaNew = Convert.ToDateTime(fechaPago);
 
 
                         tabla = NotaCreditoController.VerificarSiExisteElRegistro(Convert.ToDateTime(fechaNew.ToString("dd-MM-yyyy")), idc_Empresa, doc_Empresa, numeroFactura);
@@ -183,7 +202,7 @@ namespace FacturacionElectronicaFrm
                         {
                             MensajeAListBox("El registro con número " + numeroFactura + " ya se encuentra en la  interfaz");
                         }
-                    }
+                    
 
                 }
             }

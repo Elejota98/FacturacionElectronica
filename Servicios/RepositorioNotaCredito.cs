@@ -408,7 +408,7 @@ namespace Servicios
 
                         if (idcConcepto.ToString() != row[5].ToString())
                         {
-                            consecutivoNumero = idcNumero + 1;
+                            consecutivoNumero = idcNumero + itemConsecutivo;
                         }
                         else
                         {
