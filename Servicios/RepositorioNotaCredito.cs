@@ -48,9 +48,10 @@ namespace Servicios
                 string fechaConsultaInicio = fechaPago + " 00:00:00";
                 string fechaConsultaFin = fechaPago + " 23:59:59";
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT cl.Identificacion, e.Nombre, SUM(Total) AS Total, FechaPago,   NumeroFactura, IdModulo " +
-                    "FROM T_PagosFE INNER JOIN T_Clientes cl on T_PagosFE.Identificacion = cl.Identificacion INNER JOIN T_Estacionamientos e on T_PagosFE.IdEstacionamiento = e.IdEstacionamiento" +
-                    " WHERE T_PagosFE.IdEstacionamiento=" + idEstacionamiento+" and FechaPago BETWEEN '"+fechaConsultaInicio+"' and '"+fechaConsultaFin+ "' AND T_PagosFE.Anulada=0 GROUP BY NumeroFactura, FechaPago, cl.Identificacion, T_PagosFE.IdModulo, e.Nombre");
+                string cadena = ("SELECT cl.Identificacion, e.Nombre, SUM(T_PagosFE.Total) AS Total, T_PagosFE.FechaPago, " +
+                    "T_PagosFE.NumeroFactura, IdModulo FROM T_PagosFE INNER JOIN T_Clientes cl on T_PagosFE.Identificacion = cl.Identificacion " +
+                    "INNER JOIN T_Estacionamientos e on T_PagosFE.IdEstacionamiento = e.IdEstacionamiento INNER JOIN T_Pagos PA ON PA.NumeroDocumento = T_PagosFE.Identificacion" +
+                    " WHERE T_PagosFE.IdEstacionamiento=" + idEstacionamiento+ "   and PA.FechaSolicitud BETWEEN '"+fechaConsultaInicio+ "' and '"+fechaConsultaFin+ "' AND T_PagosFE.Anulada=0 GROUP BY T_PagosFE.NumeroFactura, T_PagosFE.FechaPago, cl.Identificacion, T_PagosFE.IdModulo, e.Nombre");
                 SqlCommand comando = new SqlCommand(cadena, sqlCon);
                 sqlCon.Open();
                 SqlDataReader rta = comando.ExecuteReader();
