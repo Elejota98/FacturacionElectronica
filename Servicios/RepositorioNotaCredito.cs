@@ -375,10 +375,10 @@ namespace Servicios
                 DateTime fechaActual = FechaSolicitud;
                 DateTime fechaSoloFecha = fechaActual.Date;
                 MyDouble = fechaSoloFecha.ToOADate();
-                numero = Convert.ToString(consecutivoNumero);
+                //numero = Convert.ToString(consecutivoNumero);
                 //Consecutivo
-                string numeroItem = fechaActual.ToString("ddMM");
-                consecutivoNumero = Convert.ToInt32(numeroItem);
+                //string numeroItem = fechaActual.ToString("ddMM");
+                //consecutivoNumero = Convert.ToInt32(numeroItem);
 
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
                 foreach (DataRow row in datos.Rows)
@@ -408,13 +408,14 @@ namespace Servicios
 
                         if (idcConcepto.ToString() != row[5].ToString())
                         {
-                            consecutivoNumero = idcNumero + itemConsecutivo;
+                            consecutivoNumero = idcNumero + 1;
                         }
                         else
                         {
                             consecutivoNumero = idcNumero;
                         }
                     }
+                    idcConcepto = row[5].ToString();
 
                     idc_empresa = Convert.ToInt32(row[0]);
                     documentoempresa = row[1].ToString();
