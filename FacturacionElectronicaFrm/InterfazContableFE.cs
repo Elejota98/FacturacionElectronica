@@ -365,7 +365,7 @@ namespace FacturacionElectronicaFrm
 
                         DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
                         int numeroFecha = (int)(fechaHoy - new DateTime(1899, 12, 30)).TotalDays;
-                        string observaciones = "Reemplazo factura POS - " + pagos.NumeroFactura + "";
+                        string observaciones = "Reemplazo factura POS "+""+pagos.Prefijo+" - " + pagos.NumeroFactura + "";
 
                         textoPagos = $"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
                              $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR,COE_FORMA_PAGO)" +
