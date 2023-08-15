@@ -64,9 +64,7 @@ namespace FacturacionElectronicaFrm
 
         public Form1()
         {
-
             InitializeComponent();
-
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
