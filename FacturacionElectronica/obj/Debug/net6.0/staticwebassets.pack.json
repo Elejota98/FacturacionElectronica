@@ -1,283 +1,283 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\ClientesCrear.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\ClientesCrear.css",
       "PackagePath": "staticwebassets\\css\\ClientesCrear.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Custom.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Custom.css",
       "PackagePath": "staticwebassets\\css\\Custom.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Index.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Index.css",
       "PackagePath": "staticwebassets\\css\\Index.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Layout.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\Layout.css",
       "PackagePath": "staticwebassets\\css\\Layout.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\PagosCrear.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\PagosCrear.css",
       "PackagePath": "staticwebassets\\css\\PagosCrear.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\boostrap.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\boostrap.css",
       "PackagePath": "staticwebassets\\css\\boostrap.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\site.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\favicon.ico",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\FondoBody.jpg",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\FondoBody.jpg",
       "PackagePath": "staticwebassets\\imagenes\\FondoBody.jpg"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\agencia.svg",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\agencia.svg",
       "PackagePath": "staticwebassets\\imagenes\\agencia.svg"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\fondo-servicios-grande.jpg",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\fondo-servicios-grande.jpg",
       "PackagePath": "staticwebassets\\imagenes\\fondo-servicios-grande.jpg"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\fondo-servicios.jpg",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\fondo-servicios.jpg",
       "PackagePath": "staticwebassets\\imagenes\\fondo-servicios.jpg"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\js\\site.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\Administrador\\Documents\\LJ\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
