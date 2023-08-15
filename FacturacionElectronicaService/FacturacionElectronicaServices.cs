@@ -6,5 +6,19 @@ namespace FacturacionElectronicaService
         {
             InitializeComponent();
         }
+
+        private void tmrInicio_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #region Funciones 
+
+        #endregion
+
+        #region Mensajes
+
+        #endregion
     }
 }

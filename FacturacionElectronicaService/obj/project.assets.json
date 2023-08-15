@@ -1,11 +1,64 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "Controlador/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Modelo": "1.0.0",
+          "Servicios": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Controlador.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Controlador.dll": {}
+        }
+      },
+      "Modelo/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Modelo.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Modelo.dll": {}
+        }
+      },
+      "Servicios/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Modelo": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Servicios.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Servicios.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Controlador/1.0.0": {
+      "type": "project",
+      "path": "../Controlador/Controlador.csproj",
+      "msbuildProject": "../Controlador/Controlador.csproj"
+    },
+    "Modelo/1.0.0": {
+      "type": "project",
+      "path": "../Modelo/Modelo.csproj",
+      "msbuildProject": "../Modelo/Modelo.csproj"
+    },
+    "Servicios/1.0.0": {
+      "type": "project",
+      "path": "../Servicios/Servicios.csproj",
+      "msbuildProject": "../Servicios/Servicios.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "Controlador >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Administrador\\.nuget\\packages\\": {}
@@ -33,7 +86,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Controlador\\Controlador.csproj": {
+              "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Controlador\\Controlador.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

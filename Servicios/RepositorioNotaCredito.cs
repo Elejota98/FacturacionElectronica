@@ -120,7 +120,7 @@ namespace Servicios
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("SELECT * FROM ITEMSDOCCONTABLE ORDER BY IDC_NUMERO");
+                string cadena = ("SELECT i.* FROM ITEMSDOCCONTABLE i JOIN ( SELECT MAX(CAST(IDC_NUMERO AS INTEGER)) AS Max_IDC_NUMERO    FROM ITEMSDOCCONTABLE) max_value ON CAST(i.IDC_NUMERO AS INTEGER) = max_value.Max_IDC_NUMERO");
                 FbCommand comando = new FbCommand(cadena, fbCon);
                 fbCon.Open();
                 FbDataReader rta = comando.ExecuteReader();

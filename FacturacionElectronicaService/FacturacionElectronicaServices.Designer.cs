@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            tmrInicio = new System.Windows.Forms.Timer(components);
             SuspendLayout();
+            // 
+            // tmrInicio
+            // 
+            tmrInicio.Tick += tmrInicio_Tick;
             // 
             // FacturacionElectronicaServices
             // 
@@ -41,5 +47,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer tmrInicio;
     }
 }

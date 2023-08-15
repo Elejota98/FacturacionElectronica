@@ -4,6 +4,28 @@
     "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronicaService\\FacturacionElectronicaService.csproj": {}
   },
   "projects": {
+    "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Controlador\\Controlador.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Controlador\\Controlador.csproj",
+        "projectName": "Controlador",
+        "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Controlador\\Controlador.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Modelo\\Modelo.csproj": {
+                "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Modelo\\Modelo.csproj"
+              },
+              "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Servicios\\Servicios.csproj": {
+                "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Servicios\\Servicios.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronicaService\\FacturacionElectronicaService.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +49,11 @@
         "frameworks": {
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Controlador\\Controlador.csproj": {
+                "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Controlador\\Controlador.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -60,6 +86,40 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Modelo\\Modelo.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Modelo\\Modelo.csproj",
+        "projectName": "Modelo",
+        "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Modelo\\Modelo.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Servicios\\Servicios.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Servicios\\Servicios.csproj",
+        "projectName": "Servicios",
+        "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Servicios\\Servicios.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Modelo\\Modelo.csproj": {
+                "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\Modelo\\Modelo.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

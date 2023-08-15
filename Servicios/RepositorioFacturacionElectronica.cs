@@ -179,6 +179,35 @@ namespace Servicios
             }
             return rta;
         }
+
+        public string InsertarCliente(Cliente cliente)
+        {
+            string rta = "";
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
+                    "CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE)VALUES ("+cliente.Empresa+", "+cliente.Identificacion+", 1, "+cliente.RazonSocial+", "+cliente.Direccion+","+cliente.Telefono+", "+cliente.Email+"," +
+                    " "+cliente.IdCiudad+", "+cliente.Vendedor+", NULL,NULL);");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex)
+            {
+
+                rta = ex.ToString();
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return rta;
+
+        }
         #endregion
 
         #region Pagos

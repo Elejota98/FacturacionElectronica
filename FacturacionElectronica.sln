@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilidades", "Utilidades\Ut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronicaFrm", "FacturacionElectronicaFrm\FacturacionElectronicaFrm.csproj", "{7D944F78-0AC2-4EAC-9D53-DB7C00EA5BF2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServicioFacturacionElectronica", "ServicioFacturacionElectronica", "{15C298A7-B1EC-42D8-AF80-52547EEBB952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronicaServicio", "FacturacionElectronicaServicio\FacturacionElectronicaServicio.csproj", "{2DAA4815-4F86-481A-B17D-4FBFBD7FEFCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{7D944F78-0AC2-4EAC-9D53-DB7C00EA5BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D944F78-0AC2-4EAC-9D53-DB7C00EA5BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D944F78-0AC2-4EAC-9D53-DB7C00EA5BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DAA4815-4F86-481A-B17D-4FBFBD7FEFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DAA4815-4F86-481A-B17D-4FBFBD7FEFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DAA4815-4F86-481A-B17D-4FBFBD7FEFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DAA4815-4F86-481A-B17D-4FBFBD7FEFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,8 @@ Global
 		{A3E1F731-1A27-4917-B1C8-021AB3344FCF} = {6DB44ABE-97BD-4C00-857F-DFE34619DCC5}
 		{12B39667-FF8B-49D4-B079-33ED171A17E9} = {6DB44ABE-97BD-4C00-857F-DFE34619DCC5}
 		{7D944F78-0AC2-4EAC-9D53-DB7C00EA5BF2} = {6DB44ABE-97BD-4C00-857F-DFE34619DCC5}
+		{15C298A7-B1EC-42D8-AF80-52547EEBB952} = {6DB44ABE-97BD-4C00-857F-DFE34619DCC5}
+		{2DAA4815-4F86-481A-B17D-4FBFBD7FEFCB} = {15C298A7-B1EC-42D8-AF80-52547EEBB952}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65ADAECB-A1AA-4A2A-9FBC-23ABDE473AA2}
