@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using Modelo;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -45,33 +46,72 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ListarClientesNuevosPorDoc(identificacion);
         }
-        public static string ActualizaEstadoCliente(int identificacion)
-        {
-            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            return Datos.ActualizaEstadoCliente(identificacion);
+        //public static string ActualizaEstadoCliente(int identificacion)
+        //{
+        //    RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+        //    return Datos.ActualizaEstadoCliente(identificacion);
 
-        }
+        //}
 
         //INTERFAZ
 
 
         #region Cliente
-        public static string InsertarClienteInterfaz(string texto)
-        {
-            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            return Datos.InsertarClienteInterfaz(texto);
-        }
-        public static DataTable ValidarExisteCliente( string documento)
-        {
-            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            return Datos.ValidarExisteCliente(documento);
-        }
+        //public static string InsertarClienteInterfaz(string texto)
+        //{
+        //    RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+        //    return Datos.InsertarClienteInterfaz(texto);
+        //}
+
 
         public static DataTable ListarDocumentoVendedor()
         {
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ListarDocumentoVendedor();
         }
+
+        #region New
+        public static string InsertarClienteInterfaz(Cliente cliente)
+        {
+            string rta = "";
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            rta = Datos.InsertarClienteInterfaz(cliente);
+            if (!rta.Equals("ERROR"))
+            {
+                return rta.ToString();
+            }
+            else
+            {
+                rta = "ERROR";
+            }
+
+            return rta.ToString();
+
+
+        }
+
+        public static string ActualizaEstadoCliente(Cliente cliente)
+        {
+            string rta = "";
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            rta = Datos.ActualizaEstadoCliente(cliente);
+            if (rta.Equals("OK"))
+            {
+                return rta.ToString();
+            }
+            else
+            {
+                rta = "ERROR";
+            }
+            return rta;
+        }
+
+        public static DataTable ValidarExisteCliente(Cliente cliente)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ValidarExisteCliente(cliente);
+        }
+        #endregion
 
 
 

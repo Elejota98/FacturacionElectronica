@@ -28,20 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.lbEventos = new System.Windows.Forms.ListBox();
+            this.Inicio = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // lbEventos
+            // 
+            this.lbEventos.FormattingEnabled = true;
+            this.lbEventos.HorizontalScrollbar = true;
+            this.lbEventos.Location = new System.Drawing.Point(23, 21);
+            this.lbEventos.Name = "lbEventos";
+            this.lbEventos.ScrollAlwaysVisible = true;
+            this.lbEventos.Size = new System.Drawing.Size(1089, 212);
+            this.lbEventos.TabIndex = 4;
+            // 
+            // Inicio
+            // 
+            this.Inicio.Tick += new System.EventHandler(this.Inicio_Tick);
             // 
             // SincronizacionFacturacionElectronica
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1173, 338);
+            this.Controls.Add(this.lbEventos);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SincronizacionFacturacionElectronica";
             this.Text = "SincronizacionFacturacionElectronica";
+            this.Load += new System.EventHandler(this.SincronizacionFacturacionElectronica_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ListBox lbEventos;
+        private System.Windows.Forms.Timer Inicio;
     }
 }
 

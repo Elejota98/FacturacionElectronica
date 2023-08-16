@@ -28,6 +28,7 @@ namespace FacturacionElectronicaFrm
             InitializeComponent();
             ListarEstacionamientos();
         }
+
         #region Definiciones
         private string _ConnectionStringFirebird
         {

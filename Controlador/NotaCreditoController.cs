@@ -1,7 +1,9 @@
-﻿using Servicios;
+﻿using Modelo;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -30,6 +32,8 @@ namespace Controlador
         }
 
         //INTERFAZ
+
+
 
         public static DataTable ListarItemsContable()
         {

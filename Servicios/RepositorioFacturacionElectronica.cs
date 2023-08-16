@@ -128,14 +128,73 @@ namespace Servicios
         //INTERFAZ
 
         #region Cliente
-        public DataTable ValidarExisteCliente(string documento)
+        public string InsertarCliente(Cliente cliente)
+        {
+            string rta = "";
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ("INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
+                    "CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE)VALUES ("+cliente.Empresa+", "+cliente.Identificacion+", 1, "+cliente.RazonSocial+", "+cliente.Direccion+","+cliente.Telefono+", "+cliente.Email+"," +
+                    " "+cliente.IdCiudad+", "+cliente.Vendedor+", NULL,NULL);");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                comando.ExecuteNonQuery();
+                rta = cadena;
+
+            }
+            catch (Exception ex)
+            {
+
+                rta = "ERROR";
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return rta;
+
+        }
+
+        #region New 
+
+        public string InsertarClienteInterfaz(Cliente cliente)
+        {
+            string rta = "";
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = $"INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
+                           $"CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE) " +
+                           $"VALUES ('1', '{cliente.Identificacion}', 1, '{cliente.RazonSocial}', '{cliente.Direccion}', " +
+                           $"'{cliente.Telefono}', '{cliente.Email}', '{cliente.Nombre}', {cliente.Vendedor}, NULL,NULL)";
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                comando.ExecuteNonQuery();
+                rta = cadena;
+
+            }
+            catch (Exception ex)
+            {
+
+                rta = "ERROR";
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return rta;
+        }
+        public DataTable ValidarExisteCliente(Cliente cliente)
         {
             DataTable tabla = new DataTable();
             FbConnection fbCon = new FbConnection();
             try
             {
                 fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("SELECT * FROM CLIENTES WHERE CLI_IDENTIFICACION='" + documento + "'");
+                string cadena = ("SELECT * FROM CLIENTES WHERE CLI_IDENTIFICACION='" + cliente.Identificacion + "'");
                 FbCommand comando = new FbCommand(cadena, fbCon);
                 fbCon.Open();
                 FbDataReader rta = comando.ExecuteReader();
@@ -154,16 +213,44 @@ namespace Servicios
             return tabla;
         }
 
+        //OLD
 
-        public string InsertarClienteInterfaz(string texto)
+        //public string ActualizaEstadoCliente(int identificacion)
+        //{
+        //    string rta = "";
+        //    SqlConnection sqlCon = new SqlConnection();
+        //    try
+        //    {
+        //        sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+        //        string cadena = ("UPDATE T_CLIENTES SET ESTADO=1 WHERE Identificacion=" + identificacion + "");
+        //        SqlCommand comando = new SqlCommand(cadena, sqlCon);
+        //        sqlCon.Open();
+        //        comando.ExecuteNonQuery();
+        //        rta = "OK";
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+        //    }
+        //    return rta;
+        //}
+
+        public string ActualizaEstadoCliente(Cliente cliente)
         {
             string rta = "";
-            FbConnection fbCon = new FbConnection();
+            SqlConnection sqlCon = new SqlConnection();
             try
             {
-                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                FbCommand comando = new FbCommand(texto, fbCon);
-                fbCon.Open();
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("UPDATE T_CLIENTES SET ESTADO=1 WHERE Identificacion=" + cliente.Identificacion + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
                 comando.ExecuteNonQuery();
                 rta = "OK";
 
@@ -171,43 +258,18 @@ namespace Servicios
             catch (Exception ex)
             {
 
-                rta = ex.ToString();
+                throw ex;
             }
             finally
             {
-                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
             return rta;
         }
 
-        public string InsertarCliente(Cliente cliente)
-        {
-            string rta = "";
-            FbConnection fbCon = new FbConnection();
-            try
-            {
-                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
-                string cadena = ("INSERT INTO CLIENTES (CLI_EMPRESA, CLI_IDENTIFICACION, CLI_CODIGO_SUCURSAL, CLI_RAZON_SOCIAL, CLI_DIRECCION, CLI_TELEFONO, " +
-                    "CLI_EMAIL_FE, CLI_CIUDAD, CLI_VENDEDOR, CLI_CUPO_CREDITO, CLI_FECHA_UPDATE)VALUES ("+cliente.Empresa+", "+cliente.Identificacion+", 1, "+cliente.RazonSocial+", "+cliente.Direccion+","+cliente.Telefono+", "+cliente.Email+"," +
-                    " "+cliente.IdCiudad+", "+cliente.Vendedor+", NULL,NULL);");
-                FbCommand comando = new FbCommand(cadena, fbCon);
-                fbCon.Open();
-                comando.ExecuteNonQuery();
-                rta = "OK";
+        #endregion
 
-            }
-            catch (Exception ex)
-            {
 
-                rta = ex.ToString();
-            }
-            finally
-            {
-                if (fbCon.State == ConnectionState.Open) fbCon.Close();
-            }
-            return rta;
-
-        }
         #endregion
 
         #region Pagos
@@ -528,31 +590,6 @@ namespace Servicios
             }
         }
 
-        public string ActualizaEstadoCliente(int identificacion)
-        {
-            string rta = "";
-            SqlConnection sqlCon = new SqlConnection();
-            try
-            {
-                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("UPDATE T_CLIENTES SET ESTADO=1 WHERE Identificacion=" + identificacion + "");
-                SqlCommand comando = new SqlCommand(cadena, sqlCon);
-                sqlCon.Open();
-                comando.ExecuteNonQuery();
-                rta = "OK";
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
-            }
-            return rta;
-        }
 
 
 
