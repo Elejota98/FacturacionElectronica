@@ -71,32 +71,32 @@ namespace Servicios
         }
 
 
-        public DataTable ListarPagos()
-        {
-            DataTable tabla = new DataTable();
-            SqlConnection sqlcon = new SqlConnection();
-            try
-            {
-                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total,p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN " +
-                                " T_Pagos P on c.Identificacion = p.NumeroDocumento INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
-                SqlCommand comando = new SqlCommand(cadena, sqlcon);
-                sqlcon.Open();
-                SqlDataReader rta = comando.ExecuteReader();
-                tabla.Load(rta);
-                return tabla;
+        //public DataTable ListarPagos()
+        //{
+        //    DataTable tabla = new DataTable();
+        //    SqlConnection sqlcon = new SqlConnection();
+        //    try
+        //    {
+        //        sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+        //        string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total,p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN " +
+        //                        " T_Pagos P on c.Identificacion = p.NumeroDocumento INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
+        //        SqlCommand comando = new SqlCommand(cadena, sqlcon);
+        //        sqlcon.Open();
+        //        SqlDataReader rta = comando.ExecuteReader();
+        //        tabla.Load(rta);
+        //        return tabla;
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
-            finally
-            {
-                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
-            }
-        }
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+        //    }
+        //}
 
         public string ActualizaEstadoPagos(int id)
         {
@@ -326,6 +326,63 @@ namespace Servicios
 
         }
 
+        #region New
+
+        public DataTable ListarPagos()
+        {
+            DataTable tabla = new DataTable();
+            SqlConnection sqlcon = new SqlConnection();
+            try
+            {
+                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total,p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN " +
+                                " T_Pagos P on c.Identificacion = p.NumeroDocumento INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
+                SqlCommand comando = new SqlCommand(cadena, sqlcon);
+                sqlcon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
+        }
+
+        public DataTable ListarCentroCosto(Pagos pagos)
+        {
+            SqlConnection sqlCon = new SqlConnection();
+            DataTable tabla = new DataTable();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT replace(ep.documentoempresa,'NCRP','') as CentroCosto FROM T_EmpresaParquearse EP WHERE IdEstacionamiento=" + pagos.IdEstacionamiento + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+        }
+
+        #endregion
+
         //Obtener datos empresas 
 
         public DataTable ConsultarDatosContablesEmpresas()
@@ -512,31 +569,31 @@ namespace Servicios
                 if (fbCon.State == ConnectionState.Open) fbCon.Close();
             }
         }
-        public DataTable ListarCentroCosto(int idEstacionamiento)
-        {
-            SqlConnection sqlCon = new SqlConnection();
-            DataTable tabla = new DataTable();
-            try
-            {
-                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT replace(ep.documentoempresa,'NCRP','') as CentroCosto FROM T_EmpresaParquearse EP WHERE IdEstacionamiento=" + idEstacionamiento + "");
-               SqlCommand comando = new SqlCommand(cadena, sqlCon);
-                sqlCon.Open();
-                SqlDataReader rta = comando.ExecuteReader();
-                tabla.Load(rta);
-                return tabla;
+        //public DataTable ListarCentroCosto(int idEstacionamiento)
+        //{
+        //    SqlConnection sqlCon = new SqlConnection();
+        //    DataTable tabla = new DataTable();
+        //    try
+        //    {
+        //        sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+        //        string cadena = ("SELECT replace(ep.documentoempresa,'NCRP','') as CentroCosto FROM T_EmpresaParquearse EP WHERE IdEstacionamiento=" + idEstacionamiento + "");
+        //       SqlCommand comando = new SqlCommand(cadena, sqlCon);
+        //        sqlCon.Open();
+        //        SqlDataReader rta = comando.ExecuteReader();
+        //        tabla.Load(rta);
+        //        return tabla;
 
-            }
-            catch (Exception ex )
-            {
+        //    }
+        //    catch (Exception ex )
+        //    {
 
-                throw ex ;
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
-            }
-        }
+        //        throw ex ;
+        //    }
+        //    finally
+        //    {
+        //        if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+        //    }
+        //}
 
 
         public DataTable ListarClientesNuevos()

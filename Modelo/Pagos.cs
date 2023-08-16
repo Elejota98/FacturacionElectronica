@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class Pagos
+    public class Pagos : Cliente
     {
         public int Id { get; set; }
         public string NumeroDocumento { get; set; }
@@ -14,6 +14,7 @@ namespace Modelo
         public string Prefijo { get; set; }
         public int Total { get; set; }
         public int IdEstacionamiento { get; set; }
+        public TipoPago TipoPago{get; set;}
         public DateTime FechaPago { get; set; }
         public byte[] Imagen { get; set; }
         public bool Estado { get; set; }

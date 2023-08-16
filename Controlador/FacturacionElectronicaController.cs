@@ -181,10 +181,16 @@ namespace Controlador
             return Datos.ListarClientesInterfaz();
         }
 
-        public static DataTable ListarCentroCosto(int idEstacionamiento)
+        //public static DataTable ListarCentroCosto(int idEstacionamiento)
+        //{
+        //    RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+        //    return Datos.ListarCentroCosto(idEstacionamiento);
+        //}
+
+        public static DataTable ListarCentroCosto(Pagos pagos)
         {
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            return Datos.ListarCentroCosto(idEstacionamiento);
+            return Datos.ListarCentroCosto(pagos);
         }
 
 
