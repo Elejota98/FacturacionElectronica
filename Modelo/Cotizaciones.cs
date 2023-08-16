@@ -26,7 +26,7 @@ namespace Modelo
     {
         public int Cot_Empresa { get; set; }
         public string Cot_Documento { get; set; }
-        public string Cot_Numero { get; set; }
+        public int Cot_Numero { get; set; }
         public int Cot_Item { get; set; }
         public int Cot_Tipo_Item { get; set; }
         public string Cot_Descripcion_Item { get; set; }

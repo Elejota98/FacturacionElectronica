@@ -9,6 +9,6 @@ namespace Modelo
     public class TipoPago
     {
         public int IdTipoPago { get; set; }
-        public string TipoPago { get; set; }
+        public string Nombre { get; set; }
     }
 }

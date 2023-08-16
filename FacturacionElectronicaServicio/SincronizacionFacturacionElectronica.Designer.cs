@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.lbEventos = new System.Windows.Forms.ListBox();
             this.Inicio = new System.Windows.Forms.Timer(this.components);
+            this.dvgRta = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgRta)).BeginInit();
             this.SuspendLayout();
             // 
             // lbEventos
@@ -47,16 +49,26 @@
             // 
             this.Inicio.Tick += new System.EventHandler(this.Inicio_Tick);
             // 
+            // dvgRta
+            // 
+            this.dvgRta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgRta.Location = new System.Drawing.Point(23, 405);
+            this.dvgRta.Name = "dvgRta";
+            this.dvgRta.Size = new System.Drawing.Size(1100, 150);
+            this.dvgRta.TabIndex = 5;
+            // 
             // SincronizacionFacturacionElectronica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 338);
+            this.ClientSize = new System.Drawing.Size(1173, 687);
+            this.Controls.Add(this.dvgRta);
             this.Controls.Add(this.lbEventos);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SincronizacionFacturacionElectronica";
             this.Text = "SincronizacionFacturacionElectronica";
             this.Load += new System.EventHandler(this.SincronizacionFacturacionElectronica_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dvgRta)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -65,6 +77,7 @@
 
         private System.Windows.Forms.ListBox lbEventos;
         private System.Windows.Forms.Timer Inicio;
+        private System.Windows.Forms.DataGridView dvgRta;
     }
 }
 
