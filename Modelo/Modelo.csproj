@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Ciudad.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="CotizacionEncabezado.cs" />
     <Compile Include="Cotizaciones.cs" />
     <Compile Include="ItemsContable.cs" />
     <Compile Include="Pagos.cs" />

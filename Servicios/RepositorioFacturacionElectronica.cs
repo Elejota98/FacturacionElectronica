@@ -381,6 +381,91 @@ namespace Servicios
             }
         }
 
+        public string ActualizaEstadoPagos(Pagos pagos)
+        {
+            string rta = "";
+            SqlConnection sqlcon = new SqlConnection();
+            try
+            {
+                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("UPDATE T_Pagos SET Estado=1 WHERE Estado=0 and Id=" + pagos.Id + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlcon);
+                sqlcon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
+            return rta;
+        }
+
+        public string InsertarPagosInterfaz(Cotizaciones cotizaciones)
+        {
+            string rta = "";
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ($"INSERT INTO COTIZACIONES (COT_EMPRESA, COT_DOCUMENTO, COT_NUMERO, COT_ITEM, COT_TIPO_ITEM, COT_DESCRIPCION_ITEM, COT_REFERENCIA, COT_BODEGA," +
+                                             $"  COT_CANTIDAD, COT_VALOR_UNITARIO, COT_VR_DTO, COT_FECHA_UPDATE, COT_CENTRO_COSTO, COT_PROYECTO)" +
+                                             $" VALUES({cotizaciones.Cot_Empresa},'{cotizaciones.Cot_Documento}',{cotizaciones.Cot_Numero},{cotizaciones.Cot_Item},{cotizaciones.Cot_Tipo_Item},' ','{cotizaciones.Cot_Referencia}',NULL,{cotizaciones.Cot_Cantidad},{cotizaciones.Cot_Valor_Unitario},0,NULL,'{cotizaciones.Cot_Centro_Costo}',NULL);");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex)
+            {
+
+                rta = ex.ToString();
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return rta;
+        }
+
+        public string InsertaPagosCotizacionEncabezado(CotizacionEncabezado cotizacionEncabezado)
+        {
+            string rta = "";
+            FbConnection fbCon = new FbConnection();
+            try
+            {
+                fbCon = RepositorioConexion.getInstancia().CrearConexionLocal();
+                string cadena = ($"INSERT INTO COTIZACION_ENCABEZADO (COE_EMPRESA, COE_DOCUMENTO,COE_NUMERO,COE_FECHA,COE_CLIENTE,COE_CLIENTE_SUCURSAL,COE_SINCRONIZADO,COE_ERRORES,COE_OBSERVACIONES," +
+                             $"COE_NUMERO_MG,COE_FECHA_UPDATE,COE_ANTICIPO,COE_FRA_PREFIJO,COE_FRA_NUMERO, COE_DEV_CONCEPTO,COE_VENDEDOR,COE_FORMA_PAGO)" +
+                             $"VALUES({cotizacionEncabezado.Coe_Empresa},'{cotizacionEncabezado.Coe_Documento}',{cotizacionEncabezado.Coe_Numero},{cotizacionEncabezado.Coe_Fecha},{cotizacionEncabezado.Coe_Cliente}," +
+                             $"{cotizacionEncabezado.Coe_Cliente_Sucursal},{cotizacionEncabezado.Coe_Sincronizado},NULL,'{cotizacionEncabezado.Coe_Observaciones}',NULL,NULL,0,NULL,NULL,NULL,'{cotizacionEncabezado.Coe_Vendedor}',{cotizacionEncabezado.Coe_Forma_Pago})");
+                FbCommand comando = new FbCommand(cadena, fbCon);
+                fbCon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+            }
+            catch (Exception ex)
+            {
+
+                rta = ex.ToString();
+            }
+            finally
+            {
+                if (fbCon.State == ConnectionState.Open) fbCon.Close();
+            }
+            return rta;
+        }
+
+
         #endregion
 
         //Obtener datos empresas 

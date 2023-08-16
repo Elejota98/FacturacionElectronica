@@ -10,7 +10,7 @@ namespace Modelo
     {
         public int Coe_Empresa { get; set; }
         public string Coe_Documento { get; set; }
-        public string Coe_Numero { get; set; }
+        public int Coe_Numero { get; set; }
         public int Coe_Fecha { get; set; }
         public int Coe_Cliente { get; set; }
         public int Coe_Cliente_Sucursal { get; set; }
@@ -24,6 +24,7 @@ namespace Modelo
         public string Coe_Fra_Numero { get; set; }
         public int Coe_Dev_Concepto { get; set; }
         public int Coe_Vendedor { get; set; }
+        public int Coe_Forma_Pago { get; set; }
 
     }
 }

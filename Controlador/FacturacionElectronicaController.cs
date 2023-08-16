@@ -30,12 +30,6 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ListarPagos();
         }
-
-        public static string ActualizaEstadoPagos(int id)
-        {
-            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            return Datos.ActualizaEstadoPagos(id);
-        }
         public static DataTable ListarClientesNuevos()
         {
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
@@ -158,6 +152,58 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new  RepositorioFacturacionElectronica();
             return Datos.ListarUltimaCotizacion();
         }
+
+        #region New 
+        public static string InsetarPagosInterfaz(Cotizaciones cotizaciones)
+        {
+            string rta = "";
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            rta = Datos.InsertarPagosInterfaz(cotizaciones);
+            if (rta.Equals("OK"))
+            {
+                rta = "OK";
+            }
+            else
+            {
+                rta = "ERROR";
+            }
+            return rta;
+        }
+
+        public static string ActualizaEstadoPagos(Pagos pagos)
+        {
+            string rta = "";
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            rta = Datos.ActualizaEstadoPagos(pagos);
+            if (rta.Equals("OK"))
+            {
+                rta = "OK";
+            }
+            else
+            {
+                rta = "ERROR";
+            }
+            return rta;
+        }
+
+        public static string InsertaPagosCotizacionEncabezado(CotizacionEncabezado cotizacionEncabezado)
+        {
+            string rta = "";
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            rta = Datos.InsertaPagosCotizacionEncabezado(cotizacionEncabezado);
+            if (rta.Equals("OK"))
+            {
+                rta = "OK";
+            }
+            else
+            {
+                rta = "ERROR";
+            }
+            return rta;
+        }
+
+
+        #endregion
 
         #endregion
 
