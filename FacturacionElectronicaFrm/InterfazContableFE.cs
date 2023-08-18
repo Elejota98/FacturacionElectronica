@@ -848,6 +848,11 @@ namespace FacturacionElectronicaFrm
                 }
             }
         }
+
+        private void minimizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
         

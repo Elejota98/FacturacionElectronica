@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -326,6 +327,7 @@ namespace Servicios
 
         }
 
+
         #region New
 
         public DataTable ListarPagos()
@@ -422,6 +424,7 @@ namespace Servicios
                 fbCon.Open();
                 comando.ExecuteNonQuery();
                 rta = "OK";
+                GenerarArchivoPlano(cadena);
 
             }
             catch (Exception ex)
@@ -451,6 +454,8 @@ namespace Servicios
                 fbCon.Open();
                 comando.ExecuteNonQuery();
                 rta = "OK";
+                GenerarArchivoPlano(cadena);
+
 
             }
             catch (Exception ex)
@@ -463,6 +468,28 @@ namespace Servicios
                 if (fbCon.State == ConnectionState.Open) fbCon.Close();
             }
             return rta;
+        }
+
+        public void GenerarArchivoPlano(string texto)
+        {
+
+
+            // Obtener la fecha actual para el nombre de archivo
+            DateTime fechaActual = DateTime.Now;
+            string rutaFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Registros-FE-" + fechaActual.Day.ToString() + "-" + fechaActual.Month.ToString() + "-" + fechaActual.Year.ToString());
+            string nombre = "FacturaElectronica";
+            string path = rutaFolder + "/" + nombre + @".txt";
+
+            if (!Directory.Exists(rutaFolder))
+            {
+                Directory.CreateDirectory(rutaFolder);
+            }
+
+            using (StreamWriter sw = new StreamWriter(path, true, Encoding.UTF8))
+            {
+                sw.WriteLine(texto);
+            }
+
         }
 
 

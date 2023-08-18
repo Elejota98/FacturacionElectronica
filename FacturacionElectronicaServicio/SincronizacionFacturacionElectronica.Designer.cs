@@ -29,10 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SincronizacionFacturacionElectronica));
             this.lbEventos = new System.Windows.Forms.ListBox();
             this.Inicio = new System.Windows.Forms.Timer(this.components);
             this.dvgRta = new System.Windows.Forms.DataGridView();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.restaurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minimizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dvgRta)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbEventos
@@ -42,7 +49,7 @@
             this.lbEventos.Location = new System.Drawing.Point(23, 21);
             this.lbEventos.Name = "lbEventos";
             this.lbEventos.ScrollAlwaysVisible = true;
-            this.lbEventos.Size = new System.Drawing.Size(1089, 212);
+            this.lbEventos.Size = new System.Drawing.Size(1089, 602);
             this.lbEventos.TabIndex = 4;
             // 
             // Inicio
@@ -56,19 +63,58 @@
             this.dvgRta.Name = "dvgRta";
             this.dvgRta.Size = new System.Drawing.Size(1100, 150);
             this.dvgRta.TabIndex = 5;
+            this.dvgRta.Visible = false;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.restaurarToolStripMenuItem,
+            this.minimizarToolStripMenuItem,
+            this.cerrarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 70);
+            // 
+            // restaurarToolStripMenuItem
+            // 
+            this.restaurarToolStripMenuItem.Name = "restaurarToolStripMenuItem";
+            this.restaurarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.restaurarToolStripMenuItem.Text = "Restaurar";
+            this.restaurarToolStripMenuItem.Click += new System.EventHandler(this.restaurarToolStripMenuItem_Click);
+            // 
+            // minimizarToolStripMenuItem
+            // 
+            this.minimizarToolStripMenuItem.Name = "minimizarToolStripMenuItem";
+            this.minimizarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.minimizarToolStripMenuItem.Text = "Minimizar";
+            // 
+            // cerrarToolStripMenuItem
+            // 
+            this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.cerrarToolStripMenuItem.Text = "Cerrar";
+            this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
             // SincronizacionFacturacionElectronica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1173, 687);
-            this.Controls.Add(this.dvgRta);
             this.Controls.Add(this.lbEventos);
+            this.Controls.Add(this.dvgRta);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SincronizacionFacturacionElectronica";
             this.Text = "SincronizacionFacturacionElectronica";
             this.Load += new System.EventHandler(this.SincronizacionFacturacionElectronica_Load);
+            this.SizeChanged += new System.EventHandler(this.SincronizacionFacturacionElectronica_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dvgRta)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -78,6 +124,11 @@
         private System.Windows.Forms.ListBox lbEventos;
         private System.Windows.Forms.Timer Inicio;
         private System.Windows.Forms.DataGridView dvgRta;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem restaurarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minimizarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
     }
 }
 
