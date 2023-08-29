@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\255e82e6-a979-4325-bfda-2529b3145806.png",
+      "PackagePath": "staticwebassets\\imagenes\\255e82e6-a979-4325-bfda-2529b3145806.png"
+    },
+    {
       "Id": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\FondoBody.jpg",
       "PackagePath": "staticwebassets\\imagenes\\FondoBody.jpg"
     },

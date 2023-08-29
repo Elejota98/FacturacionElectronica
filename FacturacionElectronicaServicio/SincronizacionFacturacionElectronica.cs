@@ -24,7 +24,6 @@ namespace FacturacionElectronicaServicio
             InitializeComponent();
         }
 
-
         #region Funciones
         public bool ListarClientes()
         {

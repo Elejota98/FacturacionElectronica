@@ -32,6 +32,7 @@ namespace FacturacionElectronica.Models
         [Display(Name = "Fecha de la factura")]
         //[Remote(action: "ValidarDiasFechaFactura", controller:"Pagos")]
         public DateTime FechaPago { get; set; }
+        public string RutaImagen { get; set; }
     }
 
 }

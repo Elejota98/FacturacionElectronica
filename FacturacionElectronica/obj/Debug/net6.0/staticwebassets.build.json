@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M24unDqaemN08Pd8RE5oW448PIhA3CC75e6bm04Z3mg=",
+  "Hash": "lBo+AahfWEQtaR22h7et/jczxo/N8WnfMBw8Lo4mzAw=",
   "Source": "FacturacionElectronica",
   "BasePath": "_content/FacturacionElectronica",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\255e82e6-a979-4325-bfda-2529b3145806.png",
+      "SourceId": "FacturacionElectronica",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\",
+      "BasePath": "_content/FacturacionElectronica",
+      "RelativePath": "imagenes/255e82e6-a979-4325-bfda-2529b3145806.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imagenes\\255e82e6-a979-4325-bfda-2529b3145806.png"
     },
     {
       "Identity": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\wwwroot\\imagenes\\agencia.svg",

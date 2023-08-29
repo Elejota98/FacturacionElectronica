@@ -132,14 +132,32 @@ namespace FacturacionElectronica.Controllers
             {
                 RedirectToAction("NoEncontrado", "Home");
             }
+
+            #region OldImagenes 
+            //if (imagen != null && imagen.Length > 0)
+            //{
+            //    using (var stream = new MemoryStream())
+            //    {
+            //        imagen.CopyTo(stream);
+            //        pagos.Imagen = stream.ToArray();
+            //    }
+            //}
+            #endregion
+
+
             if (imagen != null && imagen.Length > 0)
             {
-                using (var stream = new MemoryStream())
+                string nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName);
+                string rutaImagen = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Facturas", nombreArchivo);
+
+                using (var stream = new FileStream(rutaImagen, FileMode.Create))
                 {
-                    imagen.CopyTo(stream);
-                    pagos.Imagen = stream.ToArray();
+                    await imagen.CopyToAsync(stream);
                 }
+
+                pagos.RutaImagen = Path.Combine("Facturas", nombreArchivo); // Guarda la ruta en el modelo
             }
+
             if (pagos.Total == 0)
             {
                 return RedirectToAction("NoExiste", "Home");
