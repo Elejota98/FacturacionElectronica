@@ -24,7 +24,7 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT Identificacion,RazonSocial,Direccion,Telefono,Email, c.Nombre, Fecha,Estado FROM" +
+                string cadena = ("SELECT Identificacion,RazonSocial,Direccion,Telefono,Email, Rut, c.Nombre, Fecha,Estado FROM" +
                                 " T_Clientes inner join T_Ciudades c on IdCiudad=c.Id where estado=0");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
