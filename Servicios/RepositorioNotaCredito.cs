@@ -45,14 +45,23 @@ namespace Servicios
             SqlConnection sqlCon = new SqlConnection();
             try
             {
-                string fechaConsultaInicio = fechaPago + " 00:00:00";
-                string fechaConsultaFin = fechaPago + " 23:59:59";
+                DateTime fechaActual = DateTime.Now;
+
+                DateTime fechaConsultaInicio = new DateTime(fechaActual.Year, fechaActual.Month, 1);
+
+                DateTime fechaConsultaFin = new DateTime(fechaActual.Year, fechaActual.Month, DateTime.DaysInMonth(fechaActual.Year, fechaActual.Month))
+        .AddHours(23)
+        .AddMinutes(59)
+        .AddSeconds(59);
+
+                string fechaConsultaInicioNew = Convert.ToDateTime(fechaConsultaInicio).ToString("yyyy-MM-dd HH:mm:ss");
+                string fechaonsultaFinNew = Convert.ToDateTime(fechaConsultaFin).ToString("yyyy-MM-dd HH:mm:ss");
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
 
 
                 string cadena = ("SELECT MAX(T_Clientes.Identificacion) AS Identificacion, T_Estacionamientos.Nombre, TotalPayment.Total AS Total, MAX(T_PagosFE.FechaPago) AS FechaPago,  T_PagosFE.NumeroFactura,   MAX(T_PagosFE.IdModulo) AS IdModulo FROM    dbo.T_Estacionamientos " +
 " INNER JOIN dbo.T_PagosFE ON dbo.T_Estacionamientos.IdEstacionamiento = dbo.T_PagosFE.IdEstacionamiento INNER JOIN dbo.T_Pagos ON dbo.T_PagosFE.NumeroFactura = dbo.T_Pagos.NumeroFactura INNER JOIN dbo.T_Clientes ON dbo.T_PagosFE.Identificacion = dbo.T_Clientes.Identificacion INNER JOIN (    SELECT " +
-        " NumeroFactura,   SUM(Total) AS Total   FROM dbo.T_PagosFE    WHERE IdEstacionamiento = "+idEstacionamiento+"  AND Anulada = 0  GROUP BY NumeroFactura) AS TotalPayment ON T_PagosFE.NumeroFactura = TotalPayment.NumeroFactura WHERE   T_Pagos.FechaSolicitud BETWEEN '"+fechaConsultaInicio+"' AND '"+fechaConsultaFin+"'   AND T_PagosFE.IdEstacionamiento = "+idEstacionamiento+" "+
+        " NumeroFactura,   SUM(Total) AS Total   FROM dbo.T_PagosFE    WHERE IdEstacionamiento = "+idEstacionamiento+"  AND Anulada = 0  GROUP BY NumeroFactura) AS TotalPayment ON T_PagosFE.NumeroFactura = TotalPayment.NumeroFactura WHERE   T_Pagos.FechaSolicitud BETWEEN '"+ fechaConsultaInicioNew + "' AND '"+ fechaonsultaFinNew + "'   AND T_PagosFE.IdEstacionamiento = "+idEstacionamiento+" "+
    " AND T_PagosFE.Anulada = 0 GROUP BY   T_PagosFE.NumeroFactura,  T_Estacionamientos.Nombre, TotalPayment.Total;");
 
                 //string cadena = ("SELECT cl.Identificacion, e.Nombre, SUM(T_PagosFE.Total) AS Total, T_PagosFE.FechaPago, " +
@@ -75,6 +84,53 @@ namespace Servicios
             {
                 if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
             }
+        }
+
+        public DataTable ListarTodosPagosInterfaz()
+        {
+            DateTime fechaActual = DateTime.Now;
+
+            DateTime fechaConsultaInicio = new DateTime(fechaActual.Year, fechaActual.Month, 1);
+
+            DateTime fechaConsultaFin = new DateTime(fechaActual.Year, fechaActual.Month, DateTime.DaysInMonth(fechaActual.Year, fechaActual.Month))
+    .AddHours(23)
+    .AddMinutes(59)
+    .AddSeconds(59);
+            string fechaConsultaInicioNew = Convert.ToDateTime(fechaConsultaInicio).ToString("yyyy-MM-dd HH:mm:ss");
+            string fechaonsultaFinNew = Convert.ToDateTime(fechaConsultaFin).ToString("yyyy-MM-dd HH:mm:ss");
+
+            DataTable tabla = new DataTable();
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT " +
+    "  MAX(T_Clientes.Identificacion) AS Identificacion,  " +
+    "  T_Estacionamientos.Nombre,   SUM(T_Pagos.Total) AS Total, " +
+    "  MAX(T_PagosFE.FechaPago) AS FechaPago,   MAX(T_PagosFE.NumeroFactura) AS NumeroFactura, " +
+    "   MAX(T_PagosFE.IdModulo) AS IdModulo " +
+    "FROM dbo.T_Estacionamientos INNER JOIN dbo.T_PagosFE ON dbo.T_Estacionamientos.IdEstacionamiento = dbo.T_PagosFE.IdEstacionamiento " +
+    "INNER JOIN dbo.T_Pagos ON dbo.T_PagosFE.NumeroFactura = dbo.T_Pagos.NumeroFactura " +
+    "INNER JOIN dbo.T_Clientes ON dbo.T_PagosFE.Identificacion = dbo.T_Clientes.Identificacion WHERE  " +
+    " T_Pagos.FechaSolicitud BETWEEN '"+ fechaConsultaInicioNew + "' AND '"+ fechaonsultaFinNew + "'   AND T_PagosFE.Anulada = 0 " +
+    "GROUP BY    T_Estacionamientos.Nombre,   T_PagosFE.NumeroFactura;");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+
+
         }
 
         public DataTable ListarInterfaz(int idEstacionamiento, string numeroFactura, string fechaPago)

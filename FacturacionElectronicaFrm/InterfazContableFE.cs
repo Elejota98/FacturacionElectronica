@@ -113,42 +113,42 @@ namespace FacturacionElectronicaFrm
 
         }
 
-        public bool InsertarClienteInterfaz(string texto)
-        {
-            bool ok = false;
-            string rta = "";
-            rta = FacturacionElectronicaController.InsertarClienteInterfaz(texto);
-            if (rta.Equals("OK"))
-            {
-                ok = true;
-            }
-            else
-            {
-                MensajeAListBox(rta.ToString());
-                ok = false;
-            }
-            return ok;
+        //public bool InsertarClienteInterfaz(string texto)
+        //{
+        //    //bool ok = false;
+        //    //string rta = "";
+        //    //rta = FacturacionElectronicaController.InsertarClienteInterfaz(texto);
+        //    //if (rta.Equals("OK"))
+        //    //{
+        //    //    ok = true;
+        //    //}
+        //    //else
+        //    //{
+        //    //    MensajeAListBox(rta.ToString());
+        //    //    ok = false;
+        //    //}
+        //    //return ok;
 
-        }
+        //}
 
-        public bool VerificarClienteExiste(string documento)
-        {
-            bool ok = false;
-            DataTable tabla = new DataTable();
-            tabla = FacturacionElectronicaController.ValidarExisteCliente(documento);
-            if (tabla.Rows.Count > 0)
-            {
-                ok = true;
-                MensajeAListBox("Cliente se encuentra en la base de datos OK");
-            }
-            else
-            {
-                MensajeAListBox("Cliente no se encuentra en la base de datos");
-                ok = false;
-            }
-            return ok;
+        //public bool VerificarClienteExiste(string documento)
+        //{
+        //    bool ok = false;
+        //    DataTable tabla = new DataTable();
+        //    tabla = FacturacionElectronicaController.ValidarExisteCliente(documento);
+        //    if (tabla.Rows.Count > 0)
+        //    {
+        //        ok = true;
+        //        MensajeAListBox("Cliente se encuentra en la base de datos OK");
+        //    }
+        //    else
+        //    {
+        //        MensajeAListBox("Cliente no se encuentra en la base de datos");
+        //        ok = false;
+        //    }
+        //    return ok;
 
-        }
+        //}
 
         public bool InsertarCotizacionesEncabezado(string texto)
         {
@@ -208,31 +208,31 @@ namespace FacturacionElectronicaFrm
             return ok;
         }
 
-        public bool ActualizarEstadoPagos(int id)
-        {
-            bool ok = false;
-            try
-            {
-                string rtaAct = FacturacionElectronicaController.ActualizaEstadoPagos(id);
-                if (rtaAct.Equals("OK"))
-                {
+        //public bool ActualizarEstadoPagos(int id)
+        //{
+        //    bool ok = false;
+        //    try
+        //    {
+        //        string rtaAct = FacturacionElectronicaController.ActualizaEstadoPagos(id);
+        //        if (rtaAct.Equals("OK"))
+        //        {
 
-                    MensajeAListBox("Se actualizó el pago id = " + id);
-                    ok = true;
-                }
-                else
-                {
-                    MensajeAListBox("No se actulizó el estado del pago");
-                    ok = false;
-                }
-            }
-            catch (Exception ex)
-            {
+        //            MensajeAListBox("Se actualizó el pago id = " + id);
+        //            ok = true;
+        //        }
+        //        else
+        //        {
+        //            MensajeAListBox("No se actulizó el estado del pago");
+        //            ok = false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                MensajeAListBox("No se actualizó estado pagos " + ex.ToString());
-            }
-            return ok;
-        }
+        //        MensajeAListBox("No se actualizó estado pagos " + ex.ToString());
+        //    }
+        //    return ok;
+        //}
 
         public void RegistrarPagos()
         {
@@ -268,11 +268,11 @@ namespace FacturacionElectronicaFrm
                         //    COE_DOCUMENTO = tablaEmpresas.Rows[0]["DocumentoEmpresa"].ToString();
                         //}
 
-                        DataTable tablaCentroCosto = FacturacionElectronicaController.ListarCentroCosto(pagos.IdEstacionamiento);
-                        if (tablaCentroCosto.Rows.Count > 0)
-                        {
-                            centroCosto = tablaCentroCosto.Rows[0]["CentroCosto"].ToString();
-                        }
+                        //DataTable tablaCentroCosto = FacturacionElectronicaController.ListarCentroCosto(pagos.IdEstacionamiento);
+                        //if (tablaCentroCosto.Rows.Count > 0)
+                        //{
+                        //    centroCosto = tablaCentroCosto.Rows[0]["CentroCosto"].ToString();
+                        //}
 
                         DataTable tablaDocumentoVendedor = FacturacionElectronicaController.ListarDocumentoVendedor();
                         if (tablaDocumentoVendedor.Rows.Count > 0)
@@ -307,7 +307,7 @@ namespace FacturacionElectronicaFrm
                                 cotizaciones.Cot_Tipo_Item = Convert.ToInt32(registroCotizaciones["COT_TIPO_ITEM"]);
                                 cotizaciones.Cot_Descripcion_Item = Convert.ToString(registroCotizaciones["COT_DESCRIPCION_ITEM"]);
                                 cotizaciones.Cot_Referencia = Convert.ToString(registroCotizaciones["COT_REFERENCIA"]);
-                                cotizaciones.Cot_Centro_Costo = Convert.ToInt32(registroCotizaciones["COT_CENTRO_COSTO"]);
+                                //cotizaciones.Cot_Centro_Costo = Convert.ToInt32(registroCotizaciones["COT_CENTRO_COSTO"]);
                                 cotizaciones.Cot_Valor_Unitario = Convert.ToInt32(registroCotizaciones["COT_VALOR_UNITARIO"]);
 
                             }
@@ -422,7 +422,7 @@ namespace FacturacionElectronicaFrm
 
                         //    MensajeAListBox(ex.ToString());
                         //}
-                        ActualizarEstadoPagos(pagos.Id);
+                        //ActualizarEstadoPagos(pagos.Id);
                         //string rtaAct = FacturacionElectronicaController.ActualizaEstadoPagos(pagos.Id);
                         //if (rtaAct.Equals("OK"))
                         //{
@@ -671,7 +671,7 @@ namespace FacturacionElectronicaFrm
         {
             string rta = "";
             bool ok = false;
-            rta = FacturacionElectronicaController.ActualizaEstadoCliente(identificacion);
+            //rta = FacturacionElectronicaController.ActualizaEstadoCliente(identificacion);
             if (rta.Equals("OK"))
             {
                 ok = true;
