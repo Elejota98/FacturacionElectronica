@@ -44,7 +44,6 @@ namespace FacturacionElectronicaServicio
             InitializeComponent();
         }
 
-
         #region Funciones
 
                 public void GuardarRegistrosEnExcel(string rutaArchivo, DataTable tabla)

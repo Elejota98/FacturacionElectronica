@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Imagenes\" />
+    <Folder Include="wwwroot\Facturas\" />
   </ItemGroup>
 
 </Project>
