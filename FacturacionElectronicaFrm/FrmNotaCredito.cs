@@ -378,32 +378,33 @@ namespace FacturacionElectronicaFrm
 
         private void button3_Click_2(object sender, EventArgs e)
         {
+            Cliente cliente = new Cliente();
             DataTable tabla;
             tabla = FacturacionElectronicaController.ListarClientesNuevos();
             if (tabla.Rows.Count > 0)
             {
                 foreach (DataRow row in tabla.Rows)
                 {
-                    string valor = Convert.ToString(row["Identificacion"]);
-                    string correo = Convert.ToString(row["Email"]);
-                    string rut = Convert.ToString(row["rut"]);
-
-                    DataTable tablaPorDoc = FacturacionElectronicaController.ListarClientesNuevosPorDoc(Convert.ToInt32(valor));
+                    cliente.Identificacion = Convert.ToInt32(row["Identificacion"]);
+                    cliente.Email= Convert.ToString(row["Email"]);
+                    cliente.Rut = Convert.ToString(row["rut"]);
+                    int valor = cliente.Identificacion;
+                    DataTable tablaPorDoc = FacturacionElectronicaController.ListarClientesNuevosPorDoc(valor);
 
                     if (tablaPorDoc.Rows.Count > 0)
                     {
-                        ActualizaEstadoCliente(Convert.ToInt32(valor));
+                        ActualizaEstadoCliente(cliente);
                         MensajeAListBox("El cliente con identificación " + valor + " ya se encuentra activo");
                     }
                 }
             }
         }
 
-        public bool ActualizaEstadoCliente(int identificacion)
+        public bool ActualizaEstadoCliente(Cliente cliente)
         {
             string rta = "";
             bool ok = false;
-            rta = FacturacionElectronicaController.ActualizaEstadoCliente(identificacion);
+            rta = FacturacionElectronicaController.ActualizaEstadoCliente(cliente);
             if (rta.Equals("OK"))
             {
                 ok = true;
@@ -413,6 +414,30 @@ namespace FacturacionElectronicaFrm
                 ok = false;
             }
             return ok;
+        }
+
+        private void FrmNotaCredito_Load(object sender, EventArgs e)
+        {
+            //DataTable tablaDatosInterfaz;
+            //tablaDatosInterfaz = NotaCreditoController.ListarTodosPagosInterfaz();
+            //if (tablaDatosInterfaz.Rows.Count > 0)
+            //{
+            //    dvgListadoInterfaz.DataSource = NotaCreditoController.ListarTodosPagosInterfaz();
+
+            //    dvgListadoInterfaz.Columns[0].Visible = true;
+            //    lblRtaFacturas.Visible = true;
+            //    lblRtaFacturas.Text = "Resultados facturas electrónicas de " + cboEstacionamientos.Text + " de la fecha " + dtmFecha.Text + "";
+            //    MensajeAListBox("Se encontraron, " + tablaDatosInterfaz.Rows.Count + " Registros");
+
+
+            //}
+            //else
+            //{
+            //    MensajeAListBox("Sin datos para la interfaz, en caso de algún error comunicarse con Tecnología");
+
+            //    MessageBox.Show("No existe información o la factura de la fecha seleccionada ya se le hizo nota crédito", "Parquearse Tecnología");
+            //}
+
         }
     }
 }
