@@ -134,29 +134,29 @@ namespace FacturacionElectronica.Controllers
             }
 
             #region OldImagenes 
-            //if (imagen != null && imagen.Length > 0)
-            //{
-            //    using (var stream = new MemoryStream())
-            //    {
-            //        imagen.CopyTo(stream);
-            //        pagos.Imagen = stream.ToArray();
-            //    }
-            //}
+            if (imagen != null && imagen.Length > 0)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    imagen.CopyTo(stream);
+                    pagos.Imagen = stream.ToArray();
+                }
+            }
             #endregion
 
 
-            if (imagen != null && imagen.Length > 0)
-            {
-                string nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName);
-                string rutaImagen = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Facturas", nombreArchivo);
+            //if (imagen != null && imagen.Length > 0)
+            //{
+            //    string nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName);
+            //    string rutaImagen = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Facturas", nombreArchivo);
 
-                using (var stream = new FileStream(rutaImagen, FileMode.Create))
-                {
-                    await imagen.CopyToAsync(stream);
-                }
+            //    using (var stream = new FileStream(rutaImagen, FileMode.Create))
+            //    {
+            //        await imagen.CopyToAsync(stream);
+            //    }
 
-                pagos.RutaImagen = Path.Combine("Facturas", nombreArchivo); // Guarda la ruta en el modelo
-            }
+            //    pagos.RutaImagen = Path.Combine("Facturas", nombreArchivo); // Guarda la ruta en el modelo
+            //}
 
             if (pagos.Total == 0)
             {
@@ -187,9 +187,7 @@ namespace FacturacionElectronica.Controllers
                 var existeFacturaElectronica = await repositorioPagos.ExisteFacturaElectronica(pagos.IdEstacionamiento, pagos.Prefijo, pagos.FechaPago, pagos.NumeroFactura);
                 if (!existeFacturaElectronica)
                 {
-                    //Se quita el codigo
                     var datosFactura = await repositorioPagos.ListarPagosNube(pagos.NumeroFactura, pagos.IdEstacionamiento, idModulo.IdModulo);
-                    //Se quita el codigo 
 
                     if (datosFactura is null)
                     {

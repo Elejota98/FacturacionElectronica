@@ -408,9 +408,10 @@ namespace FacturacionElectronicaServicio
         {
             DataTable tabla;
             bool ok = false;
-            //tabla = FacturacionElectronicaController.ListarPagos();
-            //if (tabla.Rows.Count > 0)
-            //{
+            tabla = FacturacionElectronicaController.ListarPagos();
+            if (tabla.Rows.Count > 0)
+            {
+                Thread.Sleep(1000);
                 tabla = FacturacionElectronicaController.ListarPagos();
                 if (tabla.Rows.Count > 0)
                 {
@@ -528,7 +529,7 @@ namespace FacturacionElectronicaServicio
                 }
 
 
-            //}
+            }
             return ok;
 
 
