@@ -31,6 +31,12 @@ namespace FacturacionElectronicaServicio
         public int itemCounter = 1;
         public string sRutaCarpeta = ConfigurationManager.AppSettings["RutaArchvoClientes"];
 
+        string folderPath = string.Empty;
+        string nombreArchivoPDF = string.Empty;
+        string nombreArchivoTexto = string.Empty;
+        string rutaArchivoPDF = string.Empty;
+        string rutaArchivoTexto = string.Empty;
+
 
         public string PrefijoFacturasElectronicas()
         {
@@ -46,7 +52,7 @@ namespace FacturacionElectronicaServicio
 
         #region Funciones
 
-                public void GuardarRegistrosEnExcel(string rutaArchivo, DataTable tabla)
+        public void GuardarRegistrosTexto(string rutaArchivo, DataTable tabla)
         {
             using (StreamWriter writer = new StreamWriter(rutaArchivo))
             {
@@ -65,6 +71,9 @@ namespace FacturacionElectronicaServicio
         //CLIENTES
         public bool ListarClientes()
         {
+
+            string rutaCarpeta = sRutaCarpeta;
+
             bool ok = false;
             DataTable tabla = new DataTable();
 
@@ -74,8 +83,8 @@ namespace FacturacionElectronicaServicio
             {
                 foreach (DataRow row in tabla.Rows)
                 {
-                    
-                    cliente.Identificacion= Convert.ToInt32(row["Identificacion"].ToString());
+
+                    cliente.Identificacion = Convert.ToInt32(row["Identificacion"].ToString());
                     cliente.RazonSocial = row["RazonSocial"].ToString();
                     cliente.Direccion = row["Direccion"].ToString();
                     cliente.Telefono = row["Telefono"].ToString();
@@ -88,6 +97,9 @@ namespace FacturacionElectronicaServicio
                     cliente.Vendedor = ListarDocumentoVendedor();
                     cliente.Empresa = 1;
 
+                    folderPath = Path.Combine(rutaCarpeta, Convert.ToString(cliente.Identificacion));
+
+
                     if (VerificarClienteExiste(cliente))
                     {
                         if (cliente.Rut != string.Empty)
@@ -95,30 +107,84 @@ namespace FacturacionElectronicaServicio
                             byte[] pdfData = (byte[])tabla.Rows[0]["Rut"];
                             if (pdfData != null && pdfData.Length > 0)
                             {
-                                string nombreArchivoPDF = cliente.Identificacion + "-" + cliente.Email + ".pdf";
-                                string rutaArchivoPDF = Path.Combine(sRutaCarpeta, nombreArchivoPDF);
-                                File.WriteAllBytes(rutaArchivoPDF, pdfData);
-                                string nombreArchivoTexto = cliente.Identificacion + ".txt";
-                                string rutaArchivoTexto = Path.Combine(sRutaCarpeta, nombreArchivoTexto);
-                                GuardarRegistrosEnExcel(rutaArchivoTexto, tabla);
-                                //ActualizaEstadoCliente(Convert.ToInt32(valor));
+                                try
+                                {
+                                    if (!Directory.Exists(folderPath))
+                                    {
+                                        Directory.CreateDirectory(folderPath);
+
+                                        nombreArchivoPDF = cliente.Identificacion + "-" + cliente.Email + ".pdf";
+                                        nombreArchivoTexto = cliente.Identificacion + "-" + cliente.Email + ".txt";
+
+
+                                        rutaArchivoPDF = Path.Combine(folderPath, nombreArchivoPDF);
+                                        File.WriteAllBytes(rutaArchivoPDF, pdfData);
+
+                                        rutaArchivoTexto = Path.Combine(folderPath, nombreArchivoTexto);
+                                        GuardarRegistrosTexto(rutaArchivoTexto, tabla);
+
+                                        MensajeAListBox("Archivos creados exitosamente en la carpeta.");
+                                    }
+                                    else
+                                    {
+                                        //MensajeAListBox("La carpeta ya existe en la ruta especificada.");
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    MensajeAListBox("Error al crear la carpeta o los archivos: " + ex.Message);
+                                }
                             }
                             else
                             {
-                                string nombreArchivoTexto = cliente.Identificacion + ".txt";
-                                string rutaArchivoTexto = Path.Combine(sRutaCarpeta, nombreArchivoTexto);
-                                GuardarRegistrosEnExcel(rutaArchivoTexto, tabla);
+                                nombreArchivoTexto = cliente.Identificacion + "-" + cliente.Email + ".txt";
+                                try
+                                {
+                                    if (!Directory.Exists(folderPath))
+                                    {
+                                        Directory.CreateDirectory(folderPath);
+
+                                        rutaArchivoTexto = Path.Combine(folderPath, nombreArchivoTexto);
+                                        GuardarRegistrosTexto(rutaArchivoTexto, tabla);
+
+                                        Console.WriteLine("Archivos creados exitosamente en la carpeta.");
+                                    }
+                                    else
+                                    {
+                                        //MensajeAListBox("La carpeta ya existe en la ruta especificada.");
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Error al crear la carpeta o los archivos: " + ex.Message);
+                                }
                             }
-                        }
-
-                        if (ActualizarEstadoCliente(cliente))
-                        {
-
-                            ok = true;
                         }
                         else
                         {
-                            ok = false;
+                            nombreArchivoTexto = cliente.Identificacion + "-" + cliente.Email + ".txt";
+                            try
+                            {
+                                if (!Directory.Exists(folderPath))
+                                {
+                                    Directory.CreateDirectory(folderPath);
+                                    rutaArchivoTexto = Path.Combine(folderPath, nombreArchivoTexto);
+                                    GuardarRegistrosTexto(rutaArchivoTexto, tabla);
+
+                                    Console.WriteLine("Archivos creados exitosamente en la carpeta.");
+                                }
+                                else
+                                {
+                                    //Console.WriteLine("La carpeta ya existe en la ruta especificada.");
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Error al crear la carpeta o los archivos: " + ex.Message);
+                            }
                         }
                     }
                     else
@@ -128,42 +194,93 @@ namespace FacturacionElectronicaServicio
                             byte[] pdfData = (byte[])tabla.Rows[0]["Rut"];
                             if (pdfData != null && pdfData.Length > 0)
                             {
-                                string nombreArchivoPDF = cliente.Identificacion + "-" + cliente.Email + ".pdf";
-                                string rutaArchivoPDF = Path.Combine(sRutaCarpeta, nombreArchivoPDF);
-                                File.WriteAllBytes(rutaArchivoPDF, pdfData);
-                                string nombreArchivoTexto = cliente.Identificacion + ".txt";
-                                string rutaArchivoTexto = Path.Combine(sRutaCarpeta, nombreArchivoTexto);
-                                GuardarRegistrosEnExcel(rutaArchivoTexto, tabla);
-                                //ActualizaEstadoCliente(Convert.ToInt32(valor));
+                                try
+                                {
+                                    if (!Directory.Exists(folderPath))
+                                    {
+                                        Directory.CreateDirectory(folderPath);
+                                        nombreArchivoPDF = cliente.Identificacion + "-" + cliente.Email + ".pdf";
+                                        nombreArchivoTexto = cliente.Identificacion + "-" + cliente.Email + ".txt";
+
+
+                                        rutaArchivoPDF = Path.Combine(folderPath, nombreArchivoPDF);
+                                        File.WriteAllBytes(rutaArchivoPDF, pdfData);
+
+                                        rutaArchivoTexto = Path.Combine(folderPath, nombreArchivoTexto);
+                                        GuardarRegistrosTexto(rutaArchivoTexto, tabla);
+
+                                        MensajeAListBox("Archivos creados exitosamente en la carpeta.");
+                                    }
+                                    else
+                                    {
+                                        //MensajeAListBox("La carpeta ya existe en la ruta especificada.");
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    MensajeAListBox("Error al crear la carpeta o los archivos: " + ex.Message);
+                                }
                             }
                             else
                             {
-                                string nombreArchivoTexto = cliente.Identificacion + ".txt";
-                                string rutaArchivoTexto = Path.Combine(sRutaCarpeta, nombreArchivoTexto);
-                                GuardarRegistrosEnExcel(rutaArchivoTexto, tabla);
-                            }
-                        }
+                                nombreArchivoTexto = cliente.Identificacion + "-" + cliente.Email + ".txt";
+                                try
+                                {
+                                    if (!Directory.Exists(folderPath))
+                                    {
+                                        Directory.CreateDirectory(folderPath);
 
+                                        rutaArchivoTexto = Path.Combine(folderPath, nombreArchivoTexto);
+                                        GuardarRegistrosTexto(rutaArchivoTexto, tabla);
 
-                        if (InsertarClientesInterfazMagister(cliente))
-                        {
-                            if (ActualizarEstadoCliente(cliente))
-                            {
+                                        MensajeAListBox("Archivos creados exitosamente en la carpeta.");
+                                    }
+                                    else
+                                    {
+                                        //MensajeAListBox("La carpeta ya existe en la ruta especificada.");
+                                    }
 
-                                ok = true;
-                            }
-                            else
-                            {
-                                ok = false;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MensajeAListBox("Error al crear la carpeta o los archivos: " + ex.Message);
+                                }
                             }
                         }
                         else
                         {
-                            ok = false;
+                            nombreArchivoTexto = cliente.Identificacion + "-" + cliente.Email + ".txt";
+                            try
+                            {
+                                if (!Directory.Exists(folderPath))
+                                {
+                                    Directory.CreateDirectory(folderPath);
+
+                                    rutaArchivoTexto = Path.Combine(folderPath, nombreArchivoTexto);
+                                    GuardarRegistrosTexto(rutaArchivoTexto, tabla);
+
+                                    MensajeAListBox("Archivos creados exitosamente en la carpeta.");
+                                }
+                                else
+                                {
+                                    //MensajeAListBox("La carpeta ya existe en la ruta especificada.");
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MensajeAListBox("Error al crear la carpeta o los archivos: " + ex.Message);
+                            }
+                        }
+
+                        if (InsertarClientesInterfazMagister(cliente))
+                        {
+                            MensajeAListBox("Se registro el cliente en la interfaz");
                         }
                     }
-                }
 
+                }
             }
             return ok;
         }
@@ -176,14 +293,14 @@ namespace FacturacionElectronicaServicio
                 tabla = FacturacionElectronicaController.ListarDocumentoVendedor();
                 foreach (DataRow rtaTabla in tabla.Rows)
                 {
-                     documento = Convert.ToInt32(rtaTabla["VEN_IDENTIFICACION"]);
+                    documento = Convert.ToInt32(rtaTabla["VEN_IDENTIFICACION"]);
 
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             return documento;
         }
@@ -248,7 +365,7 @@ namespace FacturacionElectronicaServicio
         public bool VerificarClienteExiste(Cliente cliente)
         {
             DataTable tabla;
-            bool ok =false;
+            bool ok = false;
             tabla = FacturacionElectronicaController.ValidarExisteCliente(cliente);
             if (tabla.Rows.Count > 0)
             {
@@ -277,7 +394,7 @@ namespace FacturacionElectronicaServicio
                     }
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 MensajeAListBox(ex.ToString());
@@ -291,10 +408,9 @@ namespace FacturacionElectronicaServicio
         {
             DataTable tabla;
             bool ok = false;
-            tabla = FacturacionElectronicaController.ListarPagos();
-            if (tabla.Rows.Count > 0)
-            {
-                Thread.Sleep(10000);
+            //tabla = FacturacionElectronicaController.ListarPagos();
+            //if (tabla.Rows.Count > 0)
+            //{
                 tabla = FacturacionElectronicaController.ListarPagos();
                 if (tabla.Rows.Count > 0)
                 {
@@ -333,7 +449,7 @@ namespace FacturacionElectronicaServicio
                             cotNum = cotizaciones.Cot_Numero;
 
                         }
-                        cotizaciones.Cot_Numero=cotNum;
+                        cotizaciones.Cot_Numero = cotNum;
 
                         if (pagos.IdTipoPago == 1)
                         {
@@ -369,14 +485,14 @@ namespace FacturacionElectronicaServicio
                             cotizaciones.Cot_Item++;
                             MensajeAListBox("Sincronizacion Pago OK número de factura " + pagos.NumeroFactura + "");
                             ActualizaEstadoPagos(pagos);
-                            MensajeAListBox("Actualizó Pago OK número de factura " + pagos.NumeroFactura + " Con Id "+pagos.Id+"");
+                            MensajeAListBox("Actualizó Pago OK número de factura " + pagos.NumeroFactura + " Con Id " + pagos.Id + "");
                             ok = true;
 
                         }
                         else
                         {
                             MensajeAListBox("Hubo un error en el momento de insertar los pagos a la interfaz");
-                            ok =false;
+                            ok = false;
                         }
 
 
@@ -402,17 +518,17 @@ namespace FacturacionElectronicaServicio
 
                     if (InsertaPagosCotizacionEncabezado(cotizacionEncabezado))
                     {
-                        ok=true;
+                        ok = true;
                         MensajeAListBox("Sincronizó Tabla cotización encabezado OK");
                     }
                     else
                     {
-                        ok=false;
+                        ok = false;
                     }
                 }
 
 
-            }
+            //}
             return ok;
 
 
@@ -435,10 +551,10 @@ namespace FacturacionElectronicaServicio
                 }
                 return ok;
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
 
         }
@@ -460,10 +576,10 @@ namespace FacturacionElectronicaServicio
                 }
                 return ok;
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
-                throw  ex;
+                throw ex;
             }
         }
 
@@ -490,7 +606,7 @@ namespace FacturacionElectronicaServicio
             {
                 foreach (DataRow lstCotizaciones in tabla.Rows)
                 {
-                     numeroCotizacion = Convert.ToInt32(lstCotizaciones["COT_NUMERO"]);
+                    numeroCotizacion = Convert.ToInt32(lstCotizaciones["COT_NUMERO"]);
 
                 }
             }

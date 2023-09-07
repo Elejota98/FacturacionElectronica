@@ -337,8 +337,13 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT  P.Id, C.Empresa, p.FechaPago,c.Identificacion,c.CodigoSucursal,p.Prefijo,p.NumeroFactura, p.Total,p.IdEstacionamiento, tp.IdTipoPago, tp.TipoPago, c.Vendedor FROM T_Clientes C INNER JOIN " +
-                                " T_Pagos P on c.Identificacion = p.NumeroDocumento INNER JOIN T_TipoPago tp on tp.IdTipoPago = p.IdTipoPago WHERE p.Estado = 0");
+                string cadena = ("SELECT      P.Id,      C.Empresa,      P.FechaPago,    " +
+                    "  C.Identificacion,      C.CodigoSucursal,      P.Prefijo,      P.NumeroFactura,    " +
+                    "  P.Total,      P.IdEstacionamiento,      tp.IdTipoPago,      tp.TipoPago,     " +
+                    " C.Vendedor  FROM T_Clientes C  INNER JOIN T_Pagos P ON C.Identificacion = P.NumeroDocumento  " +
+                    "INNER JOIN T_TipoPago tp ON tp.IdTipoPago = P.IdTipoPago  WHERE P.Estado = 0  GROUP BY      P.Id,    " +
+                    "  C.Empresa,      P.FechaPago,      C.Identificacion,      C.CodigoSucursal,      P.Prefijo,    " +
+                    "  P.NumeroFactura,      P.Total,      P.IdEstacionamiento,      tp.IdTipoPago,      tp.TipoPago,      C.Vendedor");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
                 SqlDataReader rta = comando.ExecuteReader();
