@@ -228,6 +228,7 @@ namespace FacturacionElectronica.Controllers
                             }
 
                             //FIN VALIDACION DE FECHAS
+
                             #region Validacion3DiasOld
                             //if (pagos.FechaPago.Day != fechaPagosNube.Day)
                             //{

@@ -19,10 +19,10 @@ namespace Controlador
             return Datos.ListarEstacionamientos();
         }
 
-        public static DataTable ListarPagosInterfaz(int idEstacionamiento, string fechaPago)
+        public static DataTable ListarPagosInterfaz(int idEstacionamiento, string fechaPago, string fechaPagoFin)
         {
             RepositorioNotaCredito Datos = new RepositorioNotaCredito();
-            return Datos.ListarPagosInterfaz(idEstacionamiento,fechaPago);
+            return Datos.ListarPagosInterfaz(idEstacionamiento,fechaPago,fechaPagoFin);
         }
 
         public static DataTable ListarTodosPagosInterfaz()

@@ -39,23 +39,23 @@ namespace Servicios
             }
         }
 
-        public DataTable ListarPagosInterfaz(int idEstacionamiento, string fechaPago)
+        public DataTable ListarPagosInterfaz(int idEstacionamiento, string fechaPago, string fechaPagoFin)
         {
             DataTable tabla = new DataTable();
             SqlConnection sqlCon = new SqlConnection();
             try
             {
-                DateTime fechaActual = DateTime.Now;
+        //        DateTime fechaActual = DateTime.Now;
 
-                DateTime fechaConsultaInicio = new DateTime(fechaActual.Year, fechaActual.Month, 1);
+        //        DateTime fechaConsultaInicio = new DateTime(fechaActual.Year, fechaActual.Month, 1);
 
-                DateTime fechaConsultaFin = new DateTime(fechaActual.Year, fechaActual.Month, DateTime.DaysInMonth(fechaActual.Year, fechaActual.Month))
-        .AddHours(23)
-        .AddMinutes(59)
-        .AddSeconds(59);
+        //        DateTime fechaConsultaFin = new DateTime(fechaActual.Year, fechaActual.Month, DateTime.DaysInMonth(fechaActual.Year, fechaActual.Month))
+        //.AddHours(23)
+        //.AddMinutes(59)
+        //.AddSeconds(59);
 
-                string fechaConsultaInicioNew = Convert.ToDateTime(fechaConsultaInicio).ToString("yyyy-MM-dd HH:mm:ss");
-                string fechaonsultaFinNew = Convert.ToDateTime(fechaConsultaFin).ToString("yyyy-MM-dd HH:mm:ss");
+                string fechaConsultaInicioNew = Convert.ToDateTime(fechaPago).ToString("yyyy-MM-dd HH:mm:ss");
+                string fechaonsultaFinNew = Convert.ToDateTime(fechaPagoFin).ToString("yyyy-MM-dd HH:mm:ss");
                 sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
 
 

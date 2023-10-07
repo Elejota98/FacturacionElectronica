@@ -45,6 +45,7 @@ namespace FacturacionElectronica.Models
         [Display(Name ="Actividad Fiscal")]
         public string ResponsabilidadFiscal { get; set; }
         [Display(Name = "Régimen")]
+        [Required(ErrorMessage = "El campo es requerido")]
 
         public string Regimen { get; set; }
         public byte[] Rut { get; set; }

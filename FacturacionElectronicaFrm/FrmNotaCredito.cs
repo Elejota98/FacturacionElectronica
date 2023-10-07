@@ -61,10 +61,10 @@ namespace FacturacionElectronicaFrm
         public void ListarPagosInterfaz()
         {
             DataTable tablaDatosInterfaz;
-            tablaDatosInterfaz = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text);
+            tablaDatosInterfaz = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text, dtmFechaFin.Text);
             if (tablaDatosInterfaz.Rows.Count > 0)
             {
-                dvgListadoInterfaz.DataSource = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text);
+                dvgListadoInterfaz.DataSource = NotaCreditoController.ListarPagosInterfaz(Convert.ToInt32(cboEstacionamientos.SelectedValue), dtmFecha.Text,dtmFechaFin.Text);
 
                 dvgListadoInterfaz.Columns[0].Visible = true;
                 lblRtaFacturas.Visible = true;

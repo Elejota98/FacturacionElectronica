@@ -45,6 +45,7 @@ namespace FacturacionElectronicaServicio
         }
 
         #endregion
+
         public SincronizacionFacturacionElectronica()
         {
             InitializeComponent();
@@ -532,6 +533,11 @@ namespace FacturacionElectronicaServicio
             }
             return ok;
 
+
+        }
+
+        public bool ListarPagosContingencia()
+        {
 
         }
 
