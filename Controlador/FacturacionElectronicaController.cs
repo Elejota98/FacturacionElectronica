@@ -2,7 +2,10 @@
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Permissions;
@@ -16,12 +19,12 @@ namespace Controlador
         public static DataTable ListarClientes()
         {
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-           return Datos.ListarClientes();
+            return Datos.ListarClientes();
         }
 
         public static string ActualizarEstadoCliente()
         {
-            RepositorioFacturacionElectronica Datos = new  RepositorioFacturacionElectronica();
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ActualizaClientes();
         }
 
@@ -117,7 +120,7 @@ namespace Controlador
         {
             string rta = "";
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
-            if(texto is null)
+            if (texto is null)
             {
                 return rta = "No se encontro datos a insertar";
             }
@@ -149,7 +152,7 @@ namespace Controlador
 
         public static DataTable ListarUltimaCotizacion()
         {
-            RepositorioFacturacionElectronica Datos = new  RepositorioFacturacionElectronica();
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ListarUltimaCotizacion();
         }
 
@@ -214,7 +217,7 @@ namespace Controlador
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
             return Datos.ListarCotizacionesEncabezado();
         }
-        
+
         public static DataTable ListarCotizaciones()
         {
             RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
@@ -240,7 +243,172 @@ namespace Controlador
         }
 
 
+
+
         #region Contingencia
+
+        public static string ListarFacturasContingencia()
+        {
+            string rta = string.Empty;
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            DataTable tabla = new DataTable();
+            Cotizaciones cotizaciones = new Cotizaciones();
+            FacturasContingencia facturasContingencia = new FacturasContingencia();
+            CotizacionEncabezado cotizacionEncabezado = new CotizacionEncabezado();
+            int numeroFacturaAnterior = 1;
+            int cotNum = 1;
+            int itemCounter = 1;
+            try
+            {
+                tabla = Datos.ListarFacturasContingencia();
+                if (tabla.Rows.Count > 0)
+                {
+                    cotizaciones.Cot_Item = 1;
+
+                    foreach (DataRow lstDatos in tabla.Rows)
+                    {
+                        facturasContingencia.IdPago = Convert.ToInt32(lstDatos["IdPago"]);
+                        facturasContingencia.Empresa = Convert.ToInt32(lstDatos["Empresa"]);
+                        facturasContingencia.FechaPago = Convert.ToDateTime(lstDatos["FechaPago"]);
+                        facturasContingencia.IdentificacionCliente = lstDatos["Identificacion"].ToString();
+                        facturasContingencia.CodigoSucursal = Convert.ToInt32(lstDatos["CodigoSucursal"]);
+                        facturasContingencia.Prefijo = lstDatos["Prefijo"].ToString();
+                        facturasContingencia.NumeroFactura = Convert.ToInt32(lstDatos["NumeroFactura"]);
+                        facturasContingencia.Total = Convert.ToInt32(lstDatos["Total"]);
+                        facturasContingencia.IdEstacionamiento = Convert.ToInt32(lstDatos["IdEstacionamiento"]);
+                        facturasContingencia.IdTipoPago = Convert.ToInt32(lstDatos["IdTipoPago"]);
+                        facturasContingencia.Vendedor = Convert.ToInt32(lstDatos["Vendedor"]);
+
+                        tabla = ListarCentroCostoContingencia(facturasContingencia);
+                        if (tabla.Rows.Count > 0)
+                        {
+                            foreach (DataRow lstDatosC in tabla.Rows)
+                            {
+                                cotizaciones.Cot_Centro_Costo = Convert.ToString(lstDatosC["CentroCosto"]);
+
+                            }
+                        }
+
+                        tabla = ListarCotizaciones();
+                        if (tabla.Rows.Count > 0)
+                        {
+                            foreach (DataRow lstDatosCot in tabla.Rows)
+                            {
+                                cotizaciones.Cot_Numero = Convert.ToInt32(lstDatosCot["Cot_Numero"]);
+                            }
+                        }
+                        cotizaciones.Cot_Cantidad = 1;
+                        cotizaciones.Cot_Valor_Unitario = Convert.ToInt32(facturasContingencia.Total);
+                        cotizaciones.Cot_Documento = ConfigurationManager.AppSettings["PrefijoFE"];
+                        cotizaciones.Cot_Tipo_Item = 2;
+                        cotizaciones.Cot_Empresa = facturasContingencia.Empresa;
+
+                        if (numeroFacturaAnterior != facturasContingencia.NumeroFactura)
+                        {
+                            cotNum = cotizaciones.Cot_Numero + 1;
+                        }
+                        else
+                        {
+                            cotNum = cotizaciones.Cot_Numero;
+                        }
+                        cotizaciones.Cot_Numero = cotNum;
+
+                        if (facturasContingencia.IdTipoPago == 1)
+                        {
+                            cotizaciones.Cot_Referencia = "05";
+                        }
+                        else if (facturasContingencia.IdTipoPago == 2)
+                        {
+                            cotizaciones.Cot_Referencia = "06";
+                        }
+                        else if (facturasContingencia.IdTipoPago == 3)
+                        {
+                            cotizaciones.Cot_Referencia = "30";
+                        }
+                        else if (facturasContingencia.IdTipoPago == 4)
+                        {
+                            cotizaciones.Cot_Referencia = "31";
+                        }
+                        else if (facturasContingencia.IdTipoPago == 5)
+                        {
+                            cotizaciones.Cot_Referencia = "41";
+                        }
+                        else if (facturasContingencia.IdTipoPago == 6)
+                        {
+                            cotizaciones.Cot_Referencia = "98";
+                        }
+
+                        numeroFacturaAnterior = facturasContingencia.NumeroFactura;
+
+                        rta = Datos.InsertarPagosInterfaz(cotizaciones);
+
+                        if (rta.Equals("OK"))
+                        {
+                            cotizaciones.Cot_Item++;
+                            rta = Datos.ActualizaEstadoPagosContingencia(facturasContingencia);
+                            if (rta.Equals("OK"))
+                            {
+                                rta = "OK";
+                            }
+                            else
+                            {
+                                return rta;
+                            }
+
+                        }
+                        else
+                        {
+                            return rta;
+                        }
+
+
+
+                    }
+                    //Cotizaciones Encabezado
+
+                    DateTime fechaHoy = DateTime.Now;
+                    string fechaStr = fechaHoy.ToString("yyyy-MM-dd");
+
+                    DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
+
+                    cotizacionEncabezado.Coe_Fecha = (int)(fechaHoy - new DateTime(1899, 12, 30)).TotalDays;
+                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo ticket de parqueadero No " + " - " + facturasContingencia.NumeroFactura + "";
+                    cotizacionEncabezado.Coe_Empresa = cotizaciones.Cot_Empresa;
+                    cotizacionEncabezado.Coe_Documento = ConfigurationManager.AppSettings["PrefijoFE"];
+                    cotizacionEncabezado.Coe_Numero = cotizaciones.Cot_Numero;
+                    cotizacionEncabezado.Coe_Cliente = Convert.ToInt32(facturasContingencia.IdentificacionCliente);
+                    cotizacionEncabezado.Coe_Cliente_Sucursal = 1;
+                    cotizacionEncabezado.Coe_Sincronizado = 0;
+                    cotizacionEncabezado.Coe_Forma_Pago = 1;
+                    cotizacionEncabezado.Coe_Vendedor = Convert.ToInt32(Datos.ListarDocumentoVendedor());
+
+                    rta = InsertaPagosCotizacionEncabezado(cotizacionEncabezado);
+                    if (rta.Equals("OK"))
+                    {
+                        rta = "OK";
+                    }
+                    else
+                    {
+                        return rta;
+                    }
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                rta = ex.Message;
+            }
+            return rta;
+        }
+
+        public static DataTable ListarCentroCostoContingencia(FacturasContingencia facturasContingencia)
+        {
+            RepositorioFacturacionElectronica Datos = new RepositorioFacturacionElectronica();
+            return Datos.ListarCentroCostoContingencia(facturasContingencia);
+        }
 
 
         #endregion

@@ -609,6 +609,101 @@ namespace Servicios
 
         #endregion
 
+        #region FacturasContingencia
+
+        public DataTable ListarFacturasContingencia()
+        {
+            DataTable tabla = new DataTable();
+            SqlConnection sqlcon = new SqlConnection();
+            try
+            {
+                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT " +
+                    " P.IdPago,  C.Empresa,P.FechaPago, C.Identificacion,  " +
+                    "    C.CodigoSucursal, P.Prefijo, " +
+                    " P.NumeroFactura, P.Total, " +
+                    " P.IdEstacionamiento, tp.IdTipoPago, " +
+                    " tp.TipoPago,  C.Vendedor " +
+                    " FROM T_Clientes C  INNER JOIN T_FacturasCOntingencia P ON C.Identificacion = P.IdentificacionCliente  INNER JOIN " +
+                    " T_TipoPago tp ON tp.IdTipoPago = P.IdTipoPago  WHERE P.Sincronizacion = 0  GROUP BY  P.IdPago,  C.Empresa,   P.FechaPago, " +
+                    " C.Identificacion, C.CodigoSucursal,  P.Prefijo,      P.NumeroFactura, " +
+                    "P.Total,  P.IdEstacionamiento,      tp.IdTipoPago,  tp.TipoPago,  C.Vendedor");
+                SqlCommand comando = new SqlCommand(cadena, sqlcon);
+                sqlcon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
+        }
+
+        public DataTable ListarCentroCostoContingencia(FacturasContingencia facturasContingencia)
+        {
+            SqlConnection sqlCon = new SqlConnection();
+            DataTable tabla = new DataTable();
+            try
+            {
+                sqlCon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("SELECT replace(ep.documentoempresa,'NCRP','') as CentroCosto FROM T_EmpresaParquearse EP WHERE IdEstacionamiento=" + facturasContingencia.IdEstacionamiento + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlCon);
+                sqlCon.Open();
+                SqlDataReader rta = comando.ExecuteReader();
+                tabla.Load(rta);
+                return tabla;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+        }
+
+
+
+        public string ActualizaEstadoPagosContingencia(FacturasContingencia facturasContingencia)
+        {
+            string rta = "";
+            SqlConnection sqlcon = new SqlConnection();
+            try
+            {
+                sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
+                string cadena = ("UPDATE T_FacturasContingencia SET Sincronizacion=1 WHERE Sincronizacion=0 and IdPago=" + facturasContingencia.IdPago + "");
+                SqlCommand comando = new SqlCommand(cadena, sqlcon);
+                sqlcon.Open();
+                comando.ExecuteNonQuery();
+                rta = "OK";
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (sqlcon.State == ConnectionState.Open) sqlcon.Close();
+            }
+            return rta;
+        }
+
+
+        #endregion
+
         //LISTADO DE TABLAS 
 
         public DataTable ListarCotizacionesEncabezado()

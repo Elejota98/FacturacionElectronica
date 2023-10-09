@@ -393,7 +393,10 @@ namespace FacturacionElectronicaServicio
                     {
                         MensajeAListBox("Pagos registrados en la interfaz");
                     }
+                  
                 }
+
+                FacturacionElectronicaController.ListarFacturasContingencia();
             }
             catch (Exception ex)
             {
@@ -508,7 +511,7 @@ namespace FacturacionElectronicaServicio
 
                     DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
                     cotizacionEncabezado.Coe_Fecha = (int)(fechaHoy - new DateTime(1899, 12, 30)).TotalDays;
-                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo factura POS " + pagos.Prefijo + " - " + pagos.NumeroFactura + "";
+                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo ticket de parqueadero No " + " - " + pagos.NumeroFactura + "";
                     cotizacionEncabezado.Coe_Empresa = cotizaciones.Cot_Empresa;
                     cotizacionEncabezado.Coe_Documento = PrefijoFacturasElectronicas();
                     cotizacionEncabezado.Coe_Numero = cotizaciones.Cot_Numero;
@@ -536,10 +539,10 @@ namespace FacturacionElectronicaServicio
 
         }
 
-        public bool ListarPagosContingencia()
-        {
+        //public bool ListarPagosContingencia()
+        //{
 
-        }
+        //}
 
         public bool InsertarPagosInterfaz(Cotizaciones cotizaciones)
         {

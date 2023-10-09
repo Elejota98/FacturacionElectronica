@@ -46,6 +46,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="CotizacionEncabezado.cs" />
     <Compile Include="Cotizaciones.cs" />
+    <Compile Include="FacturasContingencia.cs" />
     <Compile Include="ItemsContable.cs" />
     <Compile Include="Pagos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
