@@ -380,7 +380,14 @@ namespace Controlador
                     cotizacionEncabezado.Coe_Cliente_Sucursal = 1;
                     cotizacionEncabezado.Coe_Sincronizado = 0;
                     cotizacionEncabezado.Coe_Forma_Pago = 1;
-                    cotizacionEncabezado.Coe_Vendedor = Convert.ToInt32(Datos.ListarDocumentoVendedor());
+                    tabla = Datos.ListarDocumentoVendedor();
+                    if (tabla.Rows.Count > 0)
+                    {
+                        foreach (DataRow lstDcoVendedor in tabla.Rows)
+                        {
+                            cotizacionEncabezado.Coe_Vendedor = Convert.ToInt32(lstDcoVendedor["VEN_IDENTIFICACION"]);
+                        }
+                    }
 
                     rta = InsertaPagosCotizacionEncabezado(cotizacionEncabezado);
                     if (rta.Equals("OK"))
