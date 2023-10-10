@@ -46,10 +46,12 @@
             // 
             this.lbEventos.FormattingEnabled = true;
             this.lbEventos.HorizontalScrollbar = true;
-            this.lbEventos.Location = new System.Drawing.Point(23, 21);
+            this.lbEventos.ItemHeight = 16;
+            this.lbEventos.Location = new System.Drawing.Point(31, 26);
+            this.lbEventos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbEventos.Name = "lbEventos";
             this.lbEventos.ScrollAlwaysVisible = true;
-            this.lbEventos.Size = new System.Drawing.Size(1089, 602);
+            this.lbEventos.Size = new System.Drawing.Size(1451, 740);
             this.lbEventos.TabIndex = 4;
             // 
             // Inicio
@@ -59,56 +61,60 @@
             // dvgRta
             // 
             this.dvgRta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgRta.Location = new System.Drawing.Point(23, 405);
+            this.dvgRta.Location = new System.Drawing.Point(31, 498);
+            this.dvgRta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dvgRta.Name = "dvgRta";
-            this.dvgRta.Size = new System.Drawing.Size(1100, 150);
+            this.dvgRta.RowHeadersWidth = 51;
+            this.dvgRta.Size = new System.Drawing.Size(1467, 185);
             this.dvgRta.TabIndex = 5;
             this.dvgRta.Visible = false;
             // 
             // notifyIcon1
             // 
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "FacturacionElecronicaService";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.restaurarToolStripMenuItem,
             this.minimizarToolStripMenuItem,
             this.cerrarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 76);
             // 
             // restaurarToolStripMenuItem
             // 
             this.restaurarToolStripMenuItem.Name = "restaurarToolStripMenuItem";
-            this.restaurarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.restaurarToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.restaurarToolStripMenuItem.Text = "Restaurar";
             this.restaurarToolStripMenuItem.Click += new System.EventHandler(this.restaurarToolStripMenuItem_Click);
             // 
             // minimizarToolStripMenuItem
             // 
             this.minimizarToolStripMenuItem.Name = "minimizarToolStripMenuItem";
-            this.minimizarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.minimizarToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.minimizarToolStripMenuItem.Text = "Minimizar";
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
             // SincronizacionFacturacionElectronica
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 687);
+            this.ClientSize = new System.Drawing.Size(1564, 846);
             this.Controls.Add(this.lbEventos);
             this.Controls.Add(this.dvgRta);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SincronizacionFacturacionElectronica";
             this.Text = "SincronizacionFacturacionElectronica";
             this.Load += new System.EventHandler(this.SincronizacionFacturacionElectronica_Load);

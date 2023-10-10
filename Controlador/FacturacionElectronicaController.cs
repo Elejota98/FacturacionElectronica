@@ -372,7 +372,7 @@ namespace Controlador
                     DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
 
                     cotizacionEncabezado.Coe_Fecha = (int)(fechaHoy - new DateTime(1899, 12, 30)).TotalDays;
-                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo ticket de parqueadero No " + " - " + facturasContingencia.NumeroFactura + "";
+                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo ticket de parqueadero No  "+facturasContingencia.Prefijo+ "-" + facturasContingencia.NumeroFactura + "";
                     cotizacionEncabezado.Coe_Empresa = cotizaciones.Cot_Empresa;
                     cotizacionEncabezado.Coe_Documento = ConfigurationManager.AppSettings["PrefijoFE"];
                     cotizacionEncabezado.Coe_Numero = cotizaciones.Cot_Numero;

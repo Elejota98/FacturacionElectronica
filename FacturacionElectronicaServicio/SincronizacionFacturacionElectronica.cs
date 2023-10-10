@@ -359,7 +359,7 @@ namespace FacturacionElectronicaServicio
             {
                 sw.WriteLine(texto);
 
-                MensajeAListBox("Se generó el documento .txt OK");
+                //MensajeAListBox("Se generó el documento .txt OK");
             }
 
         }
@@ -511,7 +511,7 @@ namespace FacturacionElectronicaServicio
 
                     DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
                     cotizacionEncabezado.Coe_Fecha = (int)(fechaHoy - new DateTime(1899, 12, 30)).TotalDays;
-                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo ticket de parqueadero No " + " - " + pagos.NumeroFactura + "";
+                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo ticket de parqueadero No "+ pagos.Prefijo + "-" + pagos.NumeroFactura + "";
                     cotizacionEncabezado.Coe_Empresa = cotizaciones.Cot_Empresa;
                     cotizacionEncabezado.Coe_Documento = PrefijoFacturasElectronicas();
                     cotizacionEncabezado.Coe_Numero = cotizaciones.Cot_Numero;
