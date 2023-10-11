@@ -618,16 +618,11 @@ namespace Servicios
             try
             {
                 sqlcon = RepositorioConexion.getInstancia().CrearConexionNube();
-                string cadena = ("SELECT " +
-                    " P.IdPago,  C.Empresa,P.FechaPago, C.Identificacion,  " +
-                    "    C.CodigoSucursal, P.Prefijo, " +
-                    " P.NumeroFactura, P.Total, " +
-                    " P.IdEstacionamiento, tp.IdTipoPago, " +
-                    " tp.TipoPago,  C.Vendedor " +
-                    " FROM T_Clientes C  INNER JOIN T_FacturasCOntingencia P ON C.Identificacion = P.IdentificacionCliente  INNER JOIN " +
-                    " T_TipoPago tp ON tp.IdTipoPago = P.IdTipoPago  WHERE P.Sincronizacion = 0  GROUP BY  P.IdPago,  C.Empresa,   P.FechaPago, " +
-                    " C.Identificacion, C.CodigoSucursal,  P.Prefijo,      P.NumeroFactura, " +
-                    "P.Total,  P.IdEstacionamiento,      tp.IdTipoPago,  tp.TipoPago,  C.Vendedor");
+                string cadena = ("SELECT     P.IdPago,  C.Empresa,P.FechaPago, C.Identificacion, P.Observaciones , C.CodigoSucursal, P.Prefijo," +
+                    " P.NumeroFactura, P.Total,  P.IdEstacionamiento, tp.IdTipoPago,  tp.TipoPago,  C.Vendedor " +
+                    "  FROM T_Clientes C  INNER JOIN T_FacturasCOntingencia P ON C.Identificacion = P.IdentificacionCliente  INNER JOIN " +
+                    "T_TipoPago tp ON tp.IdTipoPago = P.IdTipoPago  WHERE P.Sincronizacion = 0  GROUP BY  P.IdPago,  C.Empresa,   P.FechaPago, " +
+                    " C.Identificacion, P.Observaciones, C.CodigoSucursal,  P.Prefijo,      P.NumeroFactura,   P.Total,  P.IdEstacionamiento,      tp.IdTipoPago,  tp.TipoPago,  C.Vendedor");
                 SqlCommand comando = new SqlCommand(cadena, sqlcon);
                 sqlcon.Open();
                 SqlDataReader rta = comando.ExecuteReader();

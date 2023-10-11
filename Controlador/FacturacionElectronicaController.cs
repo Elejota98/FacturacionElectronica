@@ -278,6 +278,7 @@ namespace Controlador
                         facturasContingencia.IdEstacionamiento = Convert.ToInt32(lstDatos["IdEstacionamiento"]);
                         facturasContingencia.IdTipoPago = Convert.ToInt32(lstDatos["IdTipoPago"]);
                         facturasContingencia.Vendedor = Convert.ToInt32(lstDatos["Vendedor"]);
+                        facturasContingencia.Observaciones = lstDatos["Observaciones"].ToString();
 
                         tabla = ListarCentroCostoContingencia(facturasContingencia);
                         if (tabla.Rows.Count > 0)
@@ -372,7 +373,7 @@ namespace Controlador
                     DateTime fechaNum = DateTime.ParseExact(fechaStr, "yyyy-MM-dd", null);
 
                     cotizacionEncabezado.Coe_Fecha = (int)(fechaHoy - new DateTime(1899, 12, 30)).TotalDays;
-                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo ticket de parqueadero No  "+facturasContingencia.Prefijo+ "-" + facturasContingencia.NumeroFactura + "";
+                    cotizacionEncabezado.Coe_Observaciones = "Reemplazo Factura de contingencia No  "+facturasContingencia.Observaciones+"";
                     cotizacionEncabezado.Coe_Empresa = cotizaciones.Cot_Empresa;
                     cotizacionEncabezado.Coe_Documento = ConfigurationManager.AppSettings["PrefijoFE"];
                     cotizacionEncabezado.Coe_Numero = cotizaciones.Cot_Numero;
