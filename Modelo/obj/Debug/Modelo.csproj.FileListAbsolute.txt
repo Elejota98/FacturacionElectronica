@@ -22,3 +22,9 @@ D:\PROYECTOS\PARQUEARSE\FacturacionElectronica\Modelo\obj\Debug\Modelo.csproj.As
 D:\PROYECTOS\PARQUEARSE\FacturacionElectronica\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
 D:\PROYECTOS\PARQUEARSE\FacturacionElectronica\Modelo\obj\Debug\Modelo.dll
 D:\PROYECTOS\PARQUEARSE\FacturacionElectronica\Modelo\obj\Debug\Modelo.pdb
+D:\PROYECTOS\FacturacionElectronica\Modelo\bin\Debug\Modelo.dll
+D:\PROYECTOS\FacturacionElectronica\Modelo\bin\Debug\Modelo.pdb
+D:\PROYECTOS\FacturacionElectronica\Modelo\obj\Debug\Modelo.csproj.AssemblyReference.cache
+D:\PROYECTOS\FacturacionElectronica\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\FacturacionElectronica\Modelo\obj\Debug\Modelo.dll
+D:\PROYECTOS\FacturacionElectronica\Modelo\obj\Debug\Modelo.pdb
