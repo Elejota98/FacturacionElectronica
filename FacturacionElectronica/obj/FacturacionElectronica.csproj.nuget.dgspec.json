@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PROYECTOS\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {}
+    "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {}
   },
   "projects": {
-    "D:\\PROYECTOS\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {
+    "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROYECTOS\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
+        "projectUniqueName": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
         "projectName": "FacturacionElectronica",
-        "projectPath": "D:\\PROYECTOS\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
+        "projectPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\FacturacionElectronica.csproj",
         "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-        "outputPath": "D:\\PROYECTOS\\FacturacionElectronica\\FacturacionElectronica\\obj\\",
+        "outputPath": "D:\\PROYECTOS\\PARQUEARSE\\FacturacionElectronica\\FacturacionElectronica\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\Administrador\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
